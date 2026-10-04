@@ -1,0 +1,11 @@
+<!--服务器地址配置-->
+<?xml version="1.0" encoding="UTF-8"?>
+<rooms speedUrl="/speed.jsp" updateUrl="" roomMode="1" speedTime="1500" description="服务器地址配置，speedUrl为测速地址，updateUrl为更新地址(http/https格式:http://地址:端口/servlet/json?key=value&key=value, socket格式：socket://busconfig.xml中的serverID?companyId=THINKIVE&systemId=MALL&key=value, server.xml格式：server://server.xml中的serverID?key=value&key=value),roomMode为机房选择策略，0：随机，1：测速选择最快">
+    
+<!--    测试环境只有一个地址，不需要测速-->
+<!--    <room name="ios_room1" state="1" mainsite="trade" description=“机房1”>-->
+<!--        <!--商城地址-->-->
+<!--        <server name="tkMallH5Server" domain="" ip="" description="运营商测速线路"></server>-->
+<!--    </room>-->
+    
+</rooms>

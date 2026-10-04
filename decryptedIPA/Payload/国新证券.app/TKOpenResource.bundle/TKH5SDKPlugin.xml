@@ -1,0 +1,97 @@
+<!--H5调用原生基础公共插件-->
+<?xml version="1.0" encoding="UTF-8"?>
+<plugins>
+    <!--商城部分-->
+    <item name="60350" value="TKPlugin60350" description="通知app登录"></item>
+    <item name="60351" value="TKPlugin60351" description="通知app退出登录"></item>
+    <item name="60353" value="TKPlugin60353" description="调起app分享"></item>
+    <item name="60354" value="TKPlugin60354" description=""></item>
+    <item name="60355" value="TKPlugin60355" description=""></item>
+    <item name="60356" value="TKPlugin60356" description="给app发送自定义消息"></item>
+    <item name="60357" value="TKPlugin60357" description="判断壳子是否安装了微信"></item>
+    <item name="60358" value="TKPlugin60358" description=""></item>
+    <item name="60359" value="TKPlugin60359" description=""></item>
+    <item name="60371" value="TKPlugin60371" description="h5获取app缓存数据"></item>
+    <item name="60375" value="TKPlugin60375" description="打开其他模块"></item>
+    <item name="60380" value="TKPlugin60380" description="调用中证易签签署协议文件"></item>
+    <item name="60384" value="TKPlugin60384" description="调用中证易签查询是否实名"></item>
+    <item name="60393" value="TKPlugin60393" description="存储图片到相册"></item>
+    <item name="60394" value="TKPlugin60394" description="复制到剪切板"></item>
+    <item name="60395" value="TKPlugin60395" description="H5预览PDF原生提供分享下载"></item>
+    <item name="60396" value="TKPlugin60396" description="自定义打开PDF"></item>
+    <item name="60397" value="TKPlugin60397" description="关闭自定义PDF页面"></item>
+    <item name="60076" value="TKPlugin60076" description="打开微信小程序"></item>
+    
+    <!--营销项目部分-->
+    <item name="60700" value="TKPlugin60700" description="保存二维码到相册"></item>
+    <item name="60701" value="TKPlugin60701" description="复制到剪切板"></item>
+    <item name="60702" value="TKPlugin60702" description="手写签名插件"></item>
+    
+    <!--开户项目部分-->
+    <item name="60000" value="TKOpenPlugin60000" description="判断影像文件是否存在"></item>
+    <item name="60001" value="TKOpenPlugin60001" description="数据签名"></item>
+    <item name="60002" value="TKOpenPlugin60002" description="影像采集"></item>
+    <item name="60003" value="TKOpenPlugin60003" description="创建公私钥"></item>
+    <item name="60004" value="TKOpenPlugin60004" description="安装证书"></item>
+    <item name="60005" value="TKOpenPlugin60005" description="AnyChat双向视频"></item>
+    <item name="60006" value="TKOpenPlugin60006" description="单向视频"></item>
+    <item name="60007" value="TKOpenPlugin60007" description="活体识别"></item>
+    <item name="60008" value="TKOpenPlugin60008" description="人脸识别"></item>
+    <item name="60010" value="TKOpenPlugin60010" description="GPS定位获取经纬度"></item>
+    <item name="60011" value="TKOpenPlugin60011" description="拨号视频"></item>
+    <item name="60013" value="TKOpenPlugin60013" description="拍摄证件照（新）"></item>
+    <item name="60014" value="TKOpenPlugin60014" description="证件照客户端OCR识别"></item>
+    <item name="60015" value="TKOpenPlugin60015" description="定位获取营业部（地图显示营业部）"></item>
+    <item name="60016" value="TKOpenPlugin60016" description="银行卡识别"></item>
+    <item name="60017" value="TKOpenPlugin60017" description="修改状态栏颜色"></item>
+    <item name="60018" value="TKOpenPlugin60018" description="复制内容到粘贴板"></item>
+    <item name="60099" value="TKOpenPlugin60099" description="向外部发送回调消息"></item>
+    <item name="70004" value="TKOpenPlugin70004" description="另起一个webview"></item>
+    <item name="60020" value="TKOpenPlugin60020" description="截取屏幕"></item>
+    <item name="60022" value="TKOpenPlugin60022" description="手写签名"></item>
+    <item name="60026" value="TKOpenPlugin60026" description="智能单向视频"></item>
+    <item name="60028" value="TKOpenPlugin60028" description="人脸影像（照片）采集"></item>
+    <item name="60030" value="TKOpenPlugin60030" description="普通单向视频新界面版本"></item>
+    <item name="60032" value="TKOpenPlugin60032" description="身份证拍照、相册选择;无上传功能（公版SDK使用，非思迪开户使用）"></item>
+    <item name="60033" value="TKOpenPlugin60033" description="身份证扫描地OCR;无上传功能（公版SDK使用，非思迪开户使用）"></item>
+    <item name="60034" value="TKOpenPlugin60034" description="不排队，直接进入双向视频见证"></item>
+    <item name="60037" value="TKOpenPlugin60037" description="银行卡拍照插件"></item>
+    <item name="60039" value="TKOpenPlugin60039" description="中信建投双向视频"></item>
+    <item name="60043" value="TKOpenPlugin60043" description="SDK所需设备权限状态"></item>
+    <item name="60025" value="TKOpenPlugin60025" description="打开系统设置界面"></item>
+    <item name="60041" value="TKOpenPlugin60041" description="移动一键登录插件"></item>
+    <item name="60044" value="TKOpenPlugin60044" description="调用原生上传文件"></item>
+    <item name="60049" value="TKOpenPlugin60049" description="获取SDK版本及功能信息"></item>
+    <item name="60057" value="TKOpenPlugin60057" description="tchat服务器版本单向"></item>
+    <item name="60059" value="TKOpenPlugin60059" description="tchat服务器活体识别"></item>
+    <item name="60072" value="TKOpenPlugin60072" description="虚拟人智能录制"></item>
+    <item name="60074" value="TKOpenPlugin60074" description="港澳台证件识别"></item>
+    <item name="60077" value="TKOpenPlugin60077" description="TChat双人智能录制"></item>
+    <item name="60079" value="TKOpenPlugin60079" description="样式切换；目前支持普通样式和适老化样式"></item>
+    <item name="60087" value="TKOpenPlugin60087" description="投教视频观看插件"></item>
+    <item name="60089" value="TKOpenPlugin60089" description="横屏智能单向视频录制"></item>
+    <item name="60091" value="TKOpenPlugin60091" description="横屏朗读录制"></item>
+    <item name="60093" value="TKOpenPlugin60093" description="控制屏幕是否常亮"></item>
+    <item name="60071" value="TKOpenPlugin60071" description="调用埋点"></item>
+    <item name="60094" value="TKPlugin50127" description="控制是否截屏录屏做提示。改成使用底层库的实现，这里只做桥接"></item>
+    <item name="60095" value="TKOpenPlugin60095" description="H5调原生设置隐私协议签署状态"></item>
+    <item name="60096" value="TKOpenPlugin60096" description="一键登录无界面插件"></item>
+    <item name="60046" value="TKOpenPlugin60046" description="调原生申请设备权限"></item>
+    <item name="60812" value="TKOpenPlugin60812" description="调用系统分享功能"></item>
+    <item name="60813" value="TKOpenPlugin60813" description="开启/关闭app运行状态回调"></item>
+    <item name="60817" value="TKOpenPlugin60817" description="选择系统文件"></item>
+    <item name="60818" value="TKOpenPlugin60818" description="打开独立开户APP权限管理页面"></item>
+
+    
+    
+    <!--机构开户项目部分-->
+    <item name="60062" value="TKOpenPlugin60062" description="智能单向视频横屏"></item>
+    <item name="60064" value="TKOpenPlugin60064" description="营业执照OCR识别"></item>
+    <item name="61000" value="TKOpenPlugin61000" description="文件系统分享"></item>
+    <item name="61001" value="TKOpenPlugin61001" description="机构开户标准版单人拍照和横屏拍照"></item>
+    
+    <!--商城项目部分-->
+    <item name="600395" value="TKMallPlugin600395" description="调用妥妥递批量签署，中山需求定制"></item>
+    <item name="600397" value="TKMallPlugin600397" description="调用妥妥递文件签署(根据文件状态)，中山需求定制"></item>
+    <item name="70005" value="TKOpenPlugin70005" description="美市文件签署"></item>
+</plugins>

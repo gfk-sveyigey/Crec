@@ -1,0 +1,21 @@
+android：
+需要注入一个名为analysisHandler的对象，对象包含一个analysisDataRequest方法，
+方法两个入参，第一个参数为开始日期，第二个参数为结束日期。
+
+ios：
+网页通过window.webkit.messageHandlers.analysisDataRequest.postMessage 方法请求，
+入参为{startDate:'20241204', endDate:'20241204'}对象。如果能像安卓一样注入对象也行。
+
+
+网页请求代码：
+android：window.analysisHandler.analysisDataRequest('20241204', '20241204')
+ios：window.webkit.messageHandlers.analysisDataRequest.postMessage({startDate:'20241204', endDate:'20241204'})
+
+数据返回：
+两端统一通过分别执行js代码返回两个协议的数据；
+
+window.onAnalysisDataResponseBy1042(data)
+
+window.onAnalysisDataResponseBy1089(data)
+
+data是一个 数组对象JSON字符串

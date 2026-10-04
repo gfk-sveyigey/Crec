@@ -1,0 +1,22 @@
+<!--服务器地址配置-->
+<?xml version="1.0" encoding="UTF-8"?>
+<servers speedTime="0" updateUrl="">
+    
+    <server id="ZHYW_SOCKET_URL" description="思迪统一账户接入">
+        <property name="version" value="7" description="行情服务器socket协议版本号(1:BUS1.0，2:BUS2.0,3:行情协议,4:旧版交易,5:旧版资讯,6:新版天风,7:新版思迪统一接入,20:行情推送)" />
+        <property name="gateway" value="218.26.180.235:9087" description="服务器列表，多个用|分割" />
+        <property name="gatewayName" value="站点1" description="IP服务器名称列表，多个用|分割" />
+        <property name="scanInterval" value="5" description="心跳检测间隔时间，单位秒" />
+        <property name="LBMode" value="3" description="0:Random(随机轮询) 1：Roundrobin(顺序轮询，缺省) 2：Backup(主备模式) 3:Best(最优智能测试模式)" />
+        <property name="mode" value="1" description="socket连接模式(0:短连接，1:长连接，默认是0)" />
+        <property name="recvTimeout" value="30" description="连接请求超时时间，单位秒" />
+        <property name="functionConfig" value="" description="功能号配置文件的片；≥" />
+        <property name="serverPublicCer" value="server.cer" description="服务端公钥证书的名称" />
+        <property name="clientPublicCer" value="client.cer" description="客户端公钥证书的名称" />
+        <property name="clientPrivateCer" value="client-key.pem" description="客户端私钥证书的名称" />
+        <property name="clientPassword" value="dcHsfSz1zpcreOU7JwDCGA==" description="客户端证书的密码" />
+        <property name="serverVersion" value="0x00010001" description="服务器版本号" />
+        <property name="vityifyMode" value="2" description="服务器认证模式（0:不认证，1：密码认证，2：证书双向认证）" />
+    </server>
+
+</servers>

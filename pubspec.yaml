@@ -21,3 +21,11 @@ flutter:
   assets:
     - assets/icon/
     - assets/images/
+  # 行情数字字体：提取自原 App（tztNum，仅含 0-9 与 + - . , % / ¥ : 等符号）
+  fonts:
+    - family: tztNum
+      fonts:
+        - asset: assets/fonts/tztNum.ttf
+          weight: 400
+        - asset: assets/fonts/tztNum-Medium.ttf
+          weight: 500

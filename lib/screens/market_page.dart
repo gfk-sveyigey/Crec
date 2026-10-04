@@ -165,7 +165,7 @@ class _MarketPageState extends State<MarketPage> {
         children: <Widget>[
           Text(
             two(q.price),
-            style: TextStyle(fontSize: 17, fontWeight: FontWeight.w700, color: c),
+            style: numStyle(TextStyle(fontSize: 17, fontWeight: FontWeight.w700, color: c)),
           ),
           const SizedBox(height: 2),
           Row(
@@ -179,7 +179,7 @@ class _MarketPageState extends State<MarketPage> {
                 ),
               ),
               const SizedBox(width: 3),
-              Text(signedPct(q.changePct), style: TextStyle(fontSize: 12, color: c)),
+              Text(signedPct(q.changePct), style: numStyle(TextStyle(fontSize: 12, color: c))),
             ],
           ),
           const SizedBox(height: 6),
@@ -451,7 +451,7 @@ class _MarketPageState extends State<MarketPage> {
               child: Text(
                 two(q.price),
                 textAlign: TextAlign.right,
-                style: TextStyle(fontSize: 15, color: c),
+                style: numStyle(TextStyle(fontSize: 15, color: c)),
               ),
             ),
             const SizedBox(width: 10),
@@ -462,7 +462,7 @@ class _MarketPageState extends State<MarketPage> {
               decoration: BoxDecoration(color: c, borderRadius: BorderRadius.circular(4)),
               child: Text(
                 signedPct(q.changePct),
-                style: const TextStyle(color: Colors.white, fontSize: 12),
+                style: numStyle(const TextStyle(color: Colors.white, fontSize: 12)),
               ),
             ),
           ],

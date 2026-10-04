@@ -1,0 +1,152 @@
+<!--APP应用系统配置-->
+<?xml version="1.0" encoding="UTF-8"?>
+<system>
+    
+    <catalog name="system" description="系统配置">
+        <item name="isDevelop" value="0" description="是否开发环境(0:否,1:是)，默认是0" />
+        <item name="isThinkiveApp" value="0" description="是否是思迪综合App(0:否,1:是)，默认是0" />
+        <item name="isLinstenGateway" value="0" description="是否对BusConfig.xml的服务器进行启动检测(0:否,1:是)，默认是0" />
+        <item name="isListenScreenTouch" value="0" description="是否监听全局屏幕触发(0:否,1:是)，默认是0" />
+        <item name="isBlurBackground" value="1" description="是否在切换到后台时候模糊背景(0:否,1:是)，默认是1" />
+        <item name="isUseServerTestSpeed" value="0" description="是否启动Server.xml的Http的测速(0:否,1:是)，默认是0" />
+        <item name="isAutoGetIp" value="1" description="是否自动获取外网IP(0:否,1:是)，默认是1" />
+        <item name="pluginPath" value="SystemPlugin.xml|TKH5SDKPlugin.xml" description="系统插件配置文件地址,多个用|分割" />
+        <item name="modulePath" value="" description="系统模块配置文件地址,多个用|分割" />
+    </catalog>
+    
+    <catalog name="keyborad" description="键盘配置">
+    	  <item name="path" value="KeyBoard.xml" description="系统键盘配置文件地址,多个用|分割" />
+        <item name="theme" value="0" description="原生键盘主题类型(0:浅色,1:深色)，默认是0" />
+        <item name="isNoCutScreen" value="0" description="原生键盘是否支持防止截屏(0:不处理，1：处理)，默认0，处理的时候键盘会去掉点击背景色" />
+    </catalog>
+    
+    <catalog name="networkChange" description="网络切换相关配置">
+        <item name="isShowNetChange" value="1" description="是否显示网络连接提醒(0:否,1:是)，默认是1" />
+        <item name="showNetChangeMode" value="0" description="显示网络连接提醒的模式(0:底部提示,1:通知栏提示),默认是0" />
+    </catalog>
+    
+    <catalog name="noteBar" description="通知栏提示层配置">
+        <item name="barColor" value="#ff0000" description="背景色" />
+        <item name="textColor" value="#ffffff" description="字体颜色" />
+        <item name="textPosition" value="1" description="字体的位置，0：left，1：center，2：right，默认是1" />
+        <item name="barAnimation" value="1" description="显示动画，0：无动画，1：上下移动，2：淡入淡出，默认是1" />
+        <item name="showTime" value="2" description="显示时间，单位秒，默认是2秒" />
+    </catalog>
+    
+    <catalog name="networkRequest" description="网络请求相关配置">
+        <item name="requestChannelId" value="" description="请求渠道ID" />
+        <item name="isShowErrorPrefix" value="1" description="是否对网络异常提示显示前缀(0:否,1:是)默认是1" />
+        <item name="isRequestURLEncode" value="1" description="是否对请求入参进行URL编码(0:否,1:是)默认是1" />
+        <item name="isRequestURLSign" value="0" description="是否对请求入参进行签名(0:否,1:是)默认是0" />
+        <item name="requestSignKey" value="lgQG83vBP5hs0jTe5kPQzhz907mx5HPyiuPJH7yBUsceT9CVhloh0e0kmq2PagBU" description="请求签名的Key" />
+        <item name="requestSignAppId" value="10000" description="请求签名的APPId" />
+        <item name="isRequestURLEncrypt" value="0" description="是否对请求入参进行加密(0:否,1:是)默认是0" />
+        <item name="requestEncryptMode" value="des" description="加密的类型" />
+        <item name="requestEncryptKey" value="qumPZ40oEK2Cdyiwz0tV7P18icupyh9SAq220g9l7aEeT9CVhloh0e0kmq2PagBU" description="请求加密的Key" />
+    </catalog>
+    
+    <catalog name="networkErrorInfo" description="请求常见的错误的提示信息配置">
+        <item name="-100000" value="亲，网络很不给力哦~" description="请求断网错误" />
+        <item name="-100001" value="亲，服务器不能正常访问~" description="请求服务器异常" />
+        <item name="-100002" value="亲，请求超时，请稍后重试~" description="请求超时错误" />
+        <item name="-100003" value="亲，请求已中断，请稍后重试~" description="请求中断错误" />
+        <item name="-100004" value="亲，请求地址不能正常访问~" description="请求地址错误" />
+        <item name="-100005" value="亲，DNS域名解析失败~" description="DNS域名解析错误" />
+        <item name="-100006" value="亲，您正在通话中~" description="通话中请求数据错误" />
+    </catalog>
+
+    <catalog name="webViewPool" description="webView链接池">
+        <item name="isUse" value="0" description="是否开启(0:否,1:是)" />
+        <item name="webviewMode" value="1" description="浏览器模式(0:UIWebView，1:WKWebView),默认是0" />
+        <item name="htmlLoadMode" value="0" description="html的加载模式(0:从安全沙箱加载,1:从安装包加载)，默认是0" />
+        <item name="poolInitSize" value="3" description="池子初始大小" />
+        <item name="poolMaxSize" value="3" description="池子最多大小" />
+        <item name="isCheckH5" value="0" description="是否检测H5加载完成（1:检测，只有H5通知原生加载完成以后,才可以回调H5的方法 0:不检查,直接回调H5）默认是0，不检测" />
+        <item name="isShowLoading" value="0" description="是否显示WebView加载过渡效果(0:否,1:是)默认是0" />
+    </catalog>
+
+    <catalog name="update" description="版本管理配置">
+        <item name="isOpen" value="0" description="是否启动检测版本更新(0:否,1:是)，默认是0" />
+        <item name="mode" value="1" description="更新模式0:全量更新,1:增量更新" />
+<!--        <item name="versionSn" value="0" description="版本内部序号" />-->
+        <item name="saveName" value="www.zip" description="下载H5压缩包名称" />
+        <item name="password" value="" description="解压H5压缩包得密码" />
+        <item name="isEncrypt" value="0" description="H5下载压缩包是有密码(0:否,1:是,2:是加密，同时配置的password字段是加密后的密码)" />
+        <item name="checkUrl" value="" description="版本自动检测的服务器地址,http/https格式:http://地址:端口/servlet/json?key=value&key=value, socket格式：socket://busconfig.xml中的serverID?companyId=THINKIVE&systemId=MALL&key=value, server.xml格式：server://server.xml中的serverID?key=value&key=value" />
+        <item name="updateTip" value="" description="更新过程提示语" />
+        <item name="errorTip" value="" description="更新错误提示语" />
+        <item name="successTip" value="" description="更新成功提示语" />
+        <item name="isShowUpdateTip" value="1" description="是否显示更新相关弹层进度提示" />
+        <item name="isReloadWebView" value="1" description="是否更新完成后进行webview的刷新动作" />
+        <item name="timeOut" value="0" description="下载超时时间，单位秒，默认是0，代表不限制" />
+        <item name="backgroundTaskEnabled" value="1" description="设置是否支持后台任务模式(0:否,1:是)默认1" />
+    </catalog>
+
+    <catalog name="log" description="日志的配置">
+        <item name="logLevel" value="debug" description="off|error|warn|info|debug|all" />
+        <item name="logAsync" value="1" description="是否异步写日志(0:同步，1:异步)" />
+        <item name="logType" value="console" description="console:控制台，file:文件，server:服务器，多种日志模式用|分割，如console|file|server" />
+        <item name="fileLogRollingFrequency" value="1440" description="文件日志滚动的时间间隔，单位分钟，超过就新建文件" />
+        <item name="fileLogRollingSize" value="1" description="文件日志滚动的文件大小间隔，单位M，超过就新建文件" />
+        <item name="fileLogMaxNum" value="7" description="文件日志的最大个数，超过就删除历史文件" />
+        <item name="fileLogMaxSize" value="20" description="文件日志的存储空间限制，单位M，超过就删除历史文件" />
+        <item name="serverLogSaveInterval" value="2" description="服务器日志的发送时间间隔，单位秒" />
+        <item name="serverLogSaveThreshold" value="10" description="服务器日志的发送累计条数间隔" />
+        <item name="serverLogSaveUrl" value="" description="服务器日志的地址" />
+    </catalog>
+
+    <!-- 统计配置文件-->
+    <catalog name="traffic" description="思迪统计配置">
+       <item name="isOpen" value="0" description="是否开启(0:否,1:是)默认0" />
+       <item name="appKey" value="Y7tg6rPjhjBb5GQTbiej3brnpHwIqSsWI4CpEB7yoaEeT9CVhloh0e0kmq2PagBU" description="统计SDK授权签名Key(加密后)" />
+       <item name="appCode" value="23b543b07b5a4e158e670569949bcc79" description="统计SDK授权商户号" />
+       <item name="appId" value="hjyj.app" description="应用APP编号" />
+       <item name="policy" value="0" description="发送策略(0:实时发送-只在模拟器测试模式下有效,真机自动转成4,1:启动发送,2:最小间隔发送,3:最小数目发送,4:最小间隔或数目发送,5:进入后台时发送)，默认0" />
+       <item name="channelId" value="appStore" description="发送渠道" />
+       <item name="encryptEnabled" value="0" description="设置是否对上传的埋点数据进行加密(0:否,1:是)默认0" />
+       <item name="encryptKey" value="Y7tg6rPjhjBb5GQTbiej3brnpHwIqSsWI4CpEB7yoaEeT9CVhloh0e0kmq2PagBU" description="埋点数据的加密Key" />
+       <item name="compressEnabled" value="0" description="设置是否对上传的埋点数据进行压缩(0:否,1:是)默认0" />
+       <item name="sendInterval" value="90" description="统计发送的时间间隔(单位:秒)，默认是90秒" />
+       <item name="sendNum" value="10" description="统计发送的数目间隔，默认是10条" />
+       <item name="crashReportEnabled" value="1" description="设置是否统计崩溃信息(0:否,1:是)默认1" />
+       <item name="backgroundTaskEnabled" value="1" description="设置是否支持后台任务模式(0:否,1:是)默认1" />
+       <item name="onlyWifiEnabled" value="0" description="设置是否仅WIFI模式下发送(0:否,1:是)默认0" />
+       <item name="cacheMaxNum" value="2000" description="本地缓存的最大数据数目，默认是2000" />
+       <item name="restartAppTime" value="30" description="进入后台重算启动时间间隔(单位:秒)，默认是30" />
+       <item name="uploadTime" value="" description="上传时间段,例如：09:00-10:00|14:00-15:00,为空代表不限制" />
+       <item name="startAction" value="1" description="启动事件动作" />
+       <item name="pageAction" value="2" description="页面访问事件动作" />
+       <item name="appAction" value="3" description="APP周期事件动作" />
+       <item name="exceptionAction" value="4" description="APP异常事件动作" />
+       <item name="reqErrorAction" value="5" description="请求异常事件动作" />
+       <item name="reqErrorTimeOut" value="5000" description="请求异常超时时间(单位:毫秒)默认5000" />
+       <item name="isShowTip" value="0" description="是否发送请求的时候显示tip提示(0:否,1:是)默认0" />
+       <item name="isEditor" value="0" description="是否是埋点的编辑人员(0:否,1:是)默认0" />
+       <item name="isTestin" value="0" description="是否云测模式(0:否,1:是)默认0" />
+       <item name="url" value="" description="统计的生产服务器URL地址" />
+       <item name="isAutoGetStampId" value="1" description="是否自动获取StampId等信息(0:否,1:是)默认1" />
+       <item name="ipKey" value="KfZAnJoqEDtmwhTjxZ+C3JhhR1r9/yRrLlDXduxkb/YeT9CVhloh0e0kmq2PagBU" description="高德根据IP获取地理位置服务授权key(加密后)" />
+    </catalog>
+    
+    
+    <catalog name="thirdPay" description="三方支付配置">
+        <item name="isOpen" value="0" description="是否开启(0:否,1:是)默认0" />
+        <item name="wxPayScheme" value="" description="微信支付pay安全域名，需要将这个安全域名配置为在scheme" />
+        <item name="aliPayScheme" value="" description="支付宝支付pay安全域名，需要将这个安全域名配置为在scheme" />
+    </catalog>
+    
+    <catalog name="theme" description="主题配置  ">
+        <item name="currentTheme" value="theme1" description="默认主题名称" />
+        <item name="isSaveLastTheme" value="0" description="覆盖安装时，是否缓存上次的主题(0:不缓存,1:缓存)，默认是0" />
+        <item name="updateUrl" value="" description="版本自动检测的服务器地址" />
+        <item name="theme1" value="TKIMBlueTheme.css" description="主题1样式文件地址" />
+        <item name="theme2" value="TKIMBlackTheme.css" description="主题1样式文件地址" />
+    </catalog>
+    
+    <catalog name="checkScreenShotRecord" description="防截屏录屏攻击配置">
+        <item name="isOpen" value="1" description="是否检测截屏录屏攻击(0:否,1:是)，默认是0" />
+        <item name="screenCaptureTip" value="当前界面正在被截屏，请注意您的安全！" description="防截屏提示语" />
+        <item name="screenRecordingTip" value="当前界面正在被录屏，请注意您的安全！" description="防录屏提示语" />
+    </catalog>
+    
+</system>

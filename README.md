@@ -171,12 +171,13 @@ rsync -a --ignore-existing /tmp/crec_scaffold/ios/ ios/
 
 ## 10. CI（GitHub Actions）
 
-两个工作流已按本项目（Flutter，而非 XcodeGen）改写，**一次运行同时产出 iOS 与 Android 安装包**：
+构建工作流已按本项目（Flutter，而非 XcodeGen）改写，**一次运行同时产出 iOS 与 Android 安装包**：
 
 | 文件 | 触发 | 作业图 | 做什么 |
 | --- | --- | --- | --- |
 | `.github/workflows/build-dev.yml` | push 到 `dev`（仅改 `VERSION` 不触发）/ 手动 | `verify` → `build-ios` ∥ `build-android` | 静态检查只跑一次；两个平台并行编译 Debug 无签名包，IPA / APK 各上传为 Actions 工件，**不发 Release** |
 | `.github/workflows/build-release.yml` | PR 合并进 `main` | `prepare` → (`build-ios` ∥ `build-android`) → `release` | 读 `VERSION` 并校验 `v<VERSION>` 标签是否已存在；两个平台并行编译 Release 包；全部成功后用一个 Release 同时挂上 IPA + APK + SHA256 |
+| `.github/workflows/extract-assets.yml` | **仅手动**（`workflow_dispatch`，不随 push/PR 运行） | `extract` | 在 macOS runner 上用 Xcode 自带的 `assetutil` 解 iPhone 版 `Assets.car`：必定产出 `assets.json`（命名颜色 RGBA + 资源名/尺寸）与 `asset-names.txt`，并尽力导出 PNG（acextract / cartool）；只上传 Actions 工件，不改动仓库 |
 
 产物命名：
 
@@ -200,5 +201,6 @@ rsync -a --ignore-existing /tmp/crec_scaffold/ios/ ios/
 python tool/make_icons.py                                            # 重新生成 Android / iOS 图标
 node tool/check_dart.mjs lib                                         # Dart 括号/字符串结构检查
 node tool/check_symbols.mjs lib                                      # import 解析与跨文件符号检查
-node tool/check_workflows.mjs .github/workflows/build-dev.yml .github/workflows/build-release.yml
+node tool/check_workflows.mjs .github/workflows/*.yml
+python tool/summarize_assets.py out/assets.json out/asset-names.txt   # 整理 assetutil --info 输出（供 extract-assets 工作流使用）
 ```

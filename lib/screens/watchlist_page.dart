@@ -70,12 +70,12 @@ class _WatchlistPageState extends State<WatchlistPage> {
                 children: <Widget>[
                   Text(
                     index == null ? '--' : two(index.price),
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700, color: c),
+                    style: numStyle(TextStyle(fontSize: 20, fontWeight: FontWeight.w700, color: c)),
                   ),
                   const SizedBox(width: 6),
                   Text(
                     index == null ? '--' : signed(index.change),
-                    style: TextStyle(fontSize: 13, color: c),
+                    style: numStyle(TextStyle(fontSize: 13, color: c)),
                   ),
                 ],
               ),
@@ -89,7 +89,7 @@ class _WatchlistPageState extends State<WatchlistPage> {
                   const SizedBox(width: 4),
                   Text(
                     index == null ? '--' : signedPct(index.changePct),
-                    style: TextStyle(fontSize: 13, color: c),
+                    style: numStyle(TextStyle(fontSize: 13, color: c)),
                   ),
                   const Icon(Icons.arrow_drop_down, size: 18, color: kTextSub),
                 ],
@@ -278,7 +278,7 @@ class _WatchlistPageState extends State<WatchlistPage> {
               child: Text(
                 two(q.price),
                 textAlign: TextAlign.right,
-                style: TextStyle(fontSize: 16, color: c, fontWeight: FontWeight.w500),
+                style: numStyle(TextStyle(fontSize: 16, color: c, fontWeight: FontWeight.w500)),
               ),
             ),
             Expanded(
@@ -295,7 +295,7 @@ class _WatchlistPageState extends State<WatchlistPage> {
                   ),
                   child: Text(
                     signedPct(q.changePct),
-                    style: const TextStyle(color: Colors.white, fontSize: 13),
+                    style: numStyle(const TextStyle(color: Colors.white, fontSize: 13)),
                   ),
                 ),
               ),
