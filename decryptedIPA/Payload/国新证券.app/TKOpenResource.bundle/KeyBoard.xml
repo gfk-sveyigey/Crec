@@ -1,0 +1,1681 @@
+<!--
+ 键盘配置说明：
+ 
+ keyboard 标签
+ type:                   键盘类型[0:有序数字键盘，1:随机数字键盘，2:加强版有序数字键盘，3:加强版随机数字键盘，4:英文键盘，5:股票键盘，6:交易买卖键盘，7:三板股票键盘，8:科创版股票键盘，10:招商有序数字键盘，11:招商随机数字键盘，12:招商英文键盘，13:招商数字符号键盘，14:招商符号键盘，20:天风登录数字键盘，21:天风股票数字键盘，22:天风买入价格数字键盘，23:天风买入数量数字键盘，24:天风字母键盘，25:天风数字符号键盘，26:天风符号键盘，27:天风随机登录数字键盘，30:一创期权通键盘深圳快速报价键盘，31:一创期权通键盘上海快速报价键盘，32:一创期权通深圳数字报价键盘，33:一创期权通上海数字报价键盘，40:华泰期货英文键盘，41:华泰期货数字键盘，42:华泰期货符号键盘，50:华安买入数量键盘, 51:华安买入金额键盘, 99:取消自定义键盘]
+ theme:                  键盘主题(0:浅色，1:深色)
+ hSpace:                 键盘水平布局间距
+ vSpace:                 键盘垂直布局间距
+ bgColor:                键盘背景色，例如#FFFFFF
+ isNoCutScreen:          键盘是否防止截屏
+ isHideTitle:            键盘是否隐藏标题栏
+ description:            键盘描述
+ impClass:               键盘自定义实现类
+ 
+ title/column/row 标签
+ width:                  容器宽度
+ height:                 容器高度
+ space:                  容器布局间距
+ bgColor:                容器背景色，例如#FFFFFF
+ itemBgColor:            容器按键通用背景色，例如#FFFFFF
+ itemFontColor:          容器按键通用文字颜色，例如#FFFFFF
+ itemFontSize:           容器按键通用文字大小
+ itemFontWeight          容器按键通用文字粗细
+ itemSelectedFontSize:   容器按键通用选中文字大小
+ itemSelectedFontWeight: 容器按键通用选中文字粗细
+ itemHighlightBgColor:   容器按键通用高亮背景色
+ itemSelectedBgColor:    容器按键通用选中背景色
+ itemHighlightFontColor: 容器按键通用高亮文字颜色
+ itemSelectedFontColor:  容器按键通用选中文字颜色
+ itemRadian:             容器按键通用按钮弧度
+ itemShadow:             容器按键通用按钮底部阴影弧度
+ 
+ item 标签
+ type:                   元素类型，默认是BUTTON
+ tag:                    元素标示
+ width:                  元素宽度
+ height:                 元素高度
+ span:                   元素布局偏移间距，距离左边，右边，上边，下边之类,水平模式下是左边的偏移量，垂直模式下是上面的偏移量
+ hidden:                 元素是否隐藏，0：显示 1：隐藏
+ bgColor:                元素背景色，例如#FFFFFF
+ fontColor:              元素文字颜色，例如#FFFFFF
+ fontRangeColor:         元素选中区域的颜色,例如#FF0000;1-5
+ fontPosition:           元素文字位置:LEFT,CENTER,RIGHT
+ fontSize:               元素文字大小
+ fontWeight              元素文字粗细
+ selectedFontSize:       元素选中文字大小
+ selectedFontWeight:     元素选中文字粗细
+ highlightBgColor:       元素高亮背景色
+ selectedBgColor:        元素选中背景色
+ highlightFontColor:     元素高亮文字颜色
+ selectedFontColor:      元素选中文字颜色
+ radian:                 元素按钮弧度
+ shadow:                 元素按钮底部阴影弧度
+ isHtmlText:             元素内容是否为Html格式
+ text:                   元素内容
+ value:                  元素值
+ selectedText            元素选中内容
+ selectedValue           元素选中值
+ image:                  元素背景图片
+ highlightImage:         元素高亮背景图片
+ selectedImage:          元素选中背景图片
+ tipImage:               元素提示图片
+ tipImagePosition:       元素提示图片位置:LEFT,CENTER,RIGHT
+ tipImageWidth:          元素提示图片宽度
+ tipImageHeight:         元素提示图片高度
+ tipImageSpan:           元素提示图片偏移量
+ isRandNum:              元素是否随机数字
+ indicatorColor:         元素下标线的颜色
+ indicatorWidth:         元素下标线的宽度
+ indicatorHeight:        元素下标线的高度
+ action:                 元素动作,默认是INPUT 输入键:INPUT，切换大小写:LETTERCASE，删除键:DELETE，清空键:CLEAR，隐藏建:HIDDEN，确认键:ENTER，切换键盘:CHANGE 选择键:SELECT 切换内部键盘:ICHANGE 空格键:SPACE 前进键:FORWARD 后退键:GOBACK 切换中文:ZHCN 展示文字:SHOW
+ isFirstResponderAction: 元素动作是否在获取光标的时候自动执行一次，0：不执行，1：执行
+ targetKeyBoard:         元素切换目标键盘类型
+ targetDefaultKeyBoard:  元素切换默认目标键盘类型
+ -->
+<?xml version="1.0" encoding="UTF-8"?>
+<keyboards>
+
+    <keyboard type="0" theme="0" hSpace="1" vSpace="1" bgColor="#BEBEBE" description="有序数字键盘-浅色版">
+        <content span="0.01" bgColor="#FFFFFF" itemWidth="($KBW-75-3)/3" itemHeight="($KBH-3)/4" itemBgColor="#E5E5E5" itemFontColor="#666666" itemFontSize="21" itemHighlightBgColor="#FFAA8E" itemHighlightFontColor="#FFFFFF">
+            <row>
+                <item text="1" />
+                <item text="2" />
+                <item text="3" />
+                <item text="退格" value="-5" width="75" bgColor="#CCCCCC" fontSize="16" action="DELETE" />
+            </row>
+            <row>
+                <item text="4" />
+                <item text="5" />
+                <item text="6" />
+                <item text="清空" value="-2" width="75" bgColor="#CCCCCC" fontSize="16" action="CLEAR" />
+            </row>
+            <row>
+                <item text="7" />
+                <item text="8" />
+                <item text="9" />
+                <item text="隐藏" value="-4" width="75" bgColor="#CCCCCC" fontSize="16" action="HIDDEN" />
+            </row>
+            <row>
+                <item text="." />
+                <item text="0" />
+                <item text="确定" value="-3" width="(($KBW-75-3)/3)+75+1" bgColor="#CCCCCC" fontSize="16" action="ENTER" />
+            </row>
+        </content>
+    </keyboard>
+   
+    <keyboard type="0" theme="1" hSpace="1" vSpace="1" bgColor="#BEBEBE" description="有序数字键盘-深色版">
+        <content bgColor="#FFFFFF" itemWidth="($KBW-75-3)/3" itemHeight="($KBH-3)/4" itemBgColor="#4E4E4E" itemFontColor="#CBCBCB" itemFontSize="21" itemHighlightBgColor="#CA4B3F" itemHighlightFontColor="#FFFFFF">
+            <row>
+                <item text="1" />
+                <item text="2" />
+                <item text="3" />
+                <item text="退格" value="-5" width="75" bgColor="#666666" fontSize="16" action="DELETE" />
+            </row>
+            <row>
+                <item text="4" />
+                <item text="5" />
+                <item text="6" />
+                <item text="清空" value="-2" width="75" bgColor="#666666" fontSize="16" action="CLEAR" />
+            </row>
+            <row>
+                <item text="7" />
+                <item text="8" />
+                <item text="9" />
+                <item text="隐藏" value="-4" width="75" bgColor="#666666" fontSize="16" action="HIDDEN" />
+            </row>
+            <row>
+                <item text="." />
+                <item text="0" />
+                <item text="确定" value="-3" width="(($KBW-75-3)/3)+75+1" bgColor="#666666" fontSize="16" action="ENTER" />
+            </row>
+        </content>
+    </keyboard>
+    
+    <keyboard type="1" theme="0" hSpace="1" vSpace="1" bgColor="#BEBEBE" description="随机数字键盘-浅色版">
+        <content bgColor="#FFFFFF" itemWidth="($KBW-75-3)/3" itemHeight="($KBH-3)/4" itemBgColor="#E5E5E5" itemFontColor="#666666" itemFontSize="21" itemHighlightBgColor="#FFAA8E" itemHighlightFontColor="#FFFFFF">
+            <row>
+                <item isRandNum="1" />
+                <item isRandNum="1" />
+                <item isRandNum="1" />
+                <item text="退格" value="-5" width="75" bgColor="#CCCCCC" fontSize="16" action="DELETE" />
+            </row>
+            <row>
+                <item isRandNum="1" />
+                <item isRandNum="1" />
+                <item isRandNum="1" />
+                <item text="清空" value="-2" width="75" bgColor="#CCCCCC" fontSize="16" action="CLEAR" />
+            </row>
+            <row>
+                <item isRandNum="1" />
+                <item isRandNum="1" />
+                <item isRandNum="1" />
+                <item text="隐藏" value="-4" width="75" bgColor="#CCCCCC" fontSize="16" action="HIDDEN" />
+            </row>
+            <row>
+                <item text="." />
+                <item isRandNum="1" />
+                <item text="确定" value="-3" width="(($KBW-75-3)/3)+75+1" bgColor="#CCCCCC" fontSize="16" action="ENTER" />
+            </row>
+        </content>
+    </keyboard>
+    
+    <keyboard type="1" theme="1" hSpace="1" vSpace="1" bgColor="#BEBEBE" description="随机数字键盘-深色版">
+        <content bgColor="#FFFFFF" itemWidth="($KBW-75-3)/3" itemHeight="($KBH-3)/4" itemBgColor="#4E4E4E" itemFontColor="#CBCBCB" itemFontSize="21" itemHighlightBgColor="#CA4B3F" itemHighlightFontColor="#FFFFFF">
+            <row>
+                <item isRandNum="1" />
+                <item isRandNum="1" />
+                <item isRandNum="1" />
+                <item text="退格" value="-5" width="75" bgColor="#666666" fontSize="16" action="DELETE" />
+            </row>
+            <row>
+                <item isRandNum="1" />
+                <item isRandNum="1" />
+                <item isRandNum="1" />
+                <item text="清空" value="-2" width="75" bgColor="#666666" fontSize="16" action="CLEAR" />
+            </row>
+            <row>
+                <item isRandNum="1" />
+                <item isRandNum="1" />
+                <item isRandNum="1" />
+                <item text="隐藏" value="-4" width="75" bgColor="#666666" fontSize="16" action="HIDDEN" />
+            </row>
+            <row>
+                <item text="." />
+                <item isRandNum="1" />
+                <item text="确定" value="-3" width="(($KBW-75-3)/3)+75+1" bgColor="#666666" fontSize="16" action="ENTER" />
+            </row>
+        </content>
+    </keyboard>
+   
+    <keyboard type="2" theme="0" hSpace="1" vSpace="1" bgColor="#BEBEBE" description="加强版有序数字键盘-浅色版">
+        <content bgColor="#FFFFFF" itemWidth="($KBW-75-3)/3" itemHeight="($KBH-3)/4" itemBgColor="#E5E5E5" itemFontColor="#666666" itemFontSize="21" itemHighlightBgColor="#FFAA8E" itemHighlightFontColor="#FFFFFF">
+            <row>
+                <item text="1" />
+                <item text="2" />
+                <item text="3" />
+                <item text="退格" value="-5" width="75" bgColor="#CCCCCC" fontSize="16" action="DELETE" />
+            </row>
+            <row>
+                <item text="4" />
+                <item text="5" />
+                <item text="6" />
+                <item text="清空" value="-2" width="75" bgColor="#CCCCCC" fontSize="16" action="CLEAR" />
+            </row>
+            <row>
+                <item text="7" />
+                <item text="8" />
+                <item text="9" />
+                <item text="隐藏" value="-4" width="75" bgColor="#CCCCCC" fontSize="16" action="HIDDEN" />
+            </row>
+            <row>
+                <item text="ABC" value="-1" action="CHANGE" targetKeyBoard="4" />
+                <item text="0" />
+                <item text="." />
+                <item text="确定" value="-3" width="75" bgColor="#CCCCCC" fontSize="16" action="ENTER" />
+            </row>
+        </content>
+    </keyboard>
+    
+    <keyboard type="2" theme="1" hSpace="1" vSpace="1" bgColor="#BEBEBE" description="加强版有序数字键盘-深色版">
+        <content bgColor="#FFFFFF" itemWidth="($KBW-75-3)/3" itemHeight="($KBH-3)/4" itemBgColor="#4E4E4E" itemFontColor="#CBCBCB" itemFontSize="21" itemHighlightBgColor="#CA4B3F" itemHighlightFontColor="#FFFFFF">
+            <row>
+                <item text="1" />
+                <item text="2" />
+                <item text="3" />
+                <item text="退格" value="-5" width="75" bgColor="#666666" fontSize="16" action="DELETE" />
+            </row>
+            <row>
+                <item text="4" />
+                <item text="5" />
+                <item text="6" />
+                <item text="清空" value="-2" width="75" bgColor="#666666" fontSize="16" action="CLEAR" />
+            </row>
+            <row>
+                <item text="7" />
+                <item text="8" />
+                <item text="9" />
+                <item text="隐藏" value="-4" width="75" bgColor="#666666" fontSize="16" action="HIDDEN" />
+            </row>
+            <row>
+                <item text="ABC" value="-1" action="CHANGE" targetKeyBoard="4"/>
+                <item text="0" />
+                <item text="." />
+                <item text="确定" value="-3" width="75" bgColor="#666666" fontSize="16" action="ENTER" />
+            </row>
+        </content>
+    </keyboard>
+    
+    <keyboard type="3" theme="0" hSpace="1" vSpace="1" bgColor="#BEBEBE" description="加强版随机数字键盘-浅色版">
+        <content bgColor="#FFFFFF" itemWidth="($KBW-75-3)/3" itemHeight="($KBH-3)/4" itemBgColor="#E5E5E5" itemFontColor="#666666" itemFontSize="21" itemHighlightBgColor="#FFAA8E" itemHighlightFontColor="#FFFFFF">
+            <row>
+                <item isRandNum="1" />
+                <item isRandNum="1" />
+                <item isRandNum="1" />
+                <item text="退格" value="-5" width="75" bgColor="#CCCCCC" fontSize="16" action="DELETE" />
+            </row>
+            <row>
+                <item isRandNum="1" />
+                <item isRandNum="1" />
+                <item isRandNum="1" />
+                <item text="清空" value="-2" width="75" bgColor="#CCCCCC" fontSize="16" action="CLEAR" />
+            </row>
+            <row>
+                <item isRandNum="1" />
+                <item isRandNum="1" />
+                <item isRandNum="1" />
+                <item text="隐藏" value="-4" width="75" bgColor="#CCCCCC" fontSize="16" action="HIDDEN" />
+            </row>
+            <row>
+                <item text="ABC" value="-1" action="CHANGE" targetKeyBoard="4" />
+                <item isRandNum="1" />
+                <item text="." />
+                <item text="确定" value="-3" width="75" bgColor="#CCCCCC" fontSize="16" action="ENTER" />
+            </row>
+        </content>
+    </keyboard>
+    
+    <keyboard type="3" theme="1" hSpace="1" vSpace="1" bgColor="#BEBEBE" description="加强版随机数字键盘-深色版">
+        <content bgColor="#FFFFFF" itemWidth="($KBW-75-3)/3" itemHeight="($KBH-3)/4" itemBgColor="#4E4E4E" itemFontColor="#CBCBCB" itemFontSize="21" itemHighlightBgColor="#CA4B3F" itemHighlightFontColor="#FFFFFF">
+            <row>
+                <item isRandNum="1" />
+                <item isRandNum="1" />
+                <item isRandNum="1" />
+                <item text="退格" value="-5" width="75" bgColor="#666666" fontSize="16" action="DELETE" />
+            </row>
+            <row>
+                <item isRandNum="1" />
+                <item isRandNum="1" />
+                <item isRandNum="1" />
+                <item text="清空" value="-2" width="75" bgColor="#666666" fontSize="16" action="CLEAR" />
+            </row>
+            <row>
+                <item isRandNum="1" />
+                <item isRandNum="1" />
+                <item isRandNum="1" />
+                <item text="隐藏" value="-4" width="75" bgColor="#666666" fontSize="16" action="HIDDEN" />
+            </row>
+            <row>
+                <item text="ABC" value="-1" action="CHANGE" targetKeyBoard="4" />
+                <item isRandNum="1" />
+                <item text="." />
+                <item text="确定" value="-3" width="75" bgColor="#666666" fontSize="16" action="ENTER" />
+            </row>
+        </content>
+    </keyboard>
+    
+    <keyboard type="4" theme="0" hSpace="4.5" vSpace="12" bgColor="#FFFFFF" isHideTitle="1" description="字母键盘-浅色版">
+        <title bgColor="#F9F9F9" height="44" space="4">
+            <item text="&lt; 中文输入" width="100" height="36" fontSize="16" fontColor="#000000" action="ZHCN" />
+        </title>
+        <content bgColor="#FFFFFF" itemWidth="($KBW-(4.5*9)-4)/10" itemHeight="41" itemBgColor="#E5E5E5" itemFontColor="#000000" itemFontSize="20" itemHighlightBgColor="#E5E5E5" itemHighlightFontColor="#FFFFFF" itemRadian="5" itemShadow="1" span="10">
+            <row>
+                <item text="q" span="2" tipImage="TKAsset.bundle/system/asset/keyboard/tk_kb_easy_pop_left" tipImagePosition="LEFT" tipImageWidth="(($KBW-(4.5*9)-4)/10)*1.5" tipImageHeight="110" tipImageSpan="0" />
+                <item text="w" tipImage="TKAsset.bundle/system/asset/keyboard/tk_kb_easy_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="e" tipImage="TKAsset.bundle/system/asset/keyboard/tk_kb_easy_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="r" tipImage="TKAsset.bundle/system/asset/keyboard/tk_kb_easy_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="t" tipImage="TKAsset.bundle/system/asset/keyboard/tk_kb_easy_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="y" tipImage="TKAsset.bundle/system/asset/keyboard/tk_kb_easy_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="u" tipImage="TKAsset.bundle/system/asset/keyboard/tk_kb_easy_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="i" tipImage="TKAsset.bundle/system/asset/keyboard/tk_kb_easy_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="o" tipImage="TKAsset.bundle/system/asset/keyboard/tk_kb_easy_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="p" tipImage="TKAsset.bundle/system/asset/keyboard/tk_kb_easy_pop_right" tipImagePosition="RIGHT" tipImageWidth="(($KBW-(4.5*9)-4)/10)*1.5" tipImageHeight="110" tipImageSpan="((($KBW-(4.5*9)-4)/10)*1.5/4)+3" />
+            </row>
+            <row>
+                <item text="a" span="($KBW-(($KBW-(4.5*9)-4)/10*9)-(4.5*8))/2" tipImage="TKAsset.bundle/system/asset/keyboard/tk_kb_easy_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="s" tipImage="TKAsset.bundle/system/asset/keyboard/tk_kb_easy_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="d" tipImage="TKAsset.bundle/system/asset/keyboard/tk_kb_easy_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="f" tipImage="TKAsset.bundle/system/asset/keyboard/tk_kb_easy_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="g" tipImage="TKAsset.bundle/system/asset/keyboard/tk_kb_easy_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="h" tipImage="TKAsset.bundle/system/asset/keyboard/tk_kb_easy_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="j" tipImage="TKAsset.bundle/system/asset/keyboard/tk_kb_easy_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="k" tipImage="TKAsset.bundle/system/asset/keyboard/tk_kb_easy_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="l" tipImage="TKAsset.bundle/system/asset/keyboard/tk_kb_easy_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+            </row>
+            <row>
+                <item value="-6" span="2" width="42" bgColor="#CCCCCC" highlightBgColor="#FFAA8E" selectedBgColor="#E5E5E5" image="TKAsset.bundle/system/asset/keyboard/tf/tk_kb_tf_uppercase" selectedImage="TKAsset.bundle/system/asset/keyboard/tf/tk_kb_tf_lowercase" action="LETTERCASE" />
+                <item text="z" span="($KBW-((($KBW-(4.5*9)-4)/10)*7)-(4.5*6)-(42*2)-4)/2" tipImage="TKAsset.bundle/system/asset/keyboard/tk_kb_easy_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="x" tipImage="TKAsset.bundle/system/asset/keyboard/tk_kb_easy_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="c" tipImage="TKAsset.bundle/system/asset/keyboard/tk_kb_easy_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="v" tipImage="TKAsset.bundle/system/asset/keyboard/tk_kb_easy_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="b" tipImage="TKAsset.bundle/system/asset/keyboard/tk_kb_easy_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="n" tipImage="TKAsset.bundle/system/asset/keyboard/tk_kb_easy_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="m" tipImage="TKAsset.bundle/system/asset/keyboard/tk_kb_easy_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item value="-5" span="($KBW-((($KBW-(4.5*9)-4)/10)*7)-(4.5*6)-(42*2)-4)/2" width="42" bgColor="#CCCCCC" highlightBgColor="#FFAA8E" image="TKAsset.bundle/system/asset/keyboard/tf/tk_kb_tf_delete" action="DELETE" />
+            </row>
+            <row>
+                <item value="-1" text="123" span="2" width="42" fontSize="15" bgColor="#CCCCCC" highlightBgColor="#FFAA8E" action="CHANGE" targetDefaultKeyBoard="5" />
+                <item value="-4" text="隐藏" width="42" fontSize="15" bgColor="#CCCCCC" highlightBgColor="#FFAA8E" action="HIDDEN"/>
+                <item value=" " text="空格" width="$KBW-(2*2)-(42*2)-((($KBW-(4.5*9)-4)/10)+(($KBW-((($KBW-(4.5*9)-4)/10)*7)-(4.5*6)-(42*2)-4)/2)+42)-(4.5*3)" fontSize="15" highlightBgColor="#FFAA8E" action="SPACE" />
+                <item value="-3" text="确定" width="(($KBW-(4.5*9)-4)/10)+(($KBW-((($KBW-(4.5*9)-4)/10)*7)-(4.5*6)-(42*2)-4)/2)+42" fontSize="15" bgColor="#CCCCCC" highlightBgColor="#FFAA8E" action="ENTER"/>
+            </row>
+        </content>
+    </keyboard>
+    
+    <keyboard type="4" theme="1" hSpace="4.5" vSpace="12" bgColor="#BEBEBE" isHideTitle="1" description="字母键盘-深色版">
+        <title bgColor="#F9F9F9" height="44" space="4">
+            <item text="&lt; 中文输入" width="100" height="36" fontSize="16" fontColor="#CBCBCB" action="ZHCN" />
+        </title>
+        <content bgColor="#BEBEBE" itemWidth="($KBW-(4.5*9)-4)/10" itemHeight="41" itemBgColor="#4E4E4E" itemFontColor="#CBCBCB" itemFontSize="20" itemHighlightBgColor="#4E4E4E" itemHighlightFontColor="#FFFFFF" itemRadian="5" itemShadow="1" span="10">
+            <row>
+                <item text="q" span="2" tipImage="TKAsset.bundle/system/asset/keyboard/tk_kb_deep_pop_left" tipImagePosition="LEFT" tipImageWidth="(($KBW-(4.5*9)-4)/10)*1.5" tipImageHeight="110" tipImageSpan="0" />
+                <item text="w" tipImage="TKAsset.bundle/system/asset/keyboard/tk_kb_deep_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="e" tipImage="TKAsset.bundle/system/asset/keyboard/tk_kb_deep_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="r" tipImage="TKAsset.bundle/system/asset/keyboard/tk_kb_deep_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="t" tipImage="TKAsset.bundle/system/asset/keyboard/tk_kb_deep_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="y" tipImage="TKAsset.bundle/system/asset/keyboard/tk_kb_deep_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="u" tipImage="TKAsset.bundle/system/asset/keyboard/tk_kb_deep_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="i" tipImage="TKAsset.bundle/system/asset/keyboard/tk_kb_deep_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="o" tipImage="TKAsset.bundle/system/asset/keyboard/tk_kb_deep_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="p" tipImage="TKAsset.bundle/system/asset/keyboard/tk_kb_deep_pop_right" tipImagePosition="RIGHT" tipImageWidth="(($KBW-(4.5*9)-4)/10)*1.5" tipImageHeight="110" tipImageSpan="((($KBW-(4.5*9)-4)/10)*1.5/4)+3" />
+            </row>
+            <row>
+                <item text="a" span="($KBW-(($KBW-(4.5*9)-4)/10*9)-(4.5*8))/2" tipImage="TKAsset.bundle/system/asset/keyboard/tk_kb_deep_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="s" tipImage="TKAsset.bundle/system/asset/keyboard/tk_kb_deep_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="d" tipImage="TKAsset.bundle/system/asset/keyboard/tk_kb_deep_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="f" tipImage="TKAsset.bundle/system/asset/keyboard/tk_kb_deep_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="g" tipImage="TKAsset.bundle/system/asset/keyboard/tk_kb_deep_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="h" tipImage="TKAsset.bundle/system/asset/keyboard/tk_kb_deep_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="j" tipImage="TKAsset.bundle/system/asset/keyboard/tk_kb_deep_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="k" tipImage="TKAsset.bundle/system/asset/keyboard/tk_kb_deep_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="l" tipImage="TKAsset.bundle/system/asset/keyboard/tk_kb_deep_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+            </row>
+            <row>
+                <item value="-6" span="2" width="42" bgColor="#666666" highlightBgColor="#CA4B3F" selectedBgColor="#4E4E4E" image="TKAsset.bundle/system/asset/keyboard/tf/tk_kb_tf_uppercase" selectedImage="TKAsset.bundle/system/asset/keyboard/tf/tk_kb_tf_lowercase" action="LETTERCASE" />
+                <item text="z" span="($KBW-((($KBW-(4.5*9)-4)/10)*7)-(4.5*6)-(42*2)-4)/2" tipImage="TKAsset.bundle/system/asset/keyboard/tk_kb_deep_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="x" tipImage="TKAsset.bundle/system/asset/keyboard/tk_kb_deep_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="c" tipImage="TKAsset.bundle/system/asset/keyboard/tk_kb_deep_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="v" tipImage="TKAsset.bundle/system/asset/keyboard/tk_kb_deep_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="b" tipImage="TKAsset.bundle/system/asset/keyboard/tk_kb_deep_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="n" tipImage="TKAsset.bundle/system/asset/keyboard/tk_kb_deep_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="m" tipImage="TKAsset.bundle/system/asset/keyboard/tk_kb_deep_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item value="-5" span="($KBW-((($KBW-(4.5*9)-4)/10)*7)-(4.5*6)-(42*2)-4)/2" width="42" bgColor="#666666" highlightBgColor="#CA4B3F" image="TKAsset.bundle/system/asset/keyboard/tf/tk_kb_tf_delete" action="DELETE" />
+            </row>
+            <row>
+                <item value="-1" text="123" span="2" width="42" fontSize="15" bgColor="#666666" highlightBgColor="#CA4B3F" action="CHANGE" targetDefaultKeyBoard="5" />
+                <item value="-4" text="隐藏" width="42" fontSize="15" bgColor="#666666" highlightBgColor="#CA4B3F" action="HIDDEN"/>
+                <item value=" " text="空格" width="$KBW-(2*2)-(42*2)-((($KBW-(4.5*9)-4)/10)+(($KBW-((($KBW-(4.5*9)-4)/10)*7)-(4.5*6)-(42*2)-4)/2)+42)-(4.5*3)" fontSize="15" highlightBgColor="#CA4B3F" action="SPACE" />
+                <item value="-3" text="确定" width="(($KBW-(4.5*9)-4)/10)+(($KBW-((($KBW-(4.5*9)-4)/10)*7)-(4.5*6)-(42*2)-4)/2)+42" fontSize="15" bgColor="#666666" highlightBgColor="#CA4B3F" action="ENTER"/>
+            </row>
+        </content>
+    </keyboard>
+    
+    <keyboard type="5" theme="0" hSpace="1" vSpace="1" bgColor="#BEBEBE" isHideTitle="1" description="股票键盘-浅色版">
+        <title bgColor="#F9F9F9" height="44" space="4">
+            <item text="&lt; 中文输入" width="100" height="36" fontSize="16" fontColor="#666666" action="ZHCN" />
+        </title>
+        <content bgColor="#FFFFFF" itemWidth="($KBW-4)/5" itemHeight="($KBH-3)/4" itemBgColor="#E5E5E5" itemFontColor="#666666" itemFontSize="21" itemHighlightBgColor="#FFAA8E" itemHighlightFontColor="#FFFFFF">
+            <row>
+               <column width="($KBW-4)/5" itemHeight="($KBH-4)/5" >
+                    <item text="600" fontSize="19"/>
+                    <item text="601" fontSize="19"/>
+                    <item text="000" fontSize="19"/>
+                    <item text="002" fontSize="19"/>
+                    <item text="300" fontSize="19"/>
+               </column>
+               <column width="$KBW-(($KBW-4)/5)-1">
+                   <row>
+                       <item text="1"/>
+                       <item text="2"/>
+                       <item text="3"/>
+                       <item text="退格" value="-5" bgColor="#CCCCCC" fontSize="16" action="DELETE"/>
+                   </row>
+                   <row>
+                       <item text="4"/>
+                       <item text="5"/>
+                       <item text="6"/>
+                       <item text="清空" value="-2" bgColor="#CCCCCC" fontSize="16" action="CLEAR"/>
+                   </row>
+                   <row>
+                       <item text="7"/>
+                       <item text="8"/>
+                       <item text="9"/>
+                       <item text="隐藏" value="-4" bgColor="#CCCCCC" fontSize="16" action="HIDDEN"/>
+                   </row>
+                   <row>
+                       <item text="ABC" value="-1" bgColor="#CCCCCC" fontSize="18" action="CHANGE" targetKeyBoard="4"/>
+                       <item text="0"/>
+                       <item text="确定" value="-3" width="((($KBW-4)/5)*2)+1" bgColor="#CCCCCC" fontSize="16" action="ENTER"/>
+                   </row>
+               </column>
+            </row>
+        </content>
+    </keyboard>
+    
+    <keyboard type="5" theme="1" hSpace="1" vSpace="1" bgColor="#BEBEBE" isHideTitle="1" description="股票键盘-深色版">
+        <title bgColor="#F9F9F9" height="44" space="4">
+            <item text="&lt; 中文输入" width="100" height="36" fontSize="16" fontColor="#CBCBCB" action="ZHCN" />
+        </title>
+        <content bgColor="#BEBEBE" itemWidth="($KBW-4)/5" itemHeight="($KBH-3)/4" itemBgColor="#4E4E4E" itemFontColor="#CBCBCB" itemFontSize="21" itemHighlightBgColor="#CA4B3F" itemHighlightFontColor="#FFFFFF">
+            <row>
+                <column width="($KBW-4)/5" itemHeight="($KBH-4)/5" >
+                    <item text="600" fontSize="19"/>
+                    <item text="601" fontSize="19"/>
+                    <item text="000" fontSize="19"/>
+                    <item text="002" fontSize="19"/>
+                    <item text="300" fontSize="19"/>
+                </column>
+                <column width="$KBW-(($KBW-4)/5)-1">
+                    <row>
+                        <item text="1"/>
+                        <item text="2"/>
+                        <item text="3"/>
+                        <item text="退格" value="-5" bgColor="#666666" fontSize="16" action="DELETE"/>
+                    </row>
+                    <row>
+                        <item text="4"/>
+                        <item text="5"/>
+                        <item text="6"/>
+                        <item text="清空" value="-2" bgColor="#666666" fontSize="16" action="CLEAR"/>
+                    </row>
+                    <row>
+                        <item text="7"/>
+                        <item text="8"/>
+                        <item text="9"/>
+                        <item text="隐藏" value="-4" bgColor="#666666" fontSize="16" action="HIDDEN"/>
+                    </row>
+                    <row>
+                        <item text="ABC" value="-1" bgColor="#666666" fontSize="18" action="CHANGE" targetKeyBoard="4"/>
+                        <item text="0"/>
+                        <item text="确定" value="-3" width="((($KBW-4)/5)*2)+1" bgColor="#666666" fontSize="16" action="ENTER"/>
+                    </row>
+                </column>
+            </row>
+        </content>
+    </keyboard>
+     
+    <keyboard type="6" theme="0" hSpace="1" vSpace="1" bgColor="#BEBEBE" description="交易键盘-浅色版">
+        <content bgColor="#FFFFFF" itemWidth="($KBW-4)/5" itemHeight="($KBH-3)/4" itemBgColor="#E5E5E5" itemFontColor="#666666" itemFontSize="21" itemHighlightBgColor="#FFAA8E" itemHighlightFontColor="#FFFFFF">
+            <row>
+                <item text="1/4仓" value="-11" fontSize="18" action="OTHER"/>
+                <item text="1"/>
+                <item text="2"/>
+                <item text="3"/>
+                <item text="退格" value="-5" bgColor="#CCCCCC" fontSize="16" action="DELETE"/>
+            </row>
+            <row>
+                <item text="1/3仓" value="-12" fontSize="18" action="OTHER"/>
+                <item text="4"/>
+                <item text="5"/>
+                <item text="6"/>
+                <item text="清空" value="-2" bgColor="#CCCCCC" fontSize="16" action="CLEAR"/>
+            </row>
+            <row>
+                <item text="半仓" value="-13" fontSize="18" action="OTHER"/>
+                <item text="7"/>
+                <item text="8"/>
+                <item text="9"/>
+                <item text="隐藏" value="-4" bgColor="#CCCCCC" fontSize="16" action="HIDDEN"/>
+            </row>
+            <row>
+                <item text="全仓" value="-14" fontSize="18" action="OTHER"/>
+                <item text="00"/>
+                <item text="0"/>
+                <item text="确定" value="-3" width="((($KBW-4)/5)*2)+1" bgColor="#CCCCCC" fontSize="16" action="ENTER"/>
+            </row>
+        </content>
+    </keyboard>
+     
+    <keyboard type="6" theme="1" hSpace="1" vSpace="1" bgColor="#BEBEBE" description="交易键盘-深色版">
+        <content bgColor="#BEBEBE" itemWidth="($KBW-4)/5" itemHeight="($KBH-3)/4" itemBgColor="#4E4E4E" itemFontColor="#CBCBCB" itemFontSize="21" itemHighlightBgColor="#CA4B3F" itemHighlightFontColor="#FFFFFF">
+            <row>
+                <item text="1/4仓" value="-11" fontSize="18" action="OTHER"/>
+                <item text="1"/>
+                <item text="2"/>
+                <item text="3"/>
+                <item text="退格" value="-5" bgColor="#666666" fontSize="16" action="DELETE"/>
+            </row>
+            <row>
+                <item text="1/3仓" value="-12" fontSize="18" action="OTHER"/>
+                <item text="4"/>
+                <item text="5"/>
+                <item text="6"/>
+                <item text="清空" value="-2" bgColor="#666666" fontSize="16" action="CLEAR"/>
+            </row>
+            <row>
+                <item text="半仓" value="-13" fontSize="18" action="OTHER"/>
+                <item text="7"/>
+                <item text="8"/>
+                <item text="9"/>
+                <item text="隐藏" value="-4" bgColor="#666666" fontSize="16" action="HIDDEN"/>
+            </row>
+            <row>
+                <item text="全仓" value="-14" fontSize="18" action="OTHER"/>
+                <item text="00"/>
+                <item text="0"/>
+                <item text="确定" value="-3" width="((($KBW-4)/5)*2)+1" bgColor="#666666" fontSize="16" action="ENTER"/>
+            </row>
+        </content>
+    </keyboard>
+    
+    <keyboard type="7" theme="0" hSpace="1" vSpace="1" bgColor="#BEBEBE" isHideTitle="1" description="三板股票键盘-浅色版">
+        <title bgColor="#F9F9F9" height="44" space="4">
+            <item text="&lt; 中文输入" width="100" height="36" fontSize="16" fontColor="#666666" action="ZHCN" />
+        </title>
+        <content bgColor="#FFFFFF" itemWidth="($KBW-4)/5" itemHeight="($KBH-3)/4" itemBgColor="#E5E5E5" itemFontColor="#666666" itemFontSize="21" itemHighlightBgColor="#FFAA8E" itemHighlightFontColor="#FFFFFF">
+            <row>
+                <column width="($KBW-4)/5" itemHeight="($KBH-4)/5" >
+                    <item text="400" fontSize="19" />
+                    <item text="420" fontSize="19" />
+                    <item text="430" fontSize="19" />
+                    <item text="83" fontSize="19" />
+                    <item text="87" fontSize="19" />
+                </column>
+                <column width="$KBW-(($KBW-4)/5)-1">
+                    <row>
+                        <item text="1"/>
+                        <item text="2"/>
+                        <item text="3"/>
+                        <item text="退格" value="-5" bgColor="#CCCCCC" fontSize="16" action="DELETE"/>
+                    </row>
+                    <row>
+                        <item text="4"/>
+                        <item text="5"/>
+                        <item text="6"/>
+                        <item text="清空" value="-2" bgColor="#CCCCCC" fontSize="16" action="CLEAR"/>
+                    </row>
+                    <row>
+                        <item text="7"/>
+                        <item text="8"/>
+                        <item text="9"/>
+                        <item text="隐藏" value="-4" bgColor="#CCCCCC" fontSize="16" action="HIDDEN"/>
+                    </row>
+                    <row>
+                        <item text="ABC" value="-1" bgColor="#CCCCCC" fontSize="18" action="CHANGE" targetKeyBoard="4"/>
+                        <item text="0"/>
+                        <item text="确定" value="-3" width="((($KBW-4)/5)*2)+1" bgColor="#CCCCCC" fontSize="16" action="ENTER"/>
+                    </row>
+                </column>
+            </row>
+        </content>
+    </keyboard>
+    
+    <keyboard type="7" theme="1" hSpace="1" vSpace="1" bgColor="#BEBEBE" isHideTitle="1" description="三板股票键盘-深色版">
+        <title bgColor="#F9F9F9" height="44" space="4">
+            <item text="&lt; 中文输入" width="100" height="36" fontSize="16" fontColor="#CBCBCB" action="ZHCN" />
+        </title>
+        <content bgColor="#BEBEBE" itemWidth="($KBW-4)/5" itemHeight="($KBH-3)/4" itemBgColor="#4E4E4E" itemFontColor="#CBCBCB" itemFontSize="21" itemHighlightBgColor="#CA4B3F" itemHighlightFontColor="#FFFFFF">
+            <row>
+                <column width="($KBW-4)/5" itemHeight="($KBH-4)/5" >
+                    <item text="400" fontSize="19" />
+                    <item text="420" fontSize="19" />
+                    <item text="430" fontSize="19" />
+                    <item text="83" fontSize="19" />
+                    <item text="87" fontSize="19" />
+                </column>
+                <column width="$KBW-(($KBW-4)/5)-1">
+                    <row>
+                        <item text="1" />
+                        <item text="2" />
+                        <item text="3" />
+                        <item text="退格" value="-5" bgColor="#666666" fontSize="16" action="DELETE" />
+                    </row>
+                    <row>
+                        <item text="4" />
+                        <item text="5" />
+                        <item text="6" />
+                        <item text="清空" value="-2" bgColor="#666666" fontSize="16" action="CLEAR" />
+                    </row>
+                    <row>
+                        <item text="7" />
+                        <item text="8" />
+                        <item text="9" />
+                        <item text="隐藏" value="-4" bgColor="#666666" fontSize="16" action="HIDDEN" />
+                    </row>
+                    <row>
+                        <item text="ABC" value="-1" bgColor="#666666" fontSize="18" action="CHANGE" targetKeyBoard="4" />
+                        <item text="0" />
+                        <item text="确定" value="-3" width="((($KBW-4)/5)*2)+1" bgColor="#666666" fontSize="16" action="ENTER" />
+                    </row>
+                </column>
+            </row>
+        </content>
+    </keyboard>
+   
+    <keyboard type="8" theme="0" hSpace="1" vSpace="1" bgColor="#BEBEBE" isHideTitle="1" description="科创版股票键盘-浅色版">
+        <title bgColor="#F9F9F9" height="44" space="4">
+            <item text="&lt; 中文输入" width="100" height="36" fontSize="16" fontColor="#666666" action="ZHCN" />
+        </title>
+        <content bgColor="#FFFFFF" itemWidth="($KBW-4)/5" itemHeight="($KBH-3)/4" itemBgColor="#E5E5E5" itemFontColor="#666666" itemFontSize="21" itemHighlightBgColor="#FFAA8E" itemHighlightFontColor="#FFFFFF">
+            <row>
+                <column width="($KBW-4)/5" itemHeight="($KBH-1)/2" >
+                    <item text="688" fontSize="19"/>
+                    <item text="689" fontSize="19"/>
+                </column>
+                <column width="$KBW-(($KBW-4)/5)-1">
+                    <row>
+                        <item text="1"/>
+                        <item text="2"/>
+                        <item text="3"/>
+                        <item text="退格" value="-5" bgColor="#CCCCCC" fontSize="16" action="DELETE"/>
+                    </row>
+                    <row>
+                        <item text="4"/>
+                        <item text="5"/>
+                        <item text="6"/>
+                        <item text="清空" value="-2" bgColor="#CCCCCC" fontSize="16" action="CLEAR"/>
+                    </row>
+                    <row>
+                        <item text="7"/>
+                        <item text="8"/>
+                        <item text="9"/>
+                        <item text="隐藏" value="-4" bgColor="#CCCCCC" fontSize="16" action="HIDDEN"/>
+                    </row>
+                    <row>
+                        <item text="ABC" value="-1" bgColor="#CCCCCC" fontSize="18" action="CHANGE" targetKeyBoard="4"/>
+                        <item text="0"/>
+                        <item text="确定" value="-3" width="((($KBW-4)/5)*2)+1" bgColor="#CCCCCC" fontSize="16" action="ENTER"/>
+                    </row>
+                </column>
+            </row>
+        </content>
+    </keyboard>
+     
+    <keyboard type="8" theme="1" hSpace="1" vSpace="1" bgColor="#BEBEBE" isHideTitle="1" description="科创版股票键盘-深色版">
+        <title bgColor="#F9F9F9" height="44" space="4">
+            <item text="&lt; 中文输入" width="100" height="36" fontSize="16" fontColor="#CBCBCB" action="ZHCN" />
+        </title>
+        <content bgColor="#BEBEBE" itemWidth="($KBW-4)/5" itemHeight="($KBH-3)/4" itemBgColor="#4E4E4E" itemFontColor="#CBCBCB" itemFontSize="21" itemHighlightBgColor="#CA4B3F" itemHighlightFontColor="#FFFFFF">
+            <row>
+                <column width="($KBW-4)/5" itemHeight="($KBH-1)/2" >
+                    <item text="688" fontSize="19"/>
+                    <item text="689" fontSize="19"/>
+                </column>
+                <column width="$KBW-(($KBW-4)/5)-1">
+                    <row>
+                        <item text="1"/>
+                        <item text="2"/>
+                        <item text="3"/>
+                        <item text="退格" value="-5" bgColor="#666666" fontSize="16" action="DELETE"/>
+                    </row>
+                    <row>
+                        <item text="4"/>
+                        <item text="5"/>
+                        <item text="6"/>
+                        <item text="清空" value="-2" bgColor="#666666" fontSize="16" action="CLEAR"/>
+                    </row>
+                    <row>
+                        <item text="7"/>
+                        <item text="8"/>
+                        <item text="9"/>
+                        <item text="隐藏" value="-4" bgColor="#666666" fontSize="16" action="HIDDEN"/>
+                    </row>
+                    <row>
+                        <item text="ABC" value="-1" bgColor="#666666" fontSize="18" action="CHANGE" targetKeyBoard="4"/>
+                        <item text="0"/>
+                        <item text="确定" value="-3" width="((($KBW-4)/5)*2)+1" bgColor="#666666" fontSize="16" action="ENTER"/>
+                    </row>
+                </column>
+            </row>
+        </content>
+    </keyboard>
+    
+    <keyboard type="10" theme="" hSpace="1" vSpace="1" bgColor="#D2D5DC" description="招商有序数字键盘">
+        <title bgColor="#FFFFFF" height="30" space="4">
+           <item span="($KBW-50-20-4)/2" width="20" height="20" image="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_logo" action="SHOW"/>
+           <item text="安全键盘" width="50" fontSize="12" fontColor="#D1D5D8" action="SHOW"/>
+        </title>
+        <content bgColor="#D2D5DC" itemWidth="($KBW-76-1)/3" itemHeight="($KBH-3)/4" itemBgColor="#FFFFFF" itemFontColor="#000000" itemFontSize="21" itemHighlightBgColor="#D1D5D8" itemHighlightFontColor="#000000">
+            <row>
+                <column width="$KBW-76">
+                    <row>
+                        <item text="1" />
+                        <item text="2" />
+                        <item text="3" />
+                    </row>
+                    <row>
+                        <item text="4" />
+                        <item text="5" />
+                        <item text="6" />
+                    </row>
+                    <row>
+                        <item text="7" />
+                        <item text="8" />
+                        <item text="9" />
+                    </row>
+                    <row>
+                        <item text="." />
+                        <item text="0" />
+                        <item value="-1" image="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_select" action="CHANGE" targetKeyBoard="12"/>
+                    </row>
+                </column>
+                <column width="76" itemHeight="($KBH-1)/2" >
+                     <item value="-5" image="TKAsset.bundle/system/asset/keyboard/tf/tk_kb_tf_delete" bgColor="#D1D5D8" highlightBgColor="#DDDDDD" action="DELETE"/>
+                     <item text="确定" value="-3" fontSize="16" bgColor="#007AFF" highlightBgColor="#3797ff" fontColor="FEFEFE" highlightFontColor="FEFEFE" action="ENTER"/>
+                </column>
+            </row>
+        </content>
+    </keyboard>
+     
+    <keyboard type="11" theme="" hSpace="1" vSpace="1" bgColor="#D2D5DC" description="招商随机数字键盘">
+        <title bgColor="#FFFFFF" height="30" space="4">
+            <item span="($KBW-50-20-4)/2" width="20" height="20" image="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_logo" action="SHOW"/>
+            <item text="安全键盘" width="50" fontSize="12" fontColor="#D1D5D8" action="SHOW"/>
+        </title>
+        <content bgColor="#D2D5DC" itemWidth="($KBW-76-1)/3" itemHeight="($KBH-3)/4" itemBgColor="#FFFFFF" itemFontColor="#000000" itemFontSize="21" itemHighlightBgColor="#D1D5D8" itemHighlightFontColor="#000000">
+            <row>
+                <column width="$KBW-76">
+                    <row>
+                        <item isRandNum="1" />
+                        <item isRandNum="1" />
+                        <item isRandNum="1" />
+                    </row>
+                    <row>
+                        <item isRandNum="1" />
+                        <item isRandNum="1" />
+                        <item isRandNum="1" />
+                    </row>
+                    <row>
+                        <item isRandNum="1" />
+                        <item isRandNum="1" />
+                        <item isRandNum="1" />
+                    </row>
+                    <row>
+                        <item text="." />
+                        <item isRandNum="1" />
+                        <item value="-1" image="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_select" action="CHANGE" targetKeyBoard="12"/>
+                    </row>
+                </column>
+                <column width="76" itemHeight="($KBH-1)/2" >
+                    <item value="-5" image="TKAsset.bundle/system/asset/keyboard/tf/tk_kb_tf_delete" bgColor="#D1D5D8" highlightBgColor="#DDDDDD" action="DELETE"/>
+                    <item text="确定" value="-3" fontSize="16" bgColor="#007AFF" highlightBgColor="#3797ff" fontColor="FEFEFE" highlightFontColor="FEFEFE" action="ENTER"/>
+                </column>
+            </row>
+        </content>
+    </keyboard>
+    
+    <keyboard type="12" theme="" hSpace="4.5" vSpace="12" bgColor="#D2D5DC" description="招商英文键盘">
+        <title bgColor="#FFFFFF" height="30" space="4">
+            <item span="($KBW-50-20-4)/2" width="20" height="20" image="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_logo" action="SHOW"/>
+            <item text="安全键盘" width="50" fontSize="12" fontColor="#D1D5D8" action="SHOW"/>
+        </title>
+        <content bgColor="#D2D5DC" itemWidth="($KBW-(4.5*9)-4)/10" itemHeight="41" itemBgColor="#FFFFFF" itemFontColor="#000000" itemFontSize="20" itemHighlightBgColor="#FFFFFF" itemHighlightFontColor="#000000" itemRadian="5" itemShadow="1" span="10">
+            <row>
+                <item text="q" span="2" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_left" tipImagePosition="LEFT" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="0" />
+                <item text="w" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="e" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="r" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="t" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="y" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="u" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="i" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="o" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="p" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_right" tipImagePosition="RIGHT" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="($KBW-(4.5*9)-4)/10" />
+            </row>
+            <row>
+                <item text="a" span="($KBW-(($KBW-(4.5*9)-4)/10*9)-(4.5*8))/2" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="s" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="d" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="f" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="g" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="h" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="j" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="k" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="l" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+            </row>
+            <row>
+                <item value="-6" span="2" width="42" bgColor="#AAB2BB" highlightBgColor="#dddddd" image="TKAsset.bundle/system/asset/keyboard/tf/tk_kb_tf_uppercase" selectedImage="TKAsset.bundle/system/asset/keyboard/tf/tk_kb_tf_lowercase" action="LETTERCASE" />
+                <item text="z" span="($KBW-((($KBW-(4.5*9)-4)/10)*7)-(4.5*6)-(42*2)-4)/2" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="x" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="c" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="v" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="b" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="n" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="m" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item value="-5" span="($KBW-((($KBW-(4.5*9)-4)/10)*7)-(4.5*6)-(42*2)-4)/2" width="42" bgColor="#AAB2BB" highlightBgColor="#dddddd" image="TKAsset.bundle/system/asset/keyboard/tf/tk_kb_tf_delete" action="DELETE" />
+            </row>
+            <row>
+                <item value="-1" text="123" span="2" width="42" fontSize="15" bgColor="#AAB2BB" highlightBgColor="#dddddd" action="ICHANGE" targetKeyBoard="13"/>
+                <item value="-1" width="42" fontSize="15" bgColor="#AAB2BB" highlightBgColor="#dddddd" image="TKAsset.bundle/system/asset/keyboard/tf/tk_kb_tf_change" highlightImage="TKAsset.bundle/system/asset/keyboard/tf/tk_kb_tf_change" action="CHANGE" targetDefaultKeyBoard="10"/>
+                <item value=" " text="空格" width="$KBW-(2*2)-(42*2)-((($KBW-(4.5*9)-4)/10)+(($KBW-((($KBW-(4.5*9)-4)/10)*7)-(4.5*6)-(42*2)-4)/2)+42)-(4.5*3)" fontSize="15"  highlightBgColor="#eeeeee"  action="SPACE" />
+                <item value="-3" text="确定" width="(($KBW-(4.5*9)-4)/10)+(($KBW-((($KBW-(4.5*9)-4)/10)*7)-(4.5*6)-(42*2)-4)/2)+42" fontSize="15" fontColor="#FFFFFF" highlightFontColor="FFFFFF" bgColor="#007AFF" highlightBgColor="#3797ff" action="ENTER"/>
+            </row>
+        </content>
+    </keyboard>
+   
+    <keyboard type="13" theme="" hSpace="4.5" vSpace="12" bgColor="#D2D5DC" description="招商数字符号键盘">
+        <title bgColor="#FFFFFF" height="30" space="4">
+            <item span="($KBW-50-20-4)/2" width="20" height="20" image="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_logo" action="SHOW"/>
+            <item text="安全键盘" width="50" fontSize="12" fontColor="#D1D5D8" action="SHOW"/>
+        </title>
+        <content bgColor="#D2D5DC" itemWidth="($KBW-(4.5*9)-4)/10" itemHeight="41" itemBgColor="#FFFFFF" itemFontColor="#000000" itemFontSize="20" itemHighlightBgColor="#FFFFFF" itemHighlightFontColor="#000000" itemRadian="5" itemShadow="1" span="10">
+            <row>
+                <item text="1" span="2" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_left" tipImagePosition="LEFT" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="0" />
+                <item text="2" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="3" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="4" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="5" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="6" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="7" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="8" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="9" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="0" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_right" tipImagePosition="RIGHT" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="($KBW-(4.5*9)-4)/10" />
+            </row>
+            <row>
+                <item text="-" span="2" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_left" tipImagePosition="LEFT" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="0" />
+                <item text="/" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text=":" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text=";" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="(" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text=")" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="$" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="&" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="@" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="“" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_right" tipImagePosition="RIGHT" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="($KBW-(4.5*9)-4)/10" />
+            </row>
+            <row itemWidth="40*$KBW/320">
+                <item value="-1" text="#+=" span="2" width="42" bgColor="#AAB2BB" highlightBgColor="#dddddd" fontSize="15" action="ICHANGE" targetKeyBoard="14"/>
+                <item text="." span="($KBW-(42*2)-((40*$KBW/320)*5)-(4.5*4)-(2*2))/2" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(40*$KBW/320)*2" tipImageHeight="110" tipImageSpan="(40*$KBW/320)/2" />
+                <item text="," tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(40*$KBW/320)*2" tipImageHeight="110" tipImageSpan="(40*$KBW/320)/2" />
+                <item text="?" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(40*$KBW/320)*2" tipImageHeight="110" tipImageSpan="(40*$KBW/320)/2" />
+                <item text="!" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(40*$KBW/320)*2" tipImageHeight="110" tipImageSpan="(40*$KBW/320)/2" />
+                <item text="‘" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(40*$KBW/320)*2" tipImageHeight="110" tipImageSpan="(40*$KBW/320)/2" />
+                <item value="-5" span="($KBW-(42*2)-((40*$KBW/320)*5)-(4.5*4)-(2*2))/2" width="42" bgColor="#AAB2BB" highlightBgColor="#dddddd" image="TKAsset.bundle/system/asset/keyboard/tf/tk_kb_tf_delete" action="DELETE" />
+            </row>
+            <row>
+                <item value="-1" text="ABC" span="2" width="42" fontSize="15" bgColor="#AAB2BB" highlightBgColor="#dddddd" action="ICHANGE" targetKeyBoard="12"/>
+                <item value="-1" width="42" fontSize="15" bgColor="#AAB2BB" highlightBgColor="#dddddd" image="TKAsset.bundle/system/asset/keyboard/tf/tk_kb_tf_change" highlightImage="TKAsset.bundle/system/asset/keyboard/tf/tk_kb_tf_change" action="CHANGE" targetDefaultKeyBoard="10" />
+                <item value=" " text="空格" width="$KBW-(2*2)-(42*2)-((($KBW-(4.5*9)-4)/10)+(($KBW-((($KBW-(4.5*9)-4)/10)*7)-(4.5*6)-(42*2)-4)/2)+42)-(4.5*3)" fontSize="15"  highlightBgColor="#eeeeee" action="SPACE" />
+                <item value="-3" text="确定" width="(($KBW-(4.5*9)-4)/10)+(($KBW-((($KBW-(4.5*9)-4)/10)*7)-(4.5*6)-(42*2)-4)/2)+42" fontSize="15" fontColor="#FFFFFF" highlightFontColor="FFFFFF" bgColor="#007AFF" highlightBgColor="#3797ff" action="ENTER"/>
+            </row>
+        </content>
+    </keyboard>
+     
+    <keyboard type="14" theme="" hSpace="4.5" vSpace="12" bgColor="#D2D5DC" description="招商符号键盘">
+        <title bgColor="#FFFFFF" height="30" space="4">
+            <item span="($KBW-50-20-4)/2" width="20" height="20" image="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_logo" action="SHOW"/>
+            <item text="安全键盘" width="50" fontSize="12" fontColor="#D1D5D8" action="SHOW"/>
+        </title>
+        <content bgColor="#D2D5DC" itemWidth="($KBW-(4.5*9)-4)/10" itemHeight="41" itemBgColor="#FFFFFF" itemFontColor="#000000" itemFontSize="20" itemHighlightBgColor="#FFFFFF" itemHighlightFontColor="#000000" itemRadian="5" itemShadow="1" span="10">
+            <row>
+                <item text="[" span="2" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_left" tipImagePosition="LEFT" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="0" />
+                <item text="]" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="{" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="}" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="#" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="%" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="^" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="*" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="+" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="=" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_right" tipImagePosition="RIGHT" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="($KBW-(4.5*9)-4)/10" />
+            </row>
+            <row>
+                <item text="_" span="2" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_left" tipImagePosition="LEFT" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="0" />
+                <item text="\" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="|" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="~" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="&lt;" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="&gt;" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="￥" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="€" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="￡" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="·" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_right" tipImagePosition="RIGHT" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="($KBW-(4.5*9)-4)/10" />
+            </row>
+            <row itemWidth="40*$KBW/320">
+                <item value="-1" text="123" span="2" width="42" bgColor="#AAB2BB" highlightBgColor="#dddddd" fontSize="15" action="ICHANGE" targetKeyBoard="13"/>
+                <item text="." span="($KBW-(42*2)-((40*$KBW/320)*5)-(4.5*4)-(2*2))/2" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(40*$KBW/320)*2" tipImageHeight="110" tipImageSpan="(40*$KBW/320)/2" />
+                <item text="," tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(40*$KBW/320)*2" tipImageHeight="110" tipImageSpan="(40*$KBW/320)/2" />
+                <item text="?" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(40*$KBW/320)*2" tipImageHeight="110" tipImageSpan="(40*$KBW/320)/2" />
+                <item text="!" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(40*$KBW/320)*2" tipImageHeight="110" tipImageSpan="(40*$KBW/320)/2" />
+                <item text="‘" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(40*$KBW/320)*2" tipImageHeight="110" tipImageSpan="(40*$KBW/320)/2" />
+                <item value="-5" span="($KBW-(42*2)-((40*$KBW/320)*5)-(4.5*4)-(2*2))/2" width="42" bgColor="#AAB2BB" highlightBgColor="#dddddd" image="TKAsset.bundle/system/asset/keyboard/tf/tk_kb_tf_delete" action="DELETE" />
+            </row>
+            <row>
+                <item value="-1" text="ABC" span="2" width="42" fontSize="15" bgColor="#AAB2BB" highlightBgColor="#dddddd" action="ICHANGE" targetKeyBoard="12"/>
+                <item value="-1" width="42" fontSize="15" bgColor="#AAB2BB" highlightBgColor="#dddddd" image="TKAsset.bundle/system/asset/keyboard/tf/tk_kb_tf_change" highlightImage="TKAsset.bundle/system/asset/keyboard/tf/tk_kb_tf_change" action="CHANGE" targetDefaultKeyBoard="10" />
+                <item value=" " text="空格" width="$KBW-(2*2)-(42*2)-((($KBW-(4.5*9)-4)/10)+(($KBW-((($KBW-(4.5*9)-4)/10)*7)-(4.5*6)-(42*2)-4)/2)+42)-(4.5*3)" fontSize="15"  highlightBgColor="#eeeeee" action="SPACE" />
+                <item value="-3" text="确定" width="(($KBW-(4.5*9)-4)/10)+(($KBW-((($KBW-(4.5*9)-4)/10)*7)-(4.5*6)-(42*2)-4)/2)+42" fontSize="15" fontColor="#FFFFFF" highlightFontColor="FFFFFF" bgColor="#007AFF" highlightBgColor="#3797ff" action="ENTER"/>
+            </row>
+        </content>
+    </keyboard>
+
+    <keyboard type="20" theme="" hSpace="1" vSpace="1" bgColor="#d1d4db" description="天风登录数字键盘">
+        <content bgColor="#B4B4B4" itemWidth="($KBW-76-1)/3" itemHeight="($KBH-3)/4" itemBgColor="#FFFFFF" itemFontColor="#000000" itemFontSize="21" itemHighlightBgColor="#D1D5D8" itemHighlightFontColor="#000000">
+            <row>
+                <column width="$KBW-76">
+                    <row>
+                        <item text="1" />
+                        <item text="2" />
+                        <item text="3" />
+                    </row>
+                    <row>
+                        <item text="4" />
+                        <item text="5" />
+                        <item text="6" />
+                    </row>
+                    <row>
+                        <item text="7" />
+                        <item text="8" />
+                        <item text="9" />
+                    </row>
+                    <row>
+                        <item value="-1" image="TKAsset.bundle/system/asset/keyboard/tf/tk_kb_tf_change" action="CHANGE" targetKeyBoard="24"/>
+                        <item text="0" />
+                        <item text="." />
+                    </row>
+                </column>
+                <column width="76" itemHeight="($KBH-1)/2">
+                    <item value="-5" image="TKAsset.bundle/system/asset/keyboard/tf/tk_kb_tf_delete" bgColor="#D1D5D8" highlightBgColor="#DDDDDD" action="DELETE"/>
+                    <item value="-3" text="确定" fontSize="16" bgColor="#007AFF" highlightBgColor="#3797ff" fontColor="FEFEFE" highlightFontColor="FEFEFE" action="ENTER"/>
+                </column>
+            </row>
+        </content>
+    </keyboard>
+    
+    <keyboard type="21" theme="" hSpace="1" vSpace="1" bgColor="#d1d4db" isHideTitle="1" description="天风股票键盘">
+        <title bgColor="#F9F9F9" height="44" space="4">
+            <item text="&lt; 中文输入" width="100" height="36" fontSize="16" fontColor="#000000" action="ZHCN" />
+        </title>
+        <content bgColor="#B4B4B4" itemWidth="($KBW-4)/5" itemHeight="($KBH-3)/4" itemBgColor="#FFFFFF" itemFontColor="#000000" itemFontSize="18" itemHighlightBgColor="#eeeeee" itemHighlightFontColor="#000000">
+            <row>
+                <item text="600" />
+                <item text="1" />
+                <item text="2" />
+                <item text="3" />
+                <item value="-5" image="TKAsset.bundle/system/asset/keyboard/tf/tk_kb_tf_delete" bgColor="#D1D5D8" highlightBgColor="#DDDDDD" action="DELETE"/>
+            </row>
+            <row>
+                <item text="601" />
+                <item text="4" />
+                <item text="5" />
+                <item text="6" />
+                <item text="002" />
+            </row>
+            <row>
+                <item text="000" />
+                <item text="7" />
+                <item text="8" />
+                <item text="9" />
+                <item text="300" />
+            </row>
+            <row>
+                <item value="-1" text="ABC" bgColor="#D1D5D8" highlightBgColor="#DDDDDD" action="CHANGE" targetKeyBoard="24" />
+                <item value="-4" text="隐藏" fontSize="16" action="HIDDEN"/>
+                <item text="0" />
+                <item value="-3" text="确定" span="0.01" fontSize="16" width="((($KBW-4)/5)*2)+2" bgColor="#007AFF" highlightBgColor="#3797ff" fontColor="FFFFFF" highlightFontColor="FFFFFF" action="ENTER"/>
+            </row>
+        </content>
+    </keyboard>
+     
+    <keyboard type="22" theme="" hSpace="1" vSpace="1" bgColor="#d1d4db" description="天风买入价格键盘">
+        <content bgColor="#B4B4B4" itemWidth="($KBW-75-3)/3" itemHeight="($KBH-3)/4" itemBgColor="#FFFFFF" itemFontColor="#000000" itemFontSize="21" itemHighlightBgColor="#eeeeee" itemHighlightFontColor="#000000">
+            <row>
+                <item text="1" />
+                <item text="2" />
+                <item text="3" />
+                <item value="-5" image="TKAsset.bundle/system/asset/keyboard/tf/tk_kb_tf_delete" width="75" bgColor="#D1D5D8" highlightBgColor="#DDDDDD" action="DELETE"/>
+            </row>
+            <row>
+                <item text="4" />
+                <item text="5" />
+                <item text="6" />
+                <item value="-2" text="清空" fontSize="16" width="75" bgColor="#D1D5D8" highlightBgColor="#DDDDDD" action="CLEAR"/>
+            </row>
+            <row>
+                <item text="7" />
+                <item text="8" />
+                <item text="9" />
+                <item value="-4" text="隐藏" fontSize="16" width="75" bgColor="#D1D5D8" highlightBgColor="#DDDDDD" action="HIDDEN"/>
+            </row>
+            <row>
+                <item text="." />
+                <item text="0" />
+                <item value="-3" text="确定" span="0.01" fontSize="16" width="(($KBW-75-3)/3)+75+2" bgColor="#007AFF" highlightBgColor="#3797ff" fontColor="FFFFFF" highlightFontColor="FFFFFF" action="ENTER"/>
+            </row>
+        </content>
+    </keyboard>
+    
+    <keyboard type="23" theme="" hSpace="1" vSpace="1" bgColor="#d1d4db" description="天风买入数量键盘">
+        <content bgColor="#B4B4B4" itemWidth="($KBW-75-3)/3" itemHeight="($KBH-3)/4" itemBgColor="#FFFFFF" itemFontColor="#000000" itemFontSize="21" itemHighlightBgColor="#eeeeee" itemHighlightFontColor="#000000">
+            <row>
+                <item text="1" />
+                <item text="2" />
+                <item text="3" />
+                <item value="-5" image="TKAsset.bundle/system/asset/keyboard/tf/tk_kb_tf_delete" width="75" bgColor="#D1D5D8" highlightBgColor="#DDDDDD" action="DELETE" />
+            </row>
+            <row>
+                <item text="4" />
+                <item text="5" />
+                <item text="6" />
+                <item value="-2" text="清空" fontSize="16" width="75" bgColor="#D1D5D8" highlightBgColor="#DDDDDD" action="CLEAR" />
+            </row>
+            <row>
+                <item text="7" />
+                <item text="8" />
+                <item text="9" />
+                <item value="-4" text="隐藏" fontSize="16" width="75" bgColor="#D1D5D8" highlightBgColor="#DDDDDD" action="HIDDEN" />
+            </row>
+            <row>
+                <item text="00" />
+                <item text="0" />
+                <item value="-3" text="确定" span="0.01" fontSize="16" width="(($KBW-75-3)/3)+75+2" bgColor="#007AFF" highlightBgColor="#3797ff" fontColor="FFFFFF" highlightFontColor="FFFFFF" action="ENTER"/>
+            </row>
+        </content>
+    </keyboard>
+     
+    <keyboard type="24" theme="" hSpace="4.5" vSpace="12" bgColor="#d1d4db" isHideTitle="1" description="天风英文键盘">
+        <title bgColor="#F9F9F9" height="44" space="4">
+            <item text="&lt; 中文输入" width="100" height="36" fontSize="16" fontColor="#000000" action="ZHCN" />
+        </title>
+        <content bgColor="#D2D5DC" itemWidth="($KBW-(4.5*9)-4)/10" itemHeight="41" itemBgColor="#FFFFFF" itemFontColor="#000000" itemFontSize="20" itemHighlightBgColor="#FFFFFF" itemHighlightFontColor="#000000" itemRadian="5" itemShadow="1" span="10">
+            <row>
+                <item text="q" span="2" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_left" tipImagePosition="LEFT" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="0" />
+                <item text="w" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="e" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="r" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="t" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="y" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="u" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="i" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="o" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="p" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_right" tipImagePosition="RIGHT" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="($KBW-(4.5*9)-4)/10" />
+            </row>
+            <row>
+                <item text="a" span="($KBW-(($KBW-(4.5*9)-4)/10*9)-(4.5*8))/2" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="s" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="d" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="f" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="g" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="h" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="j" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="k" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="l" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+            </row>
+            <row>
+                <item value="-6" span="2" width="42" bgColor="#AAB2BB" highlightBgColor="#dddddd" image="TKAsset.bundle/system/asset/keyboard/tf/tk_kb_tf_uppercase" selectedImage="TKAsset.bundle/system/asset/keyboard/tf/tk_kb_tf_lowercase" action="LETTERCASE" />
+                <item text="z" span="($KBW-((($KBW-(4.5*9)-4)/10)*7)-(4.5*6)-(42*2)-4)/2" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="x" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="c" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="v" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="b" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="n" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="m" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item value="-5" span="($KBW-((($KBW-(4.5*9)-4)/10)*7)-(4.5*6)-(42*2)-4)/2" width="42" bgColor="#AAB2BB" highlightBgColor="#dddddd" image="TKAsset.bundle/system/asset/keyboard/tf/tk_kb_tf_delete" action="DELETE" />
+            </row>
+            <row>
+                <item value="-1" text="123" span="2" width="42" fontSize="15" bgColor="#AAB2BB" highlightBgColor="#dddddd" action="ICHANGE" targetKeyBoard="25"/>
+                <item value="-1" width="42" fontSize="15" bgColor="#AAB2BB" highlightBgColor="#dddddd" image="TKAsset.bundle/system/asset/keyboard/tf/tk_kb_tf_change" highlightImage="TKAsset.bundle/system/asset/keyboard/tf/tk_kb_tf_change" action="CHANGE" targetDefaultKeyBoard="20"/>
+                <item value=" " text="空格" width="$KBW-(2*2)-(42*2)-((($KBW-(4.5*9)-4)/10)+(($KBW-((($KBW-(4.5*9)-4)/10)*7)-(4.5*6)-(42*2)-4)/2)+42)-(4.5*3)" fontSize="15"  highlightBgColor="#eeeeee" action="SPACE" />
+                <item value="-3" text="确定" width="(($KBW-(4.5*9)-4)/10)+(($KBW-((($KBW-(4.5*9)-4)/10)*7)-(4.5*6)-(42*2)-4)/2)+42" fontSize="15" fontColor="#FFFFFF" highlightFontColor="FFFFFF" bgColor="#007AFF" highlightBgColor="#3797ff" action="ENTER"/>
+            </row>
+        </content>
+    </keyboard>
+    
+    <keyboard type="25" theme="" hSpace="4.5" vSpace="12" bgColor="#d1d4db" isHideTitle="1" description="天风数字符号键盘">
+        <title bgColor="#F9F9F9" height="44" space="4">
+            <item text="&lt; 中文输入" width="100" height="36" fontSize="16" fontColor="#000000" action="ZHCN" />
+        </title>
+        <content bgColor="#D2D5DC" itemWidth="($KBW-(4.5*9)-4)/10" itemHeight="41" itemBgColor="#FFFFFF" itemFontColor="#000000" itemFontSize="20" itemHighlightBgColor="#FFFFFF" itemHighlightFontColor="#000000" itemRadian="5" itemShadow="1" span="10">
+            <row>
+                <item text="1" span="2" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_left" tipImagePosition="LEFT" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="0" />
+                <item text="2" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="3" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="4" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="5" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="6" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="7" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="8" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="9" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="0" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_right" tipImagePosition="RIGHT" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="($KBW-(4.5*9)-4)/10" />
+            </row>
+            <row>
+                <item text="-" span="2" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_left" tipImagePosition="LEFT" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="0" />
+                <item text="/" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text=":" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text=";" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="(" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text=")" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="$" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="&" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="@" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="“" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_right" tipImagePosition="RIGHT" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="($KBW-(4.5*9)-4)/10" />
+            </row>
+            <row itemWidth="40*$KBW/320">
+                <item value="-1" text="#+=" span="2" width="42" bgColor="#AAB2BB" highlightBgColor="#dddddd" fontSize="15" action="ICHANGE" targetKeyBoard="26" />
+                <item text="." span="($KBW-(42*2)-((40*$KBW/320)*5)-(4.5*4)-(2*2))/2" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(40*$KBW/320)*2" tipImageHeight="110" tipImageSpan="(40*$KBW/320)/2" />
+                <item text="," tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(40*$KBW/320)*2" tipImageHeight="110" tipImageSpan="(40*$KBW/320)/2" />
+                <item text="?" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(40*$KBW/320)*2" tipImageHeight="110" tipImageSpan="(40*$KBW/320)/2" />
+                <item text="!" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(40*$KBW/320)*2" tipImageHeight="110" tipImageSpan="(40*$KBW/320)/2" />
+                <item text="‘" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(40*$KBW/320)*2" tipImageHeight="110" tipImageSpan="(40*$KBW/320)/2" />
+                <item value="-5" span="($KBW-(42*2)-((40*$KBW/320)*5)-(4.5*4)-(2*2))/2" width="42" bgColor="#AAB2BB" highlightBgColor="#dddddd" image="TKAsset.bundle/system/asset/keyboard/tf/tk_kb_tf_delete" action="DELETE" />
+            </row>
+            <row>
+                <item value="-1" text="ABC" span="2" width="42" fontSize="15" bgColor="#AAB2BB" highlightBgColor="#dddddd" action="ICHANGE" targetKeyBoard="24"/>
+                <item value="-1" width="42" fontSize="15" bgColor="#AAB2BB" highlightBgColor="#dddddd" image="TKAsset.bundle/system/asset/keyboard/tf/tk_kb_tf_change" highlightImage="TKAsset.bundle/system/asset/keyboard/tf/tk_kb_tf_change" action="CHANGE" targetDefaultKeyBoard="20"/>
+                <item value=" " text="空格" width="$KBW-(2*2)-(42*2)-((($KBW-(4.5*9)-4)/10)+(($KBW-((($KBW-(4.5*9)-4)/10)*7)-(4.5*6)-(42*2)-4)/2)+42)-(4.5*3)" fontSize="15"  highlightBgColor="#eeeeee" action="SPACE" />
+                <item value="-3" text="确定" width="(($KBW-(4.5*9)-4)/10)+(($KBW-((($KBW-(4.5*9)-4)/10)*7)-(4.5*6)-(42*2)-4)/2)+42" fontSize="15" fontColor="#FFFFFF" highlightFontColor="FFFFFF" bgColor="#007AFF" highlightBgColor="#3797ff" action="ENTER"/>
+            </row>
+        </content>
+    </keyboard>
+     
+    <keyboard type="26" theme="" hSpace="4.5" vSpace="12" bgColor="#d1d4db" isHideTitle="1" description="天风符号键盘">
+        <title bgColor="#F9F9F9" height="44" space="4">
+            <item text="&lt; 中文输入" width="100" height="36" fontSize="16" fontColor="#000000" action="ZHCN" />
+        </title>
+        <content bgColor="#D2D5DC" itemWidth="($KBW-(4.5*9)-4)/10" itemHeight="41" itemBgColor="#FFFFFF" itemFontColor="#000000" itemFontSize="20" itemHighlightBgColor="#FFFFFF" itemHighlightFontColor="#000000" itemRadian="5" itemShadow="1" span="10">
+            <row>
+                <item text="[" span="2" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_left" tipImagePosition="LEFT" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="0" />
+                <item text="]" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="{" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="}" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="#" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="%" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="^" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="*" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="+" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="=" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_right" tipImagePosition="RIGHT" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="($KBW-(4.5*9)-4)/10" />
+            </row>
+            <row>
+                <item text="_" span="2" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_left" tipImagePosition="LEFT" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="0" />
+                <item text="\" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="|" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="~" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="&lt;" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="&gt;" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="￥" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="€" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="￡" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="(($KBW-(4.5*9)-4)/10)/2" />
+                <item text="·" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_right" tipImagePosition="RIGHT" tipImageWidth="(($KBW-(4.5*9)-4)/10)*2" tipImageHeight="110" tipImageSpan="($KBW-(4.5*9)-4)/10" />
+            </row>
+            <row itemWidth="40*$KBW/320">
+                <item value="-1" text="123" span="2" width="42" bgColor="#AAB2BB" highlightBgColor="#dddddd" fontSize="15" action="ICHANGE" targetKeyBoard="25"/>
+                <item text="." span="($KBW-(42*2)-((40*$KBW/320)*5)-(4.5*4)-(2*2))/2" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(40*$KBW/320)*2" tipImageHeight="110" tipImageSpan="(40*$KBW/320)/2" />
+                <item text="," tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(40*$KBW/320)*2" tipImageHeight="110" tipImageSpan="(40*$KBW/320)/2" />
+                <item text="?" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(40*$KBW/320)*2" tipImageHeight="110" tipImageSpan="(40*$KBW/320)/2" />
+                <item text="!" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(40*$KBW/320)*2" tipImageHeight="110" tipImageSpan="(40*$KBW/320)/2" />
+                <item text="‘" tipImage="TKAsset.bundle/system/asset/keyboard/ms/tk_kb_ms_pop_center" tipImagePosition="CENTER" tipImageWidth="(40*$KBW/320)*2" tipImageHeight="110" tipImageSpan="(40*$KBW/320)/2" />
+                <item value="-5" span="($KBW-(42*2)-((40*$KBW/320)*5)-(4.5*4)-(2*2))/2" width="42" bgColor="#AAB2BB" highlightBgColor="#dddddd" image="TKAsset.bundle/system/asset/keyboard/tf/tk_kb_tf_delete" action="DELETE" />
+            </row>
+            <row>
+                <item value="-1" text="ABC" span="2" width="42" fontSize="15" bgColor="#AAB2BB" highlightBgColor="#dddddd" action="ICHANGE" targetKeyBoard="24"/>
+                <item value="-1" width="42" fontSize="15" bgColor="#AAB2BB" highlightBgColor="#dddddd" image="TKAsset.bundle/system/asset/keyboard/tf/tk_kb_tf_change" highlightImage="TKAsset.bundle/system/asset/keyboard/tf/tk_kb_tf_change" action="CHANGE" targetDefaultKeyBoard="20"/>
+                <item value=" " text="空格" width="$KBW-(2*2)-(42*2)-((($KBW-(4.5*9)-4)/10)+(($KBW-((($KBW-(4.5*9)-4)/10)*7)-(4.5*6)-(42*2)-4)/2)+42)-(4.5*3)" fontSize="15"  highlightBgColor="#eeeeee" action="SPACE" />
+                <item value="-3" text="确定" width="(($KBW-(4.5*9)-4)/10)+(($KBW-((($KBW-(4.5*9)-4)/10)*7)-(4.5*6)-(42*2)-4)/2)+42" fontSize="15" fontColor="#FFFFFF" highlightFontColor="FFFFFF" bgColor="#007AFF" highlightBgColor="#3797ff" action="ENTER"/>
+            </row>
+        </content>
+    </keyboard>
+    
+    <keyboard type="27" theme="" hSpace="1" vSpace="1" bgColor="#d1d4db" description="天风随机登录数字键盘">
+        <content bgColor="#B4B4B4" itemWidth="($KBW-76-1)/3" itemHeight="($KBH-3)/4" itemBgColor="#FFFFFF" itemFontColor="#000000" itemFontSize="21" itemHighlightBgColor="#D1D5D8" itemHighlightFontColor="#000000">
+            <row>
+                <column width="$KBW-76">
+                    <row>
+                        <item isRandNum="1" />
+                        <item isRandNum="1" />
+                        <item isRandNum="1" />
+                    </row>
+                    <row>
+                        <item isRandNum="1" />
+                        <item isRandNum="1" />
+                        <item isRandNum="1" />
+                    </row>
+                    <row>
+                        <item isRandNum="1" />
+                        <item isRandNum="1" />
+                        <item isRandNum="1" />
+                    </row>
+                    <row>
+                        <item value="-1" image="TKAsset.bundle/system/asset/keyboard/tf/tk_kb_tf_change" action="CHANGE" targetKeyBoard="24"/>
+                        <item isRandNum="1" />
+                        <item text="." />
+                    </row>
+                </column>
+                <column width="76" itemHeight="($KBH-1)/2">
+                    <item value="-5" image="TKAsset.bundle/system/asset/keyboard/tf/tk_kb_tf_delete" bgColor="#D1D5D8" highlightBgColor="#DDDDDD" action="DELETE"/>
+                    <item value="-3" text="确定" fontSize="16" bgColor="#007AFF" highlightBgColor="#3797ff" fontColor="FEFEFE" highlightFontColor="FEFEFE" action="ENTER"/>
+                </column>
+            </row>
+        </content>
+    </keyboard>
+    
+    <keyboard type="30" theme="" hSpace="1" vSpace="1" bgColor="#D2D5DC" impClass="TKOptionKeyBoardView" description="一创期权通键盘深圳快速报价键盘">
+        <title bgColor="#F4F5F6" height="44" itemWidth="$KBW*0.2" itemFontSize="15">
+            <item value="-1" text="快速报价" span="$KBW*0.2" fontColor="#4888C4" indicatorColor="#4888C4" indicatorWidth="$KBW*0.15" indicatorHeight="2" action="CHANGE" targetKeyBoard="30" />
+            <item value="-1" text="键盘报价" span="$KBW*0.2" fontColor="#aaaaaa" action="CHANGE" targetKeyBoard="32" />
+            <item text="○ FOK" selectedText="● FOK" value="FOK|0" selectedValue="FOK|1" span="0.01" fontSize="16" fontColor="#aaaaaa" selectedFontColor="#4888C4" action="SELECT" isFirstResponderAction="1" hidden="1" />
+        </title>
+        <content bgColor="#D2D5DC">
+            <item type="PICKER" bgColor="#FFFFFF" fontSize="20" rowHeight="44" indicatorColor="#2778be" datasource="对手价:SZ|0,限价GFD:SZ|1,限价FOK:SZ|2,市价-五档成交剩余撤销:SZ|3,市价-全额成交或撤销:SZ|4,市价-本方最优:SZ|5,市价-对手方最优:SZ|6,市价-即时成交剩余撤销:SZ|7" />
+        </content>
+    </keyboard>
+    
+    <keyboard type="31" theme="" hSpace="1" vSpace="1" bgColor="#D2D5DC" impClass="TKOptionKeyBoardView" description="一创期权通键盘上海快速报价键盘">
+        <title bgColor="#F4F5F6" height="44" itemWidth="$KBW*0.2" itemFontSize="15">
+            <item value="-1" text="快速报价" span="$KBW*0.2" fontColor="#4888C4" indicatorColor="#4888C4" indicatorWidth="$KBW*0.15" indicatorHeight="2" action="CHANGE" targetKeyBoard="31" />
+            <item value="-1" text="键盘报价" span="$KBW*0.2" fontColor="#aaaaaa" action="CHANGE" targetKeyBoard="33"/>
+            <item text="○ FOK" selectedText="● FOK" value="FOK|0" selectedValue="FOK|1" span="0.01" fontSize="16" fontColor="#aaaaaa" selectedFontColor="#4888C4" action="SELECT" isFirstResponderAction="1" hidden="1" />
+        </title>
+        <content bgColor="#D2D5DC">
+            <item type="PICKER" bgColor="#FFFFFF" fontSize="20" rowHeight="44" indicatorColor="#2778be" datasource="对手价:SH|0,限价GFD:SH|1,限价FOK:SH|2,市价剩转限价GFD:SH|3,市价FOK:SH|4,市价IOC:SH|5" />
+        </content>
+    </keyboard>
+    
+    <keyboard type="32" theme="" hSpace="1" vSpace="1" bgColor="#D2D5DC" description="一创期权通深圳数字报价键盘">
+        <title bgColor="#F4F5F6" height="44" itemWidth="$KBW*0.2" itemFontSize="15">
+            <item value="-1" text="快速报价" span="$KBW*0.2" fontColor="#aaaaaa" action="CHANGE" targetKeyBoard="30" />
+            <item value="-1" text="键盘报价" span="$KBW*0.2" fontColor="#4888C4" indicatorColor="#4888C4" indicatorWidth="$KBW*0.15" indicatorHeight="2" action="CHANGE" targetKeyBoard="32"/>
+            <item text="○ FOK" selectedText="● FOK" value="FOK|0" selectedValue="FOK|1" span="0.01" fontSize="16" fontColor="#aaaaaa" selectedFontColor="#4888C4" action="SELECT" isFirstResponderAction="1"/>
+        </title>
+        <content bgColor="#D2D5DC" itemWidth="($KBW-2)/3" itemHeight="($KBH-3)/4" itemBgColor="#FFFFFF" itemFontColor="#000000" itemFontSize="21" itemHighlightBgColor="#EEEEEE" itemHighlightFontColor="#000000">
+            <row>
+                <item text="1" />
+                <item text="2" />
+                <item text="3" />
+            </row>
+            <row>
+                <item text="4" />
+                <item text="5" />
+                <item text="6" />
+            </row>
+            <row>
+                <item text="7" />
+                <item text="8" />
+                <item text="9" />
+            </row>
+            <row>
+                <item text="." bgColor="#D1D5D8" highlightBgColor="#DDDDDD" />
+                <item text="0" />
+                <item value="-5" bgColor="#D1D5D8" highlightBgColor="#DDDDDD" image="TKAsset.bundle/system/asset/keyboard/tf/tk_kb_tf_delete" action="DELETE" />
+            </row>
+        </content>
+    </keyboard>
+    
+    <keyboard type="33" theme="" hSpace="1" vSpace="1" bgColor="#D2D5DC" description="一创期权通上海数字报价键盘">
+        <title bgColor="#F4F5F6" height="44" itemWidth="$KBW*0.2" itemFontSize="15">
+            <item value="-1" text="快速报价" span="$KBW*0.2" fontColor="#aaaaaa" action="CHANGE" targetKeyBoard="31" />
+            <item value="-1" text="键盘报价" span="$KBW*0.2" fontColor="#4888C4" indicatorColor="#4888C4" indicatorWidth="$KBW*0.15" indicatorHeight="2" action="CHANGE" targetKeyBoard="33" />
+            <item text="○ FOK" selectedText="● FOK" value="FOK|0" selectedValue="FOK|1" span="0.01" fontSize="16" fontColor="#aaaaaa" selectedFontColor="#4888C4" action="SELECT" isFirstResponderAction="1" />
+        </title>
+        <content bgColor="#D2D5DC" itemWidth="($KBW-2)/3" itemHeight="($KBH-3)/4" itemBgColor="#FFFFFF" itemFontColor="#000000" itemFontSize="21" itemHighlightBgColor="#EEEEEE" itemHighlightFontColor="#000000">
+            <row>
+                <item text="1" />
+                <item text="2" />
+                <item text="3" />
+            </row>
+            <row>
+                <item text="4" />
+                <item text="5" />
+                <item text="6" />
+            </row>
+            <row>
+                <item text="7" />
+                <item text="8" />
+                <item text="9" />
+            </row>
+            <row>
+                <item text="." bgColor="#D1D5D8" highlightBgColor="#DDDDDD" />
+                <item text="0" />
+                <item value="-5" bgColor="#D1D5D8" highlightBgColor="#DDDDDD" image="TKAsset.bundle/system/asset/keyboard/tf/tk_kb_tf_delete" action="DELETE" />
+            </row>
+        </content>
+    </keyboard>
+    
+    <keyboard type="40" theme="0" hSpace="1" vSpace="1" bgColor="#DDDDDD" description="华泰期货英文键盘-浅色版">
+        <title bgColor="#DDDDDD" height="45" itemWidth="$KBW*0.25" itemFontSize="18" itemFontColor="#000000" space="0.01">
+            <item value="-1" text="英文" fontColor="#FF5656" indicatorColor="#FF5656" indicatorWidth="($KBW*0.25)-2" indicatorHeight="2" action="CHANGE" targetKeyBoard="40" />
+            <item value="-1" text="数字" action="CHANGE" targetKeyBoard="41" />
+            <item value="-1" text="符号" action="CHANGE" targetKeyBoard="42" />
+            <item value="-4" span="($KBW*0.25)-52" width="52" image="TKAsset.bundle/system/asset/keyboard/ht/tk_kb_ht_wclose" action="HIDDEN" />
+        </title>
+        <content bgColor="#DDDDDD" itemWidth="($KBW-7)/8" itemHeight="($KBH-3)/4" itemBgColor="#FFFFFF" itemFontColor="#000000" itemFontSize="24" itemSelectedFontSize="33" itemHighlightBgColor="#E5E5E5" itemHighlightFontColor="#000000">
+            <row>
+                <item text="a" />
+                <item text="b" />
+                <item text="c" />
+                <item text="d" />
+                <item text="e" />
+                <item text="f" />
+                <item text="g" />
+                <item value="-5" image="TKAsset.bundle/system/asset/keyboard/ht/tk_kb_ht_clear" bgColor="#F2F2F2" action="DELETE" />
+            </row>
+            <row>
+                <item text="h" />
+                <item text="i" />
+                <item text="j" />
+                <item text="k" />
+                <item text="l" />
+                <item text="m" />
+                <item text="n" />
+                <item value="-7" image="TKAsset.bundle/system/asset/keyboard/ht/tk_kb_ht_forward" bgColor="#F2F2F2" action="FORWARD" />
+            </row>
+            <row>
+                <item text="o" />
+                <item text="p" />
+                <item text="q" />
+                <item text="r" />
+                <item text="s" />
+                <item text="t" />
+                <item text="u" />
+                <item value="-8" image="TKAsset.bundle/system/asset/keyboard/ht/tk_kb_ht_goback" bgColor="#F2F2F2" action="GOBACK" />
+            </row>
+            <row>
+                <item text="v" />
+                <item text="w" />
+                <item text="x" />
+                <item text="y" />
+                <item text="z" />
+                <item value=" " image="TKAsset.bundle/system/asset/keyboard/ht/tk_kb_ht_space" bgColor="#F2F2F2" action="SPACE" />
+                <item value="-6" image="TKAsset.bundle/system/asset/keyboard/ht/tk_kb_ht_uppercase" selectedImage="TKAsset.bundle/system/asset/keyboard/ht/tk_kb_ht_lowercase" bgColor="#F2F2F2" action="LETTERCASE" />
+                <item value="-3" image="TKAsset.bundle/system/asset/keyboard/ht/tk_kb_ht_ok" bgColor="#F2F2F2" action="ENTER" />
+            </row>
+        </content>
+    </keyboard>
+    
+    <keyboard type="40" theme="1" hSpace="1" vSpace="1" bgColor="#393B39" description="华泰期货英文键盘-深色版">
+        <title bgColor="#393B39" height="45" itemWidth="$KBW*0.25" itemFontSize="18" itemFontColor="#FFFFFF" space="0.01">
+            <item value="-1" text="英文" fontColor="#FF5656" indicatorColor="#FF5656" indicatorWidth="($KBW*0.25)-2" indicatorHeight="2" action="CHANGE" targetKeyBoard="40" />
+            <item value="-1" text="数字" action="CHANGE" targetKeyBoard="41" />
+            <item value="-1" text="符号" action="CHANGE" targetKeyBoard="42" />
+            <item value="-4" span="($KBW*0.25)-52" width="52" image="TKAsset.bundle/system/asset/keyboard/ht/tk_kb_ht_bclose" action="HIDDEN"/>
+        </title>
+        <content bgColor="#393B39" itemWidth="($KBW-7)/8" itemHeight="($KBH-3)/4" itemBgColor="#F8F8F8" itemFontColor="#000000" itemFontSize="24" itemSelectedFontSize="33" itemHighlightBgColor="#B4B4B4" itemHighlightFontColor="#000000">
+            <row>
+                <item text="a" />
+                <item text="b" />
+                <item text="c" />
+                <item text="d" />
+                <item text="e" />
+                <item text="f" />
+                <item text="g" />
+                <item value="-5" image="TKAsset.bundle/system/asset/keyboard/ht/tk_kb_ht_clear" bgColor="#DDDDDD" action="DELETE" />
+            </row>
+            <row>
+                <item text="h" />
+                <item text="i" />
+                <item text="j" />
+                <item text="k" />
+                <item text="l" />
+                <item text="m" />
+                <item text="n" />
+                <item value="-7" image="TKAsset.bundle/system/asset/keyboard/ht/tk_kb_ht_forward" bgColor="#DDDDDD" action="FORWARD" />
+            </row>
+            <row>
+                <item text="o" />
+                <item text="p" />
+                <item text="q" />
+                <item text="r" />
+                <item text="s" />
+                <item text="t" />
+                <item text="u" />
+                <item value="-8" image="TKAsset.bundle/system/asset/keyboard/ht/tk_kb_ht_goback" bgColor="#DDDDDD" action="GOBACK" />
+            </row>
+            <row>
+                <item text="v" />
+                <item text="w" />
+                <item text="x" />
+                <item text="y" />
+                <item text="z" />
+                <item value=" " image="TKAsset.bundle/system/asset/keyboard/ht/tk_kb_ht_space" bgColor="#DDDDDD" action="SPACE" />
+                <item value="-6" image="TKAsset.bundle/system/asset/keyboard/ht/tk_kb_ht_uppercase" selectedImage="TKAsset.bundle/system/asset/keyboard/ht/tk_kb_ht_lowercase" bgColor="#DDDDDD" action="LETTERCASE" />
+                <item value="-3" image="TKAsset.bundle/system/asset/keyboard/ht/tk_kb_ht_ok" bgColor="#DDDDDD" action="ENTER" />
+            </row>
+        </content>
+    </keyboard>
+    
+    <keyboard type="41" theme="0" hSpace="1" vSpace="1" bgColor="#DDDDDD" description="华泰期货数字键盘-浅色版">
+        <title bgColor="#DDDDDD" height="45" itemWidth="$KBW*0.25" itemFontSize="18" itemFontColor="#000000" space="0.01">
+            <item value="-1" text="英文" action="CHANGE" targetKeyBoard="40" />
+            <item value="-1" text="数字" fontColor="#FF5656" indicatorColor="#FF5656" indicatorWidth="($KBW*0.25)-2" indicatorHeight="2" action="CHANGE" targetKeyBoard="41" />
+            <item value="-1" text="符号" action="CHANGE" targetKeyBoard="42" />
+            <item value="-4" span="($KBW*0.25)-52" width="52" image="TKAsset.bundle/system/asset/keyboard/ht/tk_kb_ht_wclose" action="HIDDEN" />
+        </title>
+        <content bgColor="#DDDDDD" itemWidth="($KBW-3)/4" itemHeight="($KBH-3)/4" itemBgColor="#FFFFFF" itemFontColor="#000000" itemFontSize="24" itemHighlightBgColor="#E5E5E5" itemHighlightFontColor="#000000">
+            <row>
+                <item text="1" />
+                <item text="2" />
+                <item text="3" />
+                <item value="-5" image="TKAsset.bundle/system/asset/keyboard/ht/tk_kb_ht_clear" bgColor="#F2F2F2" action="DELETE" />
+            </row>
+            <row>
+                <item text="4" />
+                <item text="5" />
+                <item text="6" />
+                <item value="-7" image="TKAsset.bundle/system/asset/keyboard/ht/tk_kb_ht_forward" bgColor="#F2F2F2" action="FORWARD" />
+            </row>
+            <row>
+                <item text="7" />
+                <item text="8" />
+                <item text="9" />
+                <item value="-8" image="TKAsset.bundle/system/asset/keyboard/ht/tk_kb_ht_goback" bgColor="#F2F2F2" action="GOBACK" />
+            </row>
+            <row>
+                <item text="." />
+                <item text="0" />
+                <item value="-3" image="TKAsset.bundle/system/asset/keyboard/ht/tk_kb_ht_ok" bgColor="#F2F2F2" width="(($KBW-3)/2)+1" action="ENTER" />
+            </row>
+        </content>
+    </keyboard>
+    
+    <keyboard type="41" theme="1" hSpace="1" vSpace="1" bgColor="#393B39" description="华泰期货数字键盘-深色版">
+        <title bgColor="#393B39" height="45" itemWidth="$KBW*0.25" itemFontSize="18" itemFontColor="#FFFFFF" space="0.01">
+            <item value="-1" text="英文" action="CHANGE" targetKeyBoard="40" />
+            <item value="-1" text="数字" fontColor="#FF5656" indicatorColor="#FF5656" indicatorWidth="($KBW*0.25)-2" indicatorHeight="2" action="CHANGE" targetKeyBoard="41" />
+            <item value="-1" text="符号" action="CHANGE" targetKeyBoard="42" />
+            <item value="-4" span="($KBW*0.25)-52" width="52" image="TKAsset.bundle/system/asset/keyboard/ht/tk_kb_ht_bclose" action="HIDDEN" />
+        </title>
+        <content bgColor="#393B39" itemWidth="($KBW-3)/4" itemHeight="($KBH-3)/4" itemBgColor="#F8F8F8" itemFontColor="#000000" itemFontSize="24" itemHighlightBgColor="#B4B4B4" itemHighlightFontColor="#000000">
+            <row>
+                <item text="1" />
+                <item text="2" />
+                <item text="3" />
+                <item value="-5" image="TKAsset.bundle/system/asset/keyboard/ht/tk_kb_ht_clear" bgColor="#DDDDDD" action="DELETE" />
+            </row>
+            <row>
+                <item text="4" />
+                <item text="5" />
+                <item text="6" />
+                <item value="-7" image="TKAsset.bundle/system/asset/keyboard/ht/tk_kb_ht_forward" bgColor="#DDDDDD" action="FORWARD" />
+            </row>
+            <row>
+                <item text="7" />
+                <item text="8" />
+                <item text="9" />
+                <item value="-8" image="TKAsset.bundle/system/asset/keyboard/ht/tk_kb_ht_goback" bgColor="#DDDDDD" action="GOBACK" />
+            </row>
+            <row>
+                <item text="." />
+                <item text="0" />
+                <item value="-3" image="TKAsset.bundle/system/asset/keyboard/ht/tk_kb_ht_ok" bgColor="#DDDDDD" width="(($KBW-3)/2)+1" action="ENTER" />
+            </row>
+        </content>
+    </keyboard>
+     
+    <keyboard type="42" theme="0" hSpace="1" vSpace="1" bgColor="#DDDDDD" description="华泰期货符号键盘-浅色版">
+        <title bgColor="#DDDDDD" height="45" itemWidth="$KBW*0.25" itemFontSize="18" itemFontColor="#000000" space="0.01">
+            <item value="-1" text="英文" action="CHANGE" targetKeyBoard="40" />
+            <item value="-1" text="数字" action="CHANGE" targetKeyBoard="41" />
+            <item value="-1" text="符号" fontColor="#FF5656" indicatorColor="#FF5656" indicatorWidth="($KBW*0.25)-2" indicatorHeight="2" action="CHANGE" targetKeyBoard="42" />
+            <item value="-4" span="($KBW*0.25)-52" width="52" image="TKAsset.bundle/system/asset/keyboard/ht/tk_kb_ht_wclose" action="HIDDEN" />
+        </title>
+        <content bgColor="#DDDDDD" itemWidth="($KBW-8)/9" itemHeight="($KBH-3)/4" itemBgColor="#FFFFFF" itemFontColor="#000000" itemFontSize="24" itemHighlightBgColor="#E5E5E5" itemHighlightFontColor="#000000">
+            <row>
+                <item text="{" />
+                <item text="}" />
+                <item text="[" />
+                <item text="]" />
+                <item text="&lt;" />
+                <item text="&gt;" />
+                <item text="(" />
+                <item text=")" />
+                <item value="-5" image="TKAsset.bundle/system/asset/keyboard/ht/tk_kb_ht_clear" bgColor="#F2F2F2" action="DELETE" />
+            </row>
+            <row>
+                <item text="+" />
+                <item text="-" />
+                <item text="*" />
+                <item text="/" />
+                <item text="|" />
+                <item text="&" />
+                <item text="^" />
+                <item text="=" />
+                <item value="-7" image="TKAsset.bundle/system/asset/keyboard/ht/tk_kb_ht_forward" bgColor="#F2F2F2" action="FORWARD" />
+            </row>
+            <row>
+                <item text="," />
+                <item text="." />
+                <item text="“" />
+                <item text="‘" />
+                <item text=":" />
+                <item text=";" />
+                <item text="?" />
+                <item text="!" />
+                <item value="-8" image="TKAsset.bundle/system/asset/keyboard/ht/tk_kb_ht_goback" bgColor="#F2F2F2" action="GOBACK" />
+            </row>
+            <row>
+                <item text="~" />
+                <item text="@" />
+                <item text="#" />
+                <item text="$" />
+                <item text="%" />
+                <item text="\" />
+                <item text="_" />
+                <item text="`" />
+                <item value="-3" image="TKAsset.bundle/system/asset/keyboard/ht/tk_kb_ht_ok" bgColor="#F2F2F2" action="ENTER" />
+            </row>
+        </content>
+    </keyboard>
+     
+    <keyboard type="42" theme="1" hSpace="1" vSpace="1" bgColor="#393B39" description="华泰期货符号键盘-深色版">
+        <title bgColor="#393B39" height="45" itemWidth="$KBW*0.25" itemFontSize="18" itemFontColor="#FFFFFF" space="0.01">
+            <item value="-1" text="英文" action="CHANGE" targetKeyBoard="40" />
+            <item value="-1" text="数字" action="CHANGE" targetKeyBoard="41" />
+            <item value="-1" text="符号" fontColor="#FF5656" indicatorColor="#FF5656" indicatorWidth="($KBW*0.25)-2" indicatorHeight="2" action="CHANGE" targetKeyBoard="42" />
+            <item value="-4" span="($KBW*0.25)-52" width="52" image="TKAsset.bundle/system/asset/keyboard/ht/tk_kb_ht_bclose" action="HIDDEN" />
+        </title>
+        <content bgColor="#393B39" itemWidth="($KBW-8)/9" itemHeight="($KBH-3)/4" itemBgColor="#F8F8F8" itemFontColor="#000000" itemFontSize="24" itemHighlightBgColor="#B4B4B4" itemHighlightFontColor="#000000">
+            <row>
+                <item text="{" />
+                <item text="}" />
+                <item text="[" />
+                <item text="]" />
+                <item text="&lt;" />
+                <item text="&gt;" />
+                <item text="(" />
+                <item text=")" />
+                <item value="-5" image="TKAsset.bundle/system/asset/keyboard/ht/tk_kb_ht_clear" bgColor="#DDDDDD" action="DELETE" />
+            </row>
+            <row>
+                <item text="+" />
+                <item text="-" />
+                <item text="*" />
+                <item text="/" />
+                <item text="|" />
+                <item text="&" />
+                <item text="^" />
+                <item text="=" />
+                <item value="-7" image="TKAsset.bundle/system/asset/keyboard/ht/tk_kb_ht_forward" bgColor="#DDDDDD" action="FORWARD" />
+            </row>
+            <row>
+                <item text="," />
+                <item text="." />
+                <item text="“" />
+                <item text="‘" />
+                <item text=":" />
+                <item text=";" />
+                <item text="?" />
+                <item text="!" />
+                <item value="-8" image="TKAsset.bundle/system/asset/keyboard/ht/tk_kb_ht_goback" bgColor="#DDDDDD" action="GOBACK" />
+            </row>
+            <row>
+                <item text="~" />
+                <item text="@" />
+                <item text="#" />
+                <item text="$" />
+                <item text="%" />
+                <item text="\" />
+                <item text="_" />
+                <item text="`" />
+                <item value="-3" image="TKAsset.bundle/system/asset/keyboard/ht/tk_kb_ht_ok" bgColor="#DDDDDD" action="ENTER" />
+            </row>
+        </content>
+    </keyboard>
+   
+    <keyboard type="50" theme="0" hSpace="1" vSpace="1" bgColor="#d1d4db" description="华安买卖数量键盘">
+       <content bgColor="#B4B4B4" itemWidth="($KBW-4)/5" itemHeight="($KBH-3)/4" itemBgColor="#FFFFFF" itemFontColor="#000000" itemFontSize="21" itemHighlightBgColor="#D1D5D8" itemHighlightFontColor="#000000">
+           <row>
+               <column width="($KBW-4)/5" itemHeight="($KBH-4)/5" >
+                   <item text="全仓" value="-14" fontSize="15" action="OTHER"/>
+                   <item text="半仓" value="-13" fontSize="15" action="OTHER"/>
+                   <item text="1/3仓" value="-12" fontSize="15" action="OTHER"/>
+                   <item text="1/4仓" value="-11" fontSize="15" action="OTHER"/>
+                   <item text="输入金额" value="-1" fontSize="15" fontColor="#FF0000" highlightFontColor="#FF0000" action="CHANGE" targetKeyBoard="51"/>
+               </column>
+               <column width="$KBW-((($KBW-4)/5)*2)-2">
+                   <row>
+                       <item text="1"/>
+                       <item text="2"/>
+                       <item text="3"/>
+                   </row>
+                   <row>
+                       <item text="4"/>
+                       <item text="5"/>
+                       <item text="6"/>
+                   </row>
+                   <row>
+                       <item text="7"/>
+                       <item text="8"/>
+                       <item text="9"/>
+                   </row>
+                   <row>
+                       <item text="000" fontSize="15"/>
+                       <item text="0"/>
+                       <item value="-4" image="TKAsset.bundle/system/asset/keyboard/ht/tk_kb_ht_wclose" action="HIDDEN" />
+                   </row>
+               </column>
+               <column width="($KBW-4)/5" itemHeight="($KBH-1)/2">
+                   <item value="-5" image="TKAsset.bundle/system/asset/keyboard/tf/tk_kb_tf_delete" action="DELETE"/>
+                   <item value="-3" text="买入" fontSize="19" bgColor="#FF0000" highlightBgColor="#FF0000" fontColor="FFFFFF" highlightFontColor="FFFFFF" action="ENTER"/>
+               </column>
+           </row>
+       </content>
+   </keyboard>
+   
+   <keyboard type="51" theme="0" hSpace="1" vSpace="1" bgColor="#d1d4db" description="华安买卖金额键盘">
+       <title bgColor="#FFFFFF" height="($KBH-3)/4" itemWidth="$KBW/10" itemFontSize="15" itemFontColor="#000000" space="0.01">
+           <item text="￥" action="SHOW"/>
+           <item text="10000" fontSize="25" fontWeight="6" fontPosition="LEFT" width="($KBW*4)/10" tag="amount" action="SHOW"/>
+           <!--
+           <item text="&lt;font color='gray' size='4'&gt;可用&lt;/font&gt;&lt;font color='orange' size='4'&gt;0.00&lt;/font&gt;&lt;font color='gray' size='4'&gt;元&lt;/font&gt;" fontPosition="RIGHT" width="($KBW*4)/10" isHtmlText="1"/>
+           -->
+           <item text="可用1000.00元" fontPosition="RIGHT" width="($KBW*4)/10" fontColor="#808080" fontRangeColor="#FF8C00;2:1" tag="availableAmount" action="SHOW"/>
+       </title>
+       <content bgColor="#B4B4B4" itemWidth="($KBW-4)/5" itemHeight="($KBH-3)/4" itemBgColor="#FFFFFF" itemFontColor="#000000" itemFontSize="21" itemHighlightBgColor="#D1D5D8" itemHighlightFontColor="#000000">
+           <row>
+               <column width="($KBW-4)/5" itemHeight="($KBH-4)/5" >
+                   <item text="全仓" value="-14" fontSize="15" action="OTHER"/>
+                   <item text="半仓" value="-13" fontSize="15" action="OTHER"/>
+                   <item text="1/3仓" value="-12" fontSize="15" action="OTHER"/>
+                   <item text="1/4仓" value="-11" fontSize="15" action="OTHER"/>
+                   <item text="输入股数" value="-1" fontSize="15" fontColor="#FF0000" highlightFontColor="#FF0000" action="CHANGE" targetKeyBoard="50"/>
+               </column>
+               <column width="$KBW-((($KBW-4)/5)*2)-2">
+                   <row>
+                       <item text="1"/>
+                       <item text="2"/>
+                       <item text="3"/>
+                   </row>
+                   <row>
+                       <item text="4"/>
+                       <item text="5"/>
+                       <item text="6"/>
+                   </row>
+                   <row>
+                       <item text="7"/>
+                       <item text="8"/>
+                       <item text="9"/>
+                   </row>
+                   <row>
+                       <item text="000" fontSize="15"/>
+                       <item text="0"/>
+                       <item value="-4" image="TKAsset.bundle/system/asset/keyboard/ht/tk_kb_ht_wclose" action="HIDDEN" />
+                   </row>
+               </column>
+               <column width="($KBW-4)/5" itemHeight="($KBH-1)/2">
+                   <item value="-5" image="TKAsset.bundle/system/asset/keyboard/tf/tk_kb_tf_delete" action="DELETE"/>
+                   <item value="-3" text="买入" fontSize="19" bgColor="#FF0000" highlightBgColor="#FF0000" fontColor="FFFFFF" highlightFontColor="FFFFFF" action="ENTER"/>
+               </column>
+           </row>
+       </content>
+   </keyboard>
+   
+</keyboards>

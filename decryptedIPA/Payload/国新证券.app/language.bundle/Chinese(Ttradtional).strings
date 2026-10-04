@@ -1,0 +1,35 @@
+/*
+  Localizable.strings
+  繁体中文
+*/
+"tztZFHQService_networkcheck_send" = "网络检测请求已经发送";
+"tztZFHQService_requestsend_hq" = "获取行情数据请求已发送";
+"tztZFHQService_error_hq" = "获取行情数据失败，请检查您的请求";
+"tztZFHQService_removerequest_hq" = "已移除行情请求";
+"tztZFHQService_cleanrequest_hq" = "已清除行情请求";
+"tztZFHQService_removerequest_fs" = "已移除分时请求";
+"tztZFHQService_cleanrequest_fs" = "已清除分时请求";
+"tztZFHQService_error_Split" = "为空或未实现";
+"tztZFHQService_mxrequest_send" = "明细请求已经发送";
+"tztZFHQService_error_mx" = "明细请求处理失败，请检查您的请求.";
+"tztZFHQService_fqrequest_send" = "除复权请求已经发送";
+"tztZFHQService_error_fq" ="除复权请求失败，请检查您的请求.";
+"tztZFHQService_fsrequest_send" = "分时请求已经发送";
+"tztZFHQService_error_fs" = "分时请求处理失败，请检查您的请求";
+"tztZFHQService_requestsend_qqhy" = "期权合约信息请求已经发送";
+"tztZFHQService_error_qqhy" = "期权合约信息请求失败，请检查您的请求.";
+"tztZFHQService_requestsend_qqTbj" = "期权T型报价请求已经发送";
+"tztZFHQService_error_qqTbj" = "期权T型报价请求失败，请检查您的请求";
+"tztZFHQService_requestsend_qqhyhy" = "期权活跃合约请求已经发送";
+"tztZFHQService_error_qqhyhy" = "期权活跃合约请求失败，请检查您的请求";
+"tztZFHQService_requestsend_fj" = "分价请求已经发送";
+"tztZFHQService_error_fj" = "分价请求处理失败，请检查您的请求.";
+"tztZFHQService_removerequest_fj" = "已移除分价请求";
+"tztZFHQService_cleanrequest_fj" = "已清除分价请求";
+"tztZFHQService_requestsend_gpdmmhsearch" = "股票代码模糊查找请求已经发送";
+"tztZFHQService_error_gpdmmhsearch" = "股票代码模糊查找失败，请检查您的请求";
+"tztZFHQService_requestsend_Kline" ="K线请求已经发送";
+"tztZFHQService_error_KLine" = "K线请求处理失败，请检查您的请求";
+"tztZFHQService_removerequest_Kline" = "已移除K线请求";
+"tztZFHQService_cleanrequest_Kline" = "已清除K线请求"
+

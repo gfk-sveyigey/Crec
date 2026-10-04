@@ -82,6 +82,10 @@ class _StockDetailPageState extends State<StockDetailPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        leading: IconButton(
+          onPressed: () => Navigator.of(context).maybePop(),
+          icon: const AssetIcon('assets/icons/action/back.png', width: 11, height: 22),
+        ),
         titleSpacing: 0,
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -163,14 +167,14 @@ class _StockDetailPageState extends State<StockDetailPage> {
             children: <Widget>[
               Text(
                 two(q?.price),
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.w700, color: c),
+                style: numStyle(TextStyle(fontSize: 30, fontWeight: FontWeight.w700, color: c)),
               ),
               const SizedBox(width: 12),
               Padding(
                 padding: const EdgeInsets.only(bottom: 5),
                 child: Text(
                   signed(q?.change) + '   ' + signedPct(q?.changePct),
-                  style: TextStyle(fontSize: 15, color: c),
+                  style: numStyle(TextStyle(fontSize: 15, color: c)),
                 ),
               ),
             ],
@@ -178,7 +182,7 @@ class _StockDetailPageState extends State<StockDetailPage> {
           const SizedBox(height: 6),
           Text(
             '今开 ' + two(q?.open) + '   最高 ' + two(q?.high) + '   最低 ' + two(q?.low),
-            style: const TextStyle(fontSize: 12, color: kTextSub),
+            style: numStyle(const TextStyle(fontSize: 12, color: kTextSub)),
           ),
         ],
       ),

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta content="telephone=no" name="format-detection" />
+<meta http-equiv="cache-control" content="no-cache">
+<meta name="browsermode" content="application">
+<meta name="x5-page-mode" content="app">
+<meta name="msapplication-tap-highlight" content="no">
+<title>提示</title>
+<link href="css/style_black.css" rel="stylesheet" />
+</head>
+<body>
+<section class="main fixed" data-page="home">
+	<header class="header">
+		<div class="header_inner">
+        	<a class="icon_back" href="tk_open_fxc_kh_error_back"></a>
+			<h1 class="title"></h1>
+		</div>
+	</header>
+	<article class="content">
+    	<div class="error_main">
+        	<div class="icon_repair"></div>
+			<h5>加载页面出错</h5>
+			<p>我们会尽快修复，请您稍后再试。</p>
+        </div>
+		<div class="spel_btn"><a href="tk_open_fxc_kh_error_reload">再试试</a></div>
+	</article>
+</section>
+<script>
+
+	getUrlParamValue = function (name) {
+		if (name == null || name == 'undefined') {
+			return null;
+		}
+		var searchStr = decodeURI(location.search);
+		var infoIndex = searchStr.indexOf(name + "=");
+		if (infoIndex == -1) {
+			return null;
+		}
+		var searchInfo = searchStr.substring(infoIndex + name.length + 1);
+		var tagIndex = searchInfo.indexOf("&");
+		if (tagIndex != -1) {
+		 	searchInfo = searchInfo.substring(0, tagIndex);
+		}
+		return searchInfo;
+	};
+
+	var topMargin = getUrlParamValue('topmargin');
+
+	if(topMargin){
+		document.getElementsByTagName('section')[0].style.paddingTop = topMargin + 'px';
+	}
+
+</script>
+</body>
+</html>

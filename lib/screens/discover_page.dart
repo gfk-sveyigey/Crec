@@ -17,7 +17,7 @@ class DiscoverPage extends StatefulWidget {
 }
 
 class _DiscoverPageState extends State<DiscoverPage> {
-  static const List<String> _tabs = <String>['发现', '资讯', '投顾'];
+  static const List<String> _tabs = <String>['资讯', '投顾'];
 
   int _tab = 0;
   int _topic = 0;
@@ -37,7 +37,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
           AppTopBar(
             title: '发现',
             tabs: _tabs,
-            selectedTab: _tab,
+            selectedTab: _tab - 1,
             onTabSelected: (int i) => setState(() => _tab = i),
           ),
           Expanded(
@@ -288,7 +288,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
               SizedBox(width: 6),
               Text('热点日历', style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600, color: kText)),
               Spacer(),
-              Icon(Icons.chevron_right, size: 16, color: kTextFaint),
+              AssetIcon('assets/icons/action/arrow_right.png', width: 8, height: 16),
             ],
           ),
           const SizedBox(height: 12),
@@ -316,7 +316,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
               SizedBox(width: 6),
               Text('重要事件', style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600, color: kText)),
               Spacer(),
-              Icon(Icons.chevron_right, size: 16, color: kTextFaint),
+              AssetIcon('assets/icons/action/arrow_right.png', width: 8, height: 16),
             ],
           ),
           const SizedBox(height: 10),

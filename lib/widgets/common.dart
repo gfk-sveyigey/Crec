@@ -76,9 +76,38 @@ class SectionHeader extends StatelessWidget {
               style: const TextStyle(fontSize: 12, color: kTextSub),
             ),
           if (onMore != null)
-            const Icon(Icons.chevron_right, size: 18, color: kTextFaint),
+            const AssetIcon('assets/icons/action/arrow_right.png', width: 9, height: 18),
         ],
       ),
+    );
+  }
+}
+
+/// 来自脱壳 IPA 的位图图标（原 App 的 Assets.car 导出）。
+/// 只用在「原 App 自带 PNG」的入口，其余仍走 Material 字体图标。
+class AssetIcon extends StatelessWidget {
+  const AssetIcon(this.path, {super.key, this.width = 20, this.height, this.color});
+
+  final String path;
+  final double width;
+  final double? height;
+
+  /// 传入后按单色渲染（只保留 alpha），用于把灰阶图标染成指定颜色。
+  final Color? color;
+
+  @override
+  Widget build(BuildContext context) {
+    final Widget image = Image.asset(
+      path,
+      width: width,
+      height: height ?? width,
+      filterQuality: FilterQuality.high,
+    );
+    final Color? tint = color;
+    if (tint == null) return image;
+    return ColorFiltered(
+      colorFilter: ColorFilter.mode(tint, BlendMode.srcIn),
+      child: image,
     );
   }
 }
@@ -86,15 +115,19 @@ class SectionHeader extends StatelessWidget {
 /// One icon + label entry of a shortcut grid.
 class NavEntry {
   const NavEntry({
-    required this.icon,
+    this.icon,
+    this.asset,
     required this.label,
     this.color,
     this.badge,
     this.filled = false,
     this.onTap,
-  });
+  }) : assert(icon != null || asset != null, 'NavEntry 需要 icon 或 asset');
 
-  final IconData icon;
+  final IconData? icon;
+
+  /// 脱壳 IPA 中的 PNG（如 `assets/icons/hq/sqjz.png`），优先于 [icon]。
+  final String? asset;
   final String label;
   final Color? color;
   final String? badge;
@@ -142,6 +175,15 @@ class NavGridView extends StatelessWidget {
 
   Widget _cell(NavEntry e) {
     final Color tint = e.color ?? kBrandRed;
+    final IconData? data = e.icon;
+    final String? asset = e.asset;
+    final Widget glyph = asset != null
+        ? AssetIcon(asset, width: iconSize + 4)
+        : Icon(
+            data ?? Icons.circle_outlined,
+            size: e.filled ? iconSize : iconSize + 4,
+            color: tint,
+          );
     final Widget iconBox = e.filled
         ? Container(
             width: iconSize + 22,
@@ -154,9 +196,9 @@ class NavGridView extends StatelessWidget {
               ),
               borderRadius: BorderRadius.circular(12),
             ),
-            child: Icon(e.icon, size: iconSize, color: tint),
+            child: Center(child: glyph),
           )
-        : Icon(e.icon, size: iconSize + 4, color: tint);
+        : glyph;
     return Expanded(
       child: GestureDetector(
         behavior: HitTestBehavior.opaque,
@@ -259,9 +301,12 @@ class PillTabs extends StatelessWidget {
   }
 }
 
-/// Underlined tabs used in the page header (行情 / 发现 / 开户|交易 ...).
-class UnderlineTabs extends StatelessWidget {
-  const UnderlineTabs({
+/// 顶栏副标签（开户|交易 的 普通/信用/期权、发现 的 资讯/投顾）。
+///
+/// 与原 App 一致：选中项加粗深色，未选中灰色；**没有**下划线。
+/// [selected] 为 -1 表示当前没有选中项（如「开户」页签）。
+class HeaderTabs extends StatelessWidget {
+  const HeaderTabs({
     super.key,
     required this.labels,
     required this.selected,
@@ -282,27 +327,13 @@ class UnderlineTabs extends StatelessWidget {
           onTap: onSelected == null ? null : () => onSelected!(i),
           child: Padding(
             padding: const EdgeInsets.only(right: 18),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                Text(
-                  labels[i],
-                  style: TextStyle(
-                    fontSize: active ? 21 : 17,
-                    fontWeight: active ? FontWeight.w700 : FontWeight.w400,
-                    color: active ? kText : kTextSub,
-                  ),
-                ),
-                const SizedBox(height: 4),
-                Container(
-                  height: 2.5,
-                  width: active ? 22 : 0,
-                  decoration: BoxDecoration(
-                    color: kBrandRed,
-                    borderRadius: BorderRadius.circular(2),
-                  ),
-                ),
-              ],
+            child: Text(
+              labels[i],
+              style: TextStyle(
+                fontSize: 17,
+                fontWeight: active ? FontWeight.w600 : FontWeight.w400,
+                color: active ? kText : kTextSub,
+              ),
             ),
           ),
         );
@@ -311,6 +342,63 @@ class UnderlineTabs extends StatelessWidget {
   }
 }
 
+/// 行情页顶部的分类标签（全球 / A股 / 基金 …）：选中加粗 + 红色短下划线。
+class CategoryTabs extends StatelessWidget {
+  const CategoryTabs({
+    super.key,
+    required this.labels,
+    required this.selected,
+    this.onSelected,
+  });
+
+  final List<String> labels;
+  final int selected;
+  final ValueChanged<int>? onSelected;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.white,
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        padding: const EdgeInsets.only(left: 12, right: 12, top: 8),
+        child: Row(
+          children: List<Widget>.generate(labels.length, (int i) {
+            final bool active = i == selected;
+            return GestureDetector(
+              onTap: onSelected == null ? null : () => onSelected!(i),
+              child: Padding(
+                padding: const EdgeInsets.only(right: 20),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Text(
+                      labels[i],
+                      style: TextStyle(
+                        fontSize: 17,
+                        fontWeight: active ? FontWeight.w600 : FontWeight.w400,
+                        color: active ? kText : kTextSub,
+                      ),
+                    ),
+                    const SizedBox(height: 5),
+                    Container(
+                      height: 2.5,
+                      width: active ? 20 : 0,
+                      decoration: BoxDecoration(
+                        color: kBrandRed,
+                        borderRadius: BorderRadius.circular(2),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          }),
+        ),
+      ),
+    );
+  }
+}
 /// Page header: brand title, optional tabs, search and message actions.
 class AppTopBar extends StatelessWidget {
   const AppTopBar({
@@ -346,39 +434,48 @@ class AppTopBar extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 14),
           child: Row(
             children: <Widget>[
-              if (tabLabels == null || tabLabels.isEmpty)
-                Text(
-                  title,
-                  style: const TextStyle(
-                    fontSize: 21,
-                    fontWeight: FontWeight.w700,
-                    color: kText,
-                  ),
+              // 原标题永远显示；[tabs] 是它右侧的副标签（与原 App 一致）。
+              Text(
+                title,
+                style: const TextStyle(
+                  fontSize: 21,
+                  fontWeight: FontWeight.w700,
+                  color: kText,
                 ),
-              if (tabLabels != null && tabLabels.isNotEmpty)
+              ),
+              if (tabLabels != null && tabLabels.isNotEmpty) ...<Widget>[
+                const SizedBox(width: 16),
                 Expanded(
                   child: SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
-                    child: UnderlineTabs(
+                    child: HeaderTabs(
                       labels: tabLabels,
                       selected: selectedTab,
                       onSelected: onTabSelected,
                     ),
                   ),
-                )
-              else
+                ),
+              ] else
                 const Spacer(),
               if (trailing != null) trailing!,
               if (showActions) ...<Widget>[
-                const SizedBox(width: 4),
+                const SizedBox(width: 10),
                 GestureDetector(
                   onTap: onSearch,
-                  child: const Icon(Icons.search, size: 23, color: kText),
+                  child: Image.asset(
+                    'assets/icons/action/search.png',
+                    width: 24,
+                    height: 24,
+                  ),
                 ),
-                const SizedBox(width: 16),
+                const SizedBox(width: 14),
                 GestureDetector(
                   onTap: onMessage,
-                  child: const Icon(Icons.chat_bubble_outline, size: 22, color: kText),
+                  child: Image.asset(
+                    'assets/icons/action/message.png',
+                    width: 24,
+                    height: 24,
+                  ),
                 ),
               ],
             ],
@@ -489,62 +586,11 @@ class LinkRow extends StatelessWidget {
             const Spacer(),
             if (value != null)
               Text(value!, style: const TextStyle(fontSize: 13, color: kTextSub)),
-            if (showChevron) const Icon(Icons.chevron_right, size: 18, color: kTextFaint),
+            if (showChevron)
+              const AssetIcon('assets/icons/action/arrow_right.png', width: 9, height: 18),
           ],
         ),
       ),
     );
   }
-}
-
-/// The red hexagon used by the centre tab of the bottom navigation bar.
-class HexagonIcon extends StatelessWidget {
-  const HexagonIcon({
-    super.key,
-    this.size = 34,
-    this.color = kBrandRed,
-    this.icon = Icons.sync,
-    this.iconSize = 20,
-  });
-
-  final double size;
-  final Color color;
-  final IconData icon;
-  final double iconSize;
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: size,
-      height: size,
-      child: CustomPaint(
-        painter: _HexPainter(color),
-        child: Center(child: Icon(icon, size: iconSize, color: Colors.white)),
-      ),
-    );
-  }
-}
-
-class _HexPainter extends CustomPainter {
-  _HexPainter(this.color);
-
-  final Color color;
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final double w = size.width;
-    final double h = size.height;
-    final Path p = Path()
-      ..moveTo(w * 0.5, 0)
-      ..lineTo(w, h * 0.26)
-      ..lineTo(w, h * 0.74)
-      ..lineTo(w * 0.5, h)
-      ..lineTo(0, h * 0.74)
-      ..lineTo(0, h * 0.26)
-      ..close();
-    canvas.drawPath(p, Paint()..color = color);
-  }
-
-  @override
-  bool shouldRepaint(covariant _HexPainter old) => old.color != color;
 }

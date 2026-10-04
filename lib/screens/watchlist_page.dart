@@ -22,13 +22,29 @@ class WatchlistPage extends StatefulWidget {
 class _WatchlistPageState extends State<WatchlistPage> {
   int _tab = 0;
   bool _editing = false;
+  /// 列表排序：-1 不排序，0 按最新价，1 按涨跌幅。
+  int _sortCol = -1;
+  bool _sortDesc = true;
 
   static const List<String> _tabs = <String>['全部', '持仓股', '最近浏览', '基金'];
+
+  /// 可空行情字段比较：空值永远排末尾。
+  static int _cmpNullable(double? a, double? b, bool desc) {
+    if (a == null && b == null) return 0;
+    if (a == null) return 1;
+    if (b == null) return -1;
+    return desc ? b.compareTo(a) : a.compareTo(b);
+  }
 
   @override
   Widget build(BuildContext context) {
     final AppState state = AppScope.of(context);
-    final List<Quote> quotes = state.watchQuotes;
+    final List<Quote> quotes = List<Quote>.of(state.watchQuotes);
+    if (_sortCol == 0) {
+      quotes.sort((Quote a, Quote b) => _cmpNullable(a.price, b.price, _sortDesc));
+    } else if (_sortCol == 1) {
+      quotes.sort((Quote a, Quote b) => _cmpNullable(a.changePct, b.changePct, _sortDesc));
+    }
     final Quote? index = state.indexes.isEmpty ? null : state.indexes.first;
 
     return Scaffold(
@@ -70,12 +86,12 @@ class _WatchlistPageState extends State<WatchlistPage> {
                 children: <Widget>[
                   Text(
                     index == null ? '--' : two(index.price),
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700, color: c),
+                    style: numStyle(TextStyle(fontSize: 20, fontWeight: FontWeight.w700, color: c)),
                   ),
                   const SizedBox(width: 6),
                   Text(
                     index == null ? '--' : signed(index.change),
-                    style: TextStyle(fontSize: 13, color: c),
+                    style: numStyle(TextStyle(fontSize: 13, color: c)),
                   ),
                 ],
               ),
@@ -89,7 +105,7 @@ class _WatchlistPageState extends State<WatchlistPage> {
                   const SizedBox(width: 4),
                   Text(
                     index == null ? '--' : signedPct(index.changePct),
-                    style: TextStyle(fontSize: 13, color: c),
+                    style: numStyle(TextStyle(fontSize: 13, color: c)),
                   ),
                   const Icon(Icons.arrow_drop_down, size: 18, color: kTextSub),
                 ],
@@ -97,16 +113,17 @@ class _WatchlistPageState extends State<WatchlistPage> {
             ],
           ),
           const Spacer(),
-          _stripAction(Icons.memory, 'AI识股', badge: '免费'),
-          _stripAction(Icons.bar_chart, '分析'),
-          _stripAction(Icons.currency_yuan, '资金'),
-          _stripAction(Icons.article_outlined, '资讯'),
+          // 四个入口图标取自脱壳 IPA 的 Assets.car（tztzf_hq_userstock_*）。
+          _stripAction('assets/icons/watch/ai_stock.png', 'AI识股', badge: '免费'),
+          _stripAction('assets/icons/watch/analysis.png', '分析'),
+          _stripAction('assets/icons/watch/fund.png', '资金'),
+          _stripAction('assets/icons/watch/news.png', '资讯'),
         ],
       ),
     );
   }
 
-  Widget _stripAction(IconData icon, String label, {String? badge}) {
+  Widget _stripAction(String asset, String label, {String? badge}) {
     return GestureDetector(
       onTap: () => _toast(label),
       child: Padding(
@@ -118,7 +135,7 @@ class _WatchlistPageState extends State<WatchlistPage> {
               child: Stack(
                 clipBehavior: Clip.none,
                 children: <Widget>[
-                  Icon(icon, size: 24, color: kText),
+                  AssetIcon(asset, width: 25),
                   if (badge != null)
                     Positioned(
                       right: -14,
@@ -163,35 +180,51 @@ class _WatchlistPageState extends State<WatchlistPage> {
                     onSelected: (int i) => setState(() => _tab = i),
                   ),
                 ),
-                GestureDetector(
-                  onTap: () => setState(() => _editing = !_editing),
-                  child: Text(
-                    _editing ? '完成' : '编辑',
-                    style: const TextStyle(fontSize: 13, color: kTextSub),
-                  ),
-                ),
               ],
             ),
           ),
           const Divider(height: 1),
           Container(
-            padding: const EdgeInsets.fromLTRB(12, 8, 12, 6),
+            padding: const EdgeInsets.fromLTRB(12, 6, 12, 6),
             color: const Color(0xFFFAFBFC),
             child: Row(
-              children: const <Widget>[
-                Expanded(flex: 4, child: Text('名称/代码', style: _headStyle)),
+              children: <Widget>[
+                // 与参考截图一致：左列是「编辑 / 多股」，右三列带排序箭头。
                 Expanded(
-                  flex: 3,
-                  child: Text('分时预览', textAlign: TextAlign.center, style: _headStyle),
+                  flex: 4,
+                  child: Row(
+                    children: <Widget>[
+                      _headAction(
+                        'assets/icons/watch/edit.png',
+                        _editing ? '完成' : '编辑',
+                        () => setState(() => _editing = !_editing),
+                      ),
+                      const SizedBox(width: 10),
+                      _headAction(
+                        'assets/icons/watch/multi_column.png',
+                        '多股',
+                        () => _toast('多股同列'),
+                      ),
+                    ],
+                  ),
                 ),
                 Expanded(
                   flex: 3,
-                  child: Text('最新', textAlign: TextAlign.right, style: _headStyle),
+                  child: GestureDetector(
+                    behavior: HitTestBehavior.opaque,
+                    onTap: () => _toast('分时预览'),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const <Widget>[
+                        Text('分时预览', style: _headStyle),
+                        SizedBox(width: 2),
+                        AssetIcon('assets/icons/watch/preview.png', width: 13),
+                      ],
+                    ),
+                  ),
                 ),
-                Expanded(
-                  flex: 3,
-                  child: Text('涨幅', textAlign: TextAlign.right, style: _headStyle),
-                ),
+                Expanded(flex: 3, child: _sortHeader('最新', 0)),
+                Expanded(flex: 3, child: _sortHeader('涨幅', 1)),
               ],
             ),
           ),
@@ -235,17 +268,7 @@ class _WatchlistPageState extends State<WatchlistPage> {
                       ),
                       if (q.margin) ...<Widget>[
                         const SizedBox(width: 4),
-                        Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 1),
-                          decoration: BoxDecoration(
-                            border: Border.all(color: kBrandRed, width: 0.8),
-                            borderRadius: BorderRadius.circular(2),
-                          ),
-                          child: const Text(
-                            '融',
-                            style: TextStyle(fontSize: 9, color: kBrandRed, height: 1),
-                          ),
-                        ),
+                        const AssetIcon('assets/icons/watch/rong.png', width: 15),
                       ],
                       if (_editing) ...<Widget>[
                         const SizedBox(width: 6),
@@ -278,7 +301,7 @@ class _WatchlistPageState extends State<WatchlistPage> {
               child: Text(
                 two(q.price),
                 textAlign: TextAlign.right,
-                style: TextStyle(fontSize: 16, color: c, fontWeight: FontWeight.w500),
+                style: numStyle(TextStyle(fontSize: 16, color: c, fontWeight: FontWeight.w500)),
               ),
             ),
             Expanded(
@@ -295,7 +318,7 @@ class _WatchlistPageState extends State<WatchlistPage> {
                   ),
                   child: Text(
                     signedPct(q.changePct),
-                    style: const TextStyle(color: Colors.white, fontSize: 13),
+                    style: numStyle(const TextStyle(color: Colors.white, fontSize: 13)),
                   ),
                 ),
               ),
@@ -325,7 +348,7 @@ class _WatchlistPageState extends State<WatchlistPage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const <Widget>[
-                  Icon(Icons.add, size: 17, color: kTextSub),
+                  AssetIcon('assets/icons/watch/add.png', width: 17),
                   SizedBox(width: 4),
                   Text('添加自选', style: TextStyle(fontSize: 14, color: kTextSub)),
                 ],
@@ -339,13 +362,53 @@ class _WatchlistPageState extends State<WatchlistPage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const <Widget>[
-                  Icon(Icons.image_outlined, size: 17, color: kTextSub),
+                  AssetIcon('assets/icons/watch/orc.png', width: 17),
                   SizedBox(width: 4),
                   Text('识别图片', style: TextStyle(fontSize: 14, color: kTextSub)),
                 ],
               ),
             ),
           ),
+        ],
+      ),
+    );
+  }
+
+  Widget _headAction(String asset, String label, VoidCallback onTap) {
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: onTap,
+      child: Row(
+        children: <Widget>[
+          AssetIcon(asset, width: 14),
+          const SizedBox(width: 3),
+          Text(label, style: _headStyle),
+        ],
+      ),
+    );
+  }
+
+  Widget _sortHeader(String label, int col) {
+    final bool active = _sortCol == col;
+    final String asset = !active
+        ? 'assets/icons/watch/sort_default.png'
+        : (_sortDesc ? 'assets/icons/watch/sort_down.png' : 'assets/icons/watch/sort_up.png');
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: () => setState(() {
+        if (_sortCol == col) {
+          _sortDesc = !_sortDesc;
+        } else {
+          _sortCol = col;
+          _sortDesc = true;
+        }
+      }),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: <Widget>[
+          Text(label, style: _headStyle),
+          const SizedBox(width: 2),
+          AssetIcon(asset, width: 6, height: 12),
         ],
       ),
     );

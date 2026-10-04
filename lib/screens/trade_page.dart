@@ -19,7 +19,7 @@ class TradePage extends StatefulWidget {
 }
 
 class _TradePageState extends State<TradePage> {
-  static const List<String> _tabs = <String>['开户', '普通', '信用', '期权'];
+  static const List<String> _tabs = <String>['普通', '信用', '期权'];
 
   int _tab = 0;
 
@@ -37,7 +37,7 @@ class _TradePageState extends State<TradePage> {
           AppTopBar(
             title: '开户',
             tabs: _tabs,
-            selectedTab: _tab,
+            selectedTab: _tab - 1,
             onTabSelected: (int i) => setState(() => _tab = i),
             onSearch: () {},
           ),
@@ -546,7 +546,9 @@ class _TradePageState extends State<TradePage> {
                               padding: const EdgeInsets.symmetric(vertical: 11),
                               child: Row(
                                 children: <Widget>[
-                                  Icon(e.icon, size: 18, color: kBrandRed),
+                                  e.asset == null
+                                      ? Icon(e.icon ?? Icons.circle_outlined, size: 18, color: kBrandRed)
+                                      : AssetIcon(e.asset!, width: 18),
                                   const SizedBox(width: 6),
                                   Flexible(
                                     child: Text(
