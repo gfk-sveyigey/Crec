@@ -28,16 +28,22 @@ class _WatchlistPageState extends State<WatchlistPage> {
 
   static const List<String> _tabs = <String>['全部', '持仓股', '最近浏览', '基金'];
 
+  /// 可空行情字段比较：空值永远排末尾。
+  static int _cmpNullable(double? a, double? b, bool desc) {
+    if (a == null && b == null) return 0;
+    if (a == null) return 1;
+    if (b == null) return -1;
+    return desc ? b.compareTo(a) : a.compareTo(b);
+  }
+
   @override
   Widget build(BuildContext context) {
     final AppState state = AppScope.of(context);
     final List<Quote> quotes = List<Quote>.of(state.watchQuotes);
     if (_sortCol == 0) {
-      quotes.sort((Quote a, Quote b) =>
-          _sortDesc ? b.price.compareTo(a.price) : a.price.compareTo(b.price));
+      quotes.sort((Quote a, Quote b) => _cmpNullable(a.price, b.price, _sortDesc));
     } else if (_sortCol == 1) {
-      quotes.sort((Quote a, Quote b) =>
-          _sortDesc ? b.changePct.compareTo(a.changePct) : a.changePct.compareTo(b.changePct));
+      quotes.sort((Quote a, Quote b) => _cmpNullable(a.changePct, b.changePct, _sortDesc));
     }
     final Quote? index = state.indexes.isEmpty ? null : state.indexes.first;
 
