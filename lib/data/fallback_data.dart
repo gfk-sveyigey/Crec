@@ -118,9 +118,9 @@ class FallbackData {
         FundRow(code: '161725', name: '招商中证白酒指数', nav: 0.9876, dayPct: 1.02, monthPct: 4.55, yearPct: -3.21, threeYearPct: -8.40, type: '指数型'),
       ];
 
-  static List<Quote> hotLeaders() => const <Quote>[
-        Quote(code: '688185', name: '康希诺', price: 84.20, changePct: 20.00, change: 14.03, market: 'sh'),
-        Quote(code: '688798', name: '泰诺麦博-U', price: 62.15, changePct: 19.99, change: 10.35, market: 'sh'),
+  static List<HotStock> hotLeaders() => const <HotStock>[
+        HotStock(name: '康希诺', changePct: 20.00),
+        HotStock(name: '泰诺麦博-U', changePct: 19.99),
       ];
 
   static List<HotTopic> hotTopics() => <HotTopic>[

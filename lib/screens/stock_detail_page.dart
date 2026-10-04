@@ -196,7 +196,7 @@ class _StockDetailPageState extends State<StockDetailPage> {
 
   List<TrendPoint> _fakeTrends(Quote? q) {
     final double price = q?.price ?? 10;
-    final List<double> spark = q?.spark.isNotEmpty == true
+    final List<double> spark = (q != null && q.spark.isNotEmpty)
         ? q.spark
         : FallbackData.walk(start: q?.prevClose ?? price, end: price, seed: widget.code.hashCode);
     final DateTime start = DateTime.now();

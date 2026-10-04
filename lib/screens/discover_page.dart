@@ -7,7 +7,6 @@ import '../state/app_state.dart';
 import '../widgets/charts.dart';
 import '../widgets/common.dart';
 import 'placeholder_page.dart';
-import 'stock_detail_page.dart';
 
 /// 发现 - research shortcuts, banner, hot topics and event calendar.
 class DiscoverPage extends StatefulWidget {

@@ -347,7 +347,6 @@ class _TradePageState extends State<TradePage> {
           child: NavGridView(
             columns: 4,
             iconSize: 22,
-            filled: false,
             entries: <NavEntry>[
               NavEntry(icon: Icons.show_chart, label: '行情', color: kBrandRed, onTap: () => _placeholder('期权行情')),
               NavEntry(icon: Icons.assignment_outlined, label: '下单', color: kBrandRed, onTap: () => _order(state, '买入', kind: '期权')),
