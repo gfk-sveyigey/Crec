@@ -197,15 +197,33 @@ jobs:
       - name: Flutter pub get
         run: flutter pub get
 
-      # 与发布流程一致的前置校验：包名必须是 com.aholic.crec
+      - name: Accept Android SDK licenses
+        run: yes | flutter doctor --android-licenses || true
+
+      # gradlew / gradle-wrapper.jar 以及 AGP / Kotlin / Gradle 版本都由 flutter create 生成，
+      # 仓库里不保存这些与 Flutter SDK 强耦合的文件，避免版本漂移导致构建失败。
+      - name: Generate Android project (from Flutter SDK template)
+        run: |
+          set -e
+          flutter create --platforms=android --org com.aholic --project-name crec /tmp/crec_scaffold
+          # 只补齐缺失文件：已提交的 AndroidManifest / MainActivity / res 图标等不会被覆盖。
+          rsync -a --ignore-existing /tmp/crec_scaffold/android/ android/
+          chmod +x android/gradlew
+          test -f android/gradlew
+          test -f android/gradle/wrapper/gradle-wrapper.jar
+          ls android/app/build.gradle* android/settings.gradle* 2>/dev/null || true
+
+      # 包名 / namespace 必须是 com.aholic.crec（由 --org com.aholic 生成）
       - name: Validate Android applicationId
         run: |
           set -e
-          test -f android/app/build.gradle || { echo "::error::android/app/build.gradle not found"; exit 1; }
-          grep -q 'applicationId = "com.aholic.crec"' android/app/build.gradle \
-            || { echo "::error::applicationId must be com.aholic.crec"; exit 1; }
-          grep -q 'namespace = "com.aholic.crec"' android/app/build.gradle \
-            || { echo "::error::namespace must be com.aholic.crec"; exit 1; }
+          APP_GRADLE=$(ls android/app/build.gradle android/app/build.gradle.kts 2>/dev/null | head -n 1)
+          test -n "$APP_GRADLE" || { echo "::error::android/app/build.gradle(.kts) not found"; exit 1; }
+          grep -Eq 'applicationId[[:space:]]*=[[:space:]]*"com\.aholic\.crec"' "$APP_GRADLE" \
+            || { echo "::error::applicationId must be com.aholic.crec in $APP_GRADLE"; exit 1; }
+          grep -Eq 'namespace[[:space:]]*=[[:space:]]*"com\.aholic\.crec"' "$APP_GRADLE" \
+            || { echo "::error::namespace must be com.aholic.crec in $APP_GRADLE"; exit 1; }
+          grep -m1 'applicationId' "$APP_GRADLE"
 
       - name: Read version
         id: version
@@ -229,21 +247,6 @@ jobs:
 
           echo "raw=$RAW" >> "$GITHUB_OUTPUT"
           echo "Version: $RAW"
-
-      # gradlew / gradle-wrapper.jar 不提交（由 flutter create 生成），
-      # 同样用 rsync --ignore-existing 只补缺失文件，已提交的 manifest / build.gradle / 图标不会被覆盖。
-      - name: Generate Gradle wrapper (if missing)
-        run: |
-          set -e
-          if [ -f android/gradlew ] && [ -f android/gradle/wrapper/gradle-wrapper.jar ]; then
-            echo "Gradle wrapper already present; skipping scaffold."
-            exit 0
-          fi
-          flutter create --platforms=android --org com.aholic --project-name crec /tmp/crec_scaffold
-          rsync -a --ignore-existing /tmp/crec_scaffold/android/ android/
-          chmod +x android/gradlew
-          test -f android/gradle/wrapper/gradle-wrapper.jar
-          grep -m1 'distributionUrl' android/gradle/wrapper/gradle-wrapper.properties
 
       - name: Build APK (Debug)
         run: |

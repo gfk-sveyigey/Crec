@@ -3,7 +3,6 @@
 
     <application
         android:label="国新证券"
-        android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
         android:usesCleartextTraffic="true">
         <activity

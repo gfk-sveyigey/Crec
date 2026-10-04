@@ -18,3 +18,16 @@ android/local.properties
 android/app/debug/
 android/app/release/
 *.log
+
+# 生成类平台文件：由 flutter create 补齐（见 README 第 7 节），不要提交
+android/settings.gradle
+android/settings.gradle.kts
+android/build.gradle
+android/build.gradle.kts
+android/app/build.gradle
+android/app/build.gradle.kts
+android/gradle.properties
+android/gradlew
+android/gradlew.bat
+android/gradle/wrapper/
+ios/Runner.xcodeproj/

@@ -136,23 +136,24 @@ flutter analyze
 
 ## 7. 平台脚手架说明（重要）
 
-本仓库的 `android/`、`ios/` 已按标准模板写好**源码与配置**（包名 `com.aholic.crec`、应用名、图标、权限、
-启动背景、`Info.plist`、`AppDelegate.swift`、`Main.storyboard` 等），但有两个**二进制/生成类文件无法离线产出**：
+本仓库的 `android/`、`ios/` 只保留**平台定制文件**（应用名、包名、图标、权限、启动背景、
+`Info.plist`、`AppDelegate.swift`、`Main.storyboard` 等）；与 Flutter SDK 强耦合的**生成类文件**都不提交，
+由 CI（或本地一条命令）用 `flutter create` 按当前 SDK 版本补齐：
 
-- `android/gradle/wrapper/gradle-wrapper.jar`（Gradle Wrapper 的二进制 jar）
-- `ios/Runner.xcodeproj/project.pbxproj`（Xcode 工程文件）
+- iOS：`ios/Runner.xcodeproj/`（Xcode 工程文件）。
+- Android：`android/settings.gradle*`、`android/build.gradle*`、`android/app/build.gradle*`、
+  `android/gradle.properties`、`android/gradle/wrapper/`（含 `gradlew` / `gradle-wrapper.jar`）。
 
-补齐方式（任选其一，二者都只会生成缺失文件）：
+补齐方式（`rsync --ignore-existing` 只会新增缺失文件，不会覆盖已提交的定制文件）：
 
 ```bash
-# 方式 A：用 Flutter 官方脚手架补齐平台工程（推荐，包名已按 --org 与项目名推导为 com.aholic.crec）
-flutter create --platforms=android,ios --org com.aholic --project-name crec .
-
-# 方式 B：已安装 Gradle 时，手动生成 Wrapper
-cd android && gradle wrapper --gradle-version 8.6
+flutter create --platforms=android,ios --org com.aholic --project-name crec /tmp/crec_scaffold
+rsync -a --ignore-existing /tmp/crec_scaffold/android/ android/
+rsync -a --ignore-existing /tmp/crec_scaffold/ios/ ios/
 ```
 
-若 `android/gradlew` 不存在，Flutter 会自动回退到 `PATH` 中的 `gradle` 命令。
+> 包名由 `--org com.aholic` + 项目名 `crec` 推导为 `com.aholic.crec`，与仓库配置一致。
+> 这样 AGP / Kotlin / Gradle 版本始终跟随当前 Flutter SDK，避免手工写死版本导致构建失败。
 
 ## 8. 离线兜底数据
 
@@ -185,12 +186,13 @@ cd android && gradle wrapper --gradle-version 8.6
 与原 XcodeGen 版本的对应关系：
 
 - `xcodegen generate` + `xcodebuild -project Burette.xcodeproj` → `flutter build ios --no-codesign`（Flutter 内部调用 xcodebuild，并自动 `pod install`）；Android 用 `flutter build apk`（`flutter` 自带 Gradle wrapper）。
-- 前置校验从 `UIFileSharingEnabled / LSSupportsOpeningDocumentsInPlace`（Burette 专属）改为 `ios/Runner/Info.plist` 的 plutil 校验与 `CFBundleDisplayName` 输出；Android 侧校验 `android/app/build.gradle` 的 `applicationId` / `namespace` 必须为 `com.aholic.crec`。
+- 前置校验从 `UIFileSharingEnabled / LSSupportsOpeningDocumentsInPlace`（Burette 专属）改为 `ios/Runner/Info.plist` 的 plutil 校验与 `CFBundleDisplayName` 输出；Android 侧校验 `android/app/build.gradle(.kts)` 的 `applicationId` / `namespace` 必须为 `com.aholic.crec`（由 `--org com.aholic` 生成）。
 - 产物名 `Burette-…-unsigned.ipa` → `Crec-…-unsigned.ipa`，并新增 `Crec-….apk`；`Runner.app` 位置由 `find build/ios -name Runner.app` 动态定位，APK 由 `find build/app/outputs -name '*.apk'` 动态定位，Debug / Release 输出目录不同也无需改脚本。
 - 版本号除写入 `MARKETING_VERSION` 外，还通过 `--build-name` / `--build-number` 传给 Flutter，因此 `VERSION` 仍是唯一版本来源；构建号用 `github.run_number`。
-- `ios/Runner.xcodeproj` 与 `android/gradlew` / `gradle-wrapper.jar` 均不提交：CI 先 `flutter create --platforms=... --org com.aholic --project-name crec` 生成到临时目录，再用 `rsync -a --ignore-existing` 只补缺失文件，已提交的 `Info.plist` / `AppDelegate.swift` / storyboard / AppIcon / `AndroidManifest.xml` / `build.gradle` / mipmap 图标不会被覆盖。
+- `ios/Runner.xcodeproj` 与 Android 的 Gradle 配置（`settings.gradle*` / `build.gradle*` / `app/build.gradle*` / `gradle.properties` / `gradlew` / `gradle-wrapper.jar`）均不提交：CI 先 `flutter create --platforms=... --org com.aholic --project-name crec` 生成到临时目录，再用 `rsync -a --ignore-existing` 只补缺失文件；已提交的 `Info.plist` / `AppDelegate.swift` / storyboard / AppIcon / `AndroidManifest.xml` / `MainActivity.kt` / `res/` 图标不会被覆盖。
+- Android 构建前先执行 `yes | flutter doctor --android-licenses` 接受 SDK 许可：runner 上新增的 SDK 组件常因未接受许可（`flutter doctor` 提示 `Some Android licenses not accepted`）而使 `flutter build apk` 失败。
 
-> 若本地已用 `flutter create` 补齐过 `ios/Runner.xcodeproj` 或 Gradle wrapper 并提交，对应步骤会自动跳过。
+> 本地构建前请先执行第 7 节的 `flutter create` + `rsync` 补齐命令；这些生成文件已在 `.gitignore` 中，请勿提交回仓库。
 
 ## 11. 自检脚本
 
