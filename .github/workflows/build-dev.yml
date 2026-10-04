@@ -1,0 +1,283 @@
+name: Build (dev)
+
+# 提交到 dev 时一次性编译验证并同时产出两个平台的安装包：
+#   verify -> (iOS 无签名 IPA) ∥ (Android APK)，两者都上传为 Actions 工件；不发布 Release。
+# 只改动 VERSION 的推送（例如单纯发版号）不触发 —— 这类改动不影响编译。
+# 注意：只要这次推送还改了别的文件，仍会正常触发。
+on:
+  push:
+    branches: [ dev ]
+    paths-ignore:
+      - VERSION
+  # 需要时也可以在 Actions 页面手动触发（手动触发不受上面的路径过滤影响）
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# 同一分支只保留最新一次构建：新的推送会取消进行中的旧构建，省 runner 时间
+concurrency:
+  group: build-dev-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # 静态检查只跑一次，两个平台构建都依赖它
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Flutter pub get
+        run: flutter pub get
+
+      # --no-fatal-infos 让弃用类 info 不阻塞构建
+      - name: Flutter analyze
+        run: flutter analyze --no-fatal-infos
+
+      - name: Flutter test
+        run: flutter test
+
+  build-ios:
+    needs: verify
+    runs-on: macos-26
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Select Xcode 26
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: '26.6'
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Toolchain info
+        run: |
+          set -e
+          flutter --version
+          xcodebuild -version
+          pod --version || echo "::warning::CocoaPods not found on PATH"
+
+      - name: Flutter pub get
+        run: flutter pub get
+
+      # 与发布流程一致的前置校验，让工程配置问题尽早暴露
+      - name: Validate ios/Runner/Info.plist
+        run: |
+          set -e
+          PLIST=ios/Runner/Info.plist
+          test -f "$PLIST" || { echo "::error::$PLIST not found"; exit 1; }
+          plutil -lint "$PLIST"
+          plutil -extract CFBundleDisplayName raw "$PLIST"
+
+      - name: Read version
+        id: version
+        run: |
+          set -e
+          if [ ! -f VERSION ]; then
+            echo "::error::VERSION file not found in repository root"
+            exit 1
+          fi
+
+          RAW=$(tr -d '[:space:]' < VERSION)
+          if [ -z "$RAW" ]; then
+            echo "::error::VERSION file is empty"
+            exit 1
+          fi
+
+          # Flutter 会把这个值写入 CFBundleShortVersionString，必须是纯 x.y.z
+          if ! echo "$RAW" | grep -Eq '^[0-9]+\.[0-9]+\.[0-9]+$'; then
+            echo "::error::VERSION '$RAW' must be plain x.y.z for an iOS build"
+            exit 1
+          fi
+
+          echo "raw=$RAW" >> "$GITHUB_OUTPUT"
+          echo "Version: $RAW"
+
+      # ios/Runner.xcodeproj 不提交（由 flutter create 生成）。
+      # 先脚手架到临时目录，再用 rsync --ignore-existing 只补齐缺失文件，
+      # 已提交的 Info.plist / AppDelegate.swift / storyboard / AppIcon 不会被覆盖。
+      - name: Generate Xcode project (if missing)
+        run: |
+          set -e
+          if [ -d ios/Runner.xcodeproj ]; then
+            echo "ios/Runner.xcodeproj already present; skipping scaffold."
+            exit 0
+          fi
+          flutter create --platforms=ios --org com.aholic --project-name crec /tmp/crec_scaffold
+          rsync -a --ignore-existing /tmp/crec_scaffold/ios/ ios/
+          test -d ios/Runner.xcodeproj
+          grep -m1 'PRODUCT_BUNDLE_IDENTIFIER' ios/Runner.xcodeproj/project.pbxproj
+
+      - name: Build unsigned iOS app (Debug)
+        run: |
+          set -e
+          rm -rf build/ios
+          flutter build ios --debug --no-codesign --build-name="${{ steps.version.outputs.raw }}" --build-number="${{ github.run_number }}"
+
+      - name: Package unsigned IPA
+        run: |
+          set -e
+          APP=$(find build/ios -maxdepth 2 -type d -name 'Runner.app' | head -n 1)
+          if [ -z "$APP" ]; then
+            echo "::error::Runner.app was not produced"
+            exit 1
+          fi
+          echo "App bundle: $APP"
+
+          IPA="build/Crec-${{ steps.version.outputs.raw }}-dev${{ github.run_number }}-unsigned.ipa"
+          rm -rf build/Payload "$IPA"
+          mkdir -p build/Payload
+          cp -R "$APP" build/Payload/Runner.app
+
+          cd build
+          /usr/bin/zip -qry "$(basename "$IPA")" Payload
+          cd ..
+          rm -rf build/Payload
+
+          test -f "$IPA"
+          ls -lh "$IPA"
+          shasum -a 256 "$IPA"
+
+      - name: Smoke check product
+        run: |
+          set -e
+          APP=$(find build/ios -maxdepth 2 -type d -name 'Runner.app' | head -n 1)
+          ls -la "$APP"
+          plutil -p "$APP/Info.plist" | grep -E "CFBundleDisplayName|CFBundleIdentifier|CFBundleShortVersionString"
+
+      # 只上传为 Actions 工件（可在 run 页面下载），不创建 Release
+      - name: Upload IPA artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Crec-${{ steps.version.outputs.raw }}-dev${{ github.run_number }}-ios
+          path: build/Crec-*-unsigned.ipa
+          if-no-files-found: error
+          retention-days: 14
+
+  build-android:
+    needs: verify
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Toolchain info
+        run: |
+          set -e
+          flutter --version
+          java -version
+          flutter doctor -v || echo "::warning::flutter doctor reported issues"
+
+      - name: Flutter pub get
+        run: flutter pub get
+
+      - name: Accept Android SDK licenses
+        run: yes | flutter doctor --android-licenses || true
+
+      # gradlew / gradle-wrapper.jar 以及 AGP / Kotlin / Gradle 版本都由 flutter create 生成，
+      # 仓库里不保存这些与 Flutter SDK 强耦合的文件，避免版本漂移导致构建失败。
+      - name: Generate Android project (from Flutter SDK template)
+        run: |
+          set -e
+          flutter create --platforms=android --org com.aholic --project-name crec /tmp/crec_scaffold
+          # 只补齐缺失文件：已提交的 AndroidManifest / MainActivity / res 图标等不会被覆盖。
+          rsync -a --ignore-existing /tmp/crec_scaffold/android/ android/
+          chmod +x android/gradlew
+          test -f android/gradlew
+          test -f android/gradle/wrapper/gradle-wrapper.jar
+          ls android/app/build.gradle* android/settings.gradle* 2>/dev/null || true
+
+      # 包名 / namespace 必须是 com.aholic.crec（由 --org com.aholic 生成）
+      - name: Validate Android applicationId
+        run: |
+          set -e
+          APP_GRADLE=$(ls android/app/build.gradle android/app/build.gradle.kts 2>/dev/null | head -n 1)
+          test -n "$APP_GRADLE" || { echo "::error::android/app/build.gradle(.kts) not found"; exit 1; }
+          grep -Eq 'applicationId[[:space:]]*=[[:space:]]*"com\.aholic\.crec"' "$APP_GRADLE" \
+            || { echo "::error::applicationId must be com.aholic.crec in $APP_GRADLE"; exit 1; }
+          grep -Eq 'namespace[[:space:]]*=[[:space:]]*"com\.aholic\.crec"' "$APP_GRADLE" \
+            || { echo "::error::namespace must be com.aholic.crec in $APP_GRADLE"; exit 1; }
+          grep -m1 'applicationId' "$APP_GRADLE"
+
+      - name: Read version
+        id: version
+        run: |
+          set -e
+          if [ ! -f VERSION ]; then
+            echo "::error::VERSION file not found in repository root"
+            exit 1
+          fi
+
+          RAW=$(tr -d '[:space:]' < VERSION)
+          if [ -z "$RAW" ]; then
+            echo "::error::VERSION file is empty"
+            exit 1
+          fi
+
+          if ! echo "$RAW" | grep -Eq '^[0-9]+\.[0-9]+\.[0-9]+$'; then
+            echo "::error::VERSION '$RAW' must be plain x.y.z for an Android build"
+            exit 1
+          fi
+
+          echo "raw=$RAW" >> "$GITHUB_OUTPUT"
+          echo "Version: $RAW"
+
+      - name: Build APK (Debug)
+        run: |
+          set -e
+          rm -rf build/app
+          flutter build apk --debug --build-name="${{ steps.version.outputs.raw }}" --build-number="${{ github.run_number }}"
+
+      - name: Package APK
+        run: |
+          set -e
+          APK=$(find build/app/outputs -name '*.apk' | head -n 1)
+          if [ -z "$APK" ]; then
+            echo "::error::APK was not produced"
+            exit 1
+          fi
+
+          OUT="build/Crec-${{ steps.version.outputs.raw }}-dev${{ github.run_number }}.apk"
+          cp "$APK" "$OUT"
+          ls -lh "$OUT"
+          shasum -a 256 "$OUT"
+
+      - name: Smoke check product
+        run: |
+          set -e
+          OUT="build/Crec-${{ steps.version.outputs.raw }}-dev${{ github.run_number }}.apk"
+          unzip -l "$OUT" | grep -E "AndroidManifest.xml|classes.dex|libflutter.so" | head -n 5
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Crec-${{ steps.version.outputs.raw }}-dev${{ github.run_number }}-android
+          path: build/Crec-*.apk
+          if-no-files-found: error
+          retention-days: 14
