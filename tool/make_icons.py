@@ -2,7 +2,7 @@ from PIL import Image
 import os, json, sys
 
 ROOT = r"G:/Github/Crec"
-src = Image.open(os.path.join(ROOT, "icon.jpg")).convert("RGBA")
+src = Image.open(os.path.join(ROOT, "icon.png")).convert("RGBA")
 print("source size:", src.size)
 
 def square(img, size):

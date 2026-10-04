@@ -13,6 +13,9 @@ const Color kTextFaint = Color(0xFFA9AEB6);
 const Color kDivider = Color(0xFFF0F1F3);
 const Color kGolden = Color(0xFFB8860B);
 
+/// 底部导航栏顶部 1px 分隔线（取样自参考截图）。
+const Color kTabBarBorder = Color(0xFFEBEDF0);
+
 /// 行情数字字体：提取自原 App（只含数字与 + - . , % / ¥ : 等符号）。
 /// 只用在纯数字文本上，中文与其它文字仍走系统字体，避免缺字。
 const String kNumFont = 'tztNum';

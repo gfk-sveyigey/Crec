@@ -42,10 +42,20 @@ class _LoginPageState extends State<LoginPage> {
       body: ListView(
         padding: const EdgeInsets.fromLTRB(20, 8, 20, 24),
         children: <Widget>[
+          const SizedBox(height: 8),
+          Center(
+            child: Image.asset(
+              'assets/images/login_logo.png',
+              width: 72,
+              height: 72,
+            ),
+          ),
           const SizedBox(height: 12),
-          const Text(
-            '国新证券',
-            style: TextStyle(fontSize: 26, fontWeight: FontWeight.w800, color: kBrandRed),
+          const Center(
+            child: Text(
+              '国新证券',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.w800, color: kText),
+            ),
           ),
           const SizedBox(height: 6),
           Text(

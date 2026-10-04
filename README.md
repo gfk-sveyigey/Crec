@@ -18,7 +18,7 @@
 | 状态 | `ChangeNotifier` + 自定义 `InheritedNotifier` | 无 provider / bloc 依赖 |
 | 图表 | 自研 `CustomPainter`（分时、K 线、柱状、迷你走势） | 不依赖 fl_chart，避免版本耦合 |
 | 持久化 | `shared_preferences` | 唯一第三方依赖，保存登录态与自选 |
-| 图标 | 由 `icon.jpg` 用 `tool/make_icons.py` 生成 | Android mipmap + iOS AppIcon 全套 |
+| 图标 | 由仓库根 `icon.png`（1024×1024，取自脱壳 IPA）用 `tool/make_icons.py` 生成 | Android mipmap + iOS AppIcon 全套 |
 
 ## 2. 目录结构
 
@@ -166,10 +166,54 @@ rsync -a --ignore-existing /tmp/crec_scaffold/ios/ ios/
 - 接口均为第三方公开接口，无 SLA；字段顺序若上游调整需要同步修改 `em.dart` 的解析。
 - 涨跌分布由全市场快照本地聚合，首次加载数据量约 5000+ 行，弱网下会稍慢（失败则用兜底数据）。
 - 「较上一日此时」的增量、热点日历等少数展示项为静态/近似值。
-- `icon.jpg` 原始分辨率仅 152×152，生成的 1024 图标为放大结果；上架前请替换为 1024×1024 高清图标后重跑 `tool/make_icons.py`。
+- `tool/make_icons.py` 的源图是仓库根 `icon.png`（1024×1024，与脱壳 IPA 的 `Assets/1024-1024.png` 完全一致）；需要重做 Android / iOS 启动图标时重跑该脚本即可。
 - 真实开户、行情授权、消息推送等合规能力需要持牌机构柜台与备案域名，本例仅做交互演示。
 
-## 10. CI（GitHub Actions）
+## 10. 与原 App 的对齐（脱壳 IPA）
+
+脱壳 IPA 放在 `decryptedIPA/`，**不参与构建**，只作为素材来源。已接入 Flutter 端的资源：
+
+| 落位 | 来源（`decryptedIPA/Payload/国新证券.app/…`） | 说明 |
+| --- | --- | --- |
+| `assets/icons/tab/*.png` | `Assets/tztzf_toolbar_{user_stock,hq,discover,jy,lc,mine}[_sel]@3x.png` | 底部 6 个页签图标，原图直出（72×72），不再重绘 |
+| `assets/icons/action/search.png` | `Assets/titlebar_btn_search@3x.png` | 顶栏搜索图标 |
+| `assets/icons/action/message.png` | `Assets/titlebar_btn_msg@3x.png` | 顶栏消息图标 |
+| `assets/icons/action/arrow_right.png` | `Assets/common_right_arrow@3x.png` | 区块标题 / 列表行右侧的「>」，替换掉原来的 `Icons.chevron_right` |
+| `assets/icons/action/back.png` | `Assets/cr_common_back@3x.png` | 个股详情页顶栏返回箭头 |
+| `assets/images/login_logo.png` | `Assets/tztzf_login_logo@3x.png` | 登录页品牌 Logo |
+| `assets/icon/icon.png` | `Assets/1024-1024.png` | 与脱壳包逐字节一致，启动图标由它生成 |
+| `assets/icons/watch/{ai_stock,analysis,fund,news}.png` | `Assets/tztzf_hq_userstock_ai_stock@3x.png` / `…_stock_analysis@3x.png` / `…userstok_fundIcon@3x.png` / `…_newsIcon@3x.png` | 自选页指数条右侧 AI识股 / 分析 / 资金 / 资讯 |
+| `assets/icons/watch/{edit,multi_column,preview,sort_*}.png` | `Assets/user_stock_edit@3x.png` / `user_stock_multi_column@3x.png` / `user_stock_preview_switch@3x.png` / `user_stock_list_sort_{default,down,up}@3x.png` | 自选页表头「编辑 / 多股 / 分时预览 / 排序」 |
+| `assets/icons/watch/{add,orc}.png` | `Assets/user_stock_home_addstock@3x.png` / `user_stock_home_orc@3x.png` | 自选页底部「添加自选 / 识别图片」 |
+| `assets/icons/watch/rong.png` | `Assets/tztzf_hq_prop_rong_color@3x.png` | 自选列表个股名后的「融」标记 |
+| `assets/icons/hq/{sqjz,xgsg,ztjm,tjxg}.png` | `Assets/sqjz@3x.png` / `tztzf_hs_functionlist_{xgsg,ztjm,tjxg}@3x.png` | 行情页「神奇九转 / 一键打新 / 涨停揭秘 / 条件选股」 |
+| `assets/icons/hq/sqsj.png` | `example/643c6649….png`（行情页截图） | 「神奇色阶」在 `Assets.car` 中登记为 `tztzf_hq_sqsj_icon`，但现有导出流程没产出该 PNG，故从 @3x 参考截图无损裁出 64×64，并把白底转成透明 |
+
+以上位图统一通过 `lib/widgets/common.dart` 的 `AssetIcon` 渲染；`NavEntry` 新增可选 `asset` 字段，
+有 PNG 的入口传 `asset`、其余继续传 `icon`（Material 图标），两种写法可在同一网格里混用。
+
+配色直接用 `example/` 截图逐像素取样，写进 `lib/core/theme.dart`：
+
+| 常量 | 值 | 取样位置 |
+| --- | --- | --- |
+| `kBrandRed` | `#F5310A` | 底部页签选中态图标与文字 |
+| `kTextSub` | `#666666` | 底部页签未选中态图标/文字、顶栏副标签 |
+| `kText` | `#222222` | 页面标题、顶栏图标 |
+| `kTabBarBorder` | `#EBEDF0` | 底部导航栏顶部 1px 分隔线 |
+| `kUp` / `kDown` | `#F91D1D` / `#06AA59` | 涨跌数字 |
+
+按截图修正的界面细节：
+
+- 顶栏**标题恒显**，副标签（开户|交易 的 普通/信用/期权、发现 的 资讯/投顾）排在标题右侧：选中加粗深色、未选中灰色，**无下划线**（`HeaderTabs`）。
+- 行情页顶栏只保留「行情」，分类标签（全球/A股/基金/ETF/可转债/新三板/更多）单独一行，选中项带红色短下划线（`CategoryTabs`）。
+- 底部导航栏高 50，未选中色 `kTextSub`，顶部 1px `kTabBarBorder`。
+- 自选页表头按截图改为「编辑 / 多股 / 分时预览 ⇄ / 最新 ⇅ / 涨幅 ⇅」：点「编辑」进入删除模式，
+  点「最新」「涨幅」在升序 / 降序之间切换（箭头图标取自原 App 的 `user_stock_list_sort_*`）。
+- 「发现 / 我的 / 理财 / 开户|交易」各页的**金刚区入口图**（慧投研报、两融开户、理财商城…）不在脱壳包里：
+  主二进制里只有 `kingKongList` / `kingKongListJSONTransformer` / `khImageURL` 这类字段，
+  说明这些图标由服务端配置下发，因此这几页的入口仍保留 Material 图标。
+
+## 11. CI（GitHub Actions）
 
 构建工作流已按本项目（Flutter，而非 XcodeGen）改写，**一次运行同时产出 iOS 与 Android 安装包**：
 
@@ -177,7 +221,6 @@ rsync -a --ignore-existing /tmp/crec_scaffold/ios/ ios/
 | --- | --- | --- | --- |
 | `.github/workflows/build-dev.yml` | push 到 `dev`（仅改 `VERSION` 不触发）/ 手动 | `verify` → `build-ios` ∥ `build-android` | 静态检查只跑一次；两个平台并行编译 Debug 无签名包，IPA / APK 各上传为 Actions 工件，**不发 Release** |
 | `.github/workflows/build-release.yml` | PR 合并进 `main` | `prepare` → (`build-ios` ∥ `build-android`) → `release` | 读 `VERSION` 并校验 `v<VERSION>` 标签是否已存在；两个平台并行编译 Release 包；全部成功后用一个 Release 同时挂上 IPA + APK + SHA256 |
-| `.github/workflows/extract-assets.yml` | **仅手动**（`workflow_dispatch`，不随 push/PR 运行） | `extract` | 在 macOS runner 上用 Xcode 自带的 `assetutil` 解 iPhone 版 `Assets.car`：必定产出 `assets.json`（命名颜色 RGBA + 资源名/尺寸）与 `asset-names.txt`，并尽力导出 PNG（acextract / cartool）；只上传 Actions 工件，不改动仓库 |
 
 产物命名：
 
@@ -195,12 +238,12 @@ rsync -a --ignore-existing /tmp/crec_scaffold/ios/ ios/
 
 > 本地构建前请先执行第 7 节的 `flutter create` + `rsync` 补齐命令；这些生成文件已在 `.gitignore` 中，请勿提交回仓库。
 
-## 11. 自检脚本
+## 12. 自检脚本
 
 ```bash
 python tool/make_icons.py                                            # 重新生成 Android / iOS 图标
 node tool/check_dart.mjs lib                                         # Dart 括号/字符串结构检查
 node tool/check_symbols.mjs lib                                      # import 解析与跨文件符号检查
 node tool/check_workflows.mjs .github/workflows/*.yml
-python tool/summarize_assets.py out/assets.json out/asset-names.txt   # 整理 assetutil --info 输出（供 extract-assets 工作流使用）
+
 ```

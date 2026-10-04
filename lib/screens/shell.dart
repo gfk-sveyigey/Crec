@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../core/theme.dart';
-import '../widgets/common.dart';
 import 'discover_page.dart';
 import 'finance_page.dart';
 import 'market_page.dart';
@@ -50,6 +49,16 @@ class _BottomBar extends StatelessWidget {
   final int index;
   final ValueChanged<int> onChanged;
 
+  /// 图标取自脱壳 IPA 的 Assets.car（tztzf_toolbar_*），与原 App 一致。
+  static const List<String> _names = <String>[
+    'watchlist',
+    'market',
+    'discover',
+    'trade',
+    'finance',
+    'profile',
+  ];
+
   static const List<String> _labels = <String>[
     '自选',
     '行情',
@@ -59,67 +68,20 @@ class _BottomBar extends StatelessWidget {
     '我的',
   ];
 
-  static const List<IconData> _icons = <IconData>[
-    Icons.add_box_outlined,
-    Icons.stacked_line_chart,
-    Icons.pentagon_outlined,
-    Icons.hexagon_outlined,
-    Icons.account_balance_wallet_outlined,
-    Icons.person_outline,
-  ];
-
-  static const List<IconData> _activeIcons = <IconData>[
-    Icons.add_box,
-    Icons.stacked_line_chart,
-    Icons.pentagon,
-    Icons.hexagon,
-    Icons.account_balance_wallet,
-    Icons.person,
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
         color: Colors.white,
-        border: Border(top: BorderSide(color: kDivider)),
+        border: Border(top: BorderSide(color: kTabBarBorder)),
       ),
       child: SafeArea(
         top: false,
         child: SizedBox(
-          height: 56,
+          height: 50,
           child: Row(
             children: List<Widget>.generate(6, (int i) {
               final bool active = i == index;
-              final Color color = active ? kBrandRed : const Color(0xFF9AA0A6);
-              if (i == 3) {
-                return Expanded(
-                  child: GestureDetector(
-                    behavior: HitTestBehavior.opaque,
-                    onTap: () => onChanged(i),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        HexagonIcon(
-                          size: 30,
-                          color: active ? kBrandRed : const Color(0xFFB6BBC2),
-                          icon: Icons.sync,
-                          iconSize: 17,
-                        ),
-                        const SizedBox(height: 2),
-                        Text(
-                          _labels[i],
-                          style: TextStyle(
-                            fontSize: 11,
-                            color: color,
-                            fontWeight: active ? FontWeight.w600 : FontWeight.w400,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                );
-              }
               return Expanded(
                 child: GestureDetector(
                   behavior: HitTestBehavior.opaque,
@@ -127,13 +89,21 @@ class _BottomBar extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Icon(active ? _activeIcons[i] : _icons[i], size: 24, color: color),
+                      Image.asset(
+                        'assets/icons/tab/' +
+                            _names[i] +
+                            (active ? '_active' : '') +
+                            '.png',
+                        width: 24,
+                        height: 24,
+                        filterQuality: FilterQuality.high,
+                      ),
                       const SizedBox(height: 2),
                       Text(
                         _labels[i],
                         style: TextStyle(
                           fontSize: 11,
-                          color: color,
+                          color: active ? kBrandRed : kTextSub,
                           fontWeight: active ? FontWeight.w600 : FontWeight.w400,
                         ),
                       ),

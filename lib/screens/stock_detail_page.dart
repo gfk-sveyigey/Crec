@@ -82,6 +82,10 @@ class _StockDetailPageState extends State<StockDetailPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        leading: IconButton(
+          onPressed: () => Navigator.of(context).maybePop(),
+          icon: const AssetIcon('assets/icons/action/back.png', width: 11, height: 22),
+        ),
         titleSpacing: 0,
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

@@ -73,7 +73,12 @@ class ProfilePage extends StatelessWidget {
                                     fontWeight: FontWeight.w700,
                                   ),
                                 ),
-                                const Icon(Icons.chevron_right, size: 18, color: Colors.white),
+                                const AssetIcon(
+                                  'assets/icons/action/arrow_right.png',
+                                  width: 9,
+                                  height: 18,
+                                  color: Colors.white,
+                                ),
                               ],
                             ),
                             const SizedBox(height: 4),
@@ -206,7 +211,7 @@ class ProfilePage extends StatelessWidget {
               '累计盈亏 ' + signed(pnl),
               style: TextStyle(fontSize: 14, color: changeColor(pnl)),
             ),
-            const Icon(Icons.chevron_right, size: 18, color: kTextFaint),
+            const AssetIcon('assets/icons/action/arrow_right.png', width: 9, height: 18),
           ],
         ),
       );

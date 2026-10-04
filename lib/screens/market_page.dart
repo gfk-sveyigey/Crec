@@ -21,7 +21,6 @@ class MarketPage extends StatefulWidget {
 
 class _MarketPageState extends State<MarketPage> {
   static const List<String> _topTabs = <String>[
-    '行情',
     '全球',
     'A股',
     '基金',
@@ -32,7 +31,7 @@ class _MarketPageState extends State<MarketPage> {
   ];
   static const List<String> _subTabs = <String>['沪深京', '板块', '创业', '科创', '京市'];
 
-  int _top = 2;
+  int _top = 1;
   int _sub = 0;
   final Map<int, List<Quote>> _lists = <int, List<Quote>>{};
   bool _loading = false;
@@ -45,13 +44,13 @@ class _MarketPageState extends State<MarketPage> {
 
   String _fsFor(int tab) {
     switch (tab) {
-      case 3:
+      case 2:
         return Em.fsFund;
-      case 4:
+      case 3:
         return Em.fsEtf;
-      case 5:
+      case 4:
         return Em.fsBond;
-      case 6:
+      case 5:
         return 'm:0+t:82';
       default:
         return Em.fsAllA;
@@ -82,15 +81,14 @@ class _MarketPageState extends State<MarketPage> {
       backgroundColor: kBg,
       body: Column(
         children: <Widget>[
-          AppTopBar(
-            title: '行情',
-            tabs: _topTabs,
-            selectedTab: _top,
-            onTabSelected: (int i) {
+          AppTopBar(title: '行情', onSearch: () {}),
+          CategoryTabs(
+            labels: _topTabs,
+            selected: _top,
+            onSelected: (int i) {
               setState(() => _top = i);
               _load(i);
             },
-            onSearch: () {},
           ),
           Expanded(
             child: RefreshIndicator(
@@ -118,11 +116,12 @@ class _MarketPageState extends State<MarketPage> {
                     padding: const EdgeInsets.symmetric(vertical: 4),
                     child: NavGridView(
                       entries: <NavEntry>[
-                        NavEntry(icon: Icons.candlestick_chart_outlined, label: '神奇色阶', color: kText, onTap: () {}),
-                        NavEntry(icon: Icons.filter_9_outlined, label: '神奇九转', color: kText, onTap: () {}),
-                        NavEntry(icon: Icons.assignment_turned_in_outlined, label: '一键打新', color: kText, badge: 'NEW', onTap: () {}),
-                        NavEntry(icon: Icons.local_fire_department_outlined, label: '涨停揭秘', color: kText, onTap: () {}),
-                        NavEntry(icon: Icons.check_circle_outline, label: '条件选股', color: kText, onTap: () {}),
+                        // 图标取自脱壳 IPA 的 Assets.car（原 App 同款）。
+                        NavEntry(asset: 'assets/icons/hq/sqsj.png', label: '神奇色阶', onTap: () {}),
+                        NavEntry(asset: 'assets/icons/hq/sqjz.png', label: '神奇九转', onTap: () {}),
+                        NavEntry(asset: 'assets/icons/hq/xgsg.png', label: '一键打新', onTap: () {}),
+                        NavEntry(asset: 'assets/icons/hq/ztjm.png', label: '涨停揭秘', onTap: () {}),
+                        NavEntry(asset: 'assets/icons/hq/tjxg.png', label: '条件选股', onTap: () {}),
                       ],
                     ),
                   ),
@@ -309,7 +308,7 @@ class _MarketPageState extends State<MarketPage> {
               const SizedBox(width: 8),
               Text('跌:' + down.toString(), style: const TextStyle(fontSize: 13, color: kDown)),
               const Spacer(),
-              const Icon(Icons.chevron_right, size: 18, color: kTextFaint),
+              const AssetIcon('assets/icons/action/arrow_right.png', width: 9, height: 18),
             ],
           ),
           const SizedBox(height: 6),
